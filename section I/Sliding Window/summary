@@ -1,0 +1,5 @@
+sliding window:
+1. solid size window
+2. vary size window
+
+common: Counter/required count/formed count/left idx + right idx

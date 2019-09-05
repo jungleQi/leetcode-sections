@@ -1,21 +1,13 @@
 def longestCommonPrefix(strs):
+    if not strs: return ""
+    if len(strs) == 1: return strs[0]
+
     prefix = ""
-    if not strs:
-        return ""
-
-    lens = []
-    for i,s in enumerate(strs):
-        if i > 0:
-            lens += len(s),
-
-    for i,c in enumerate(strs[0]):
-        for j in range(1,len(strs)):
-            if i >= lens[j-1] or strs[j][i] != c:
-                return prefix
-
-        prefix += c
-
+    strs.sort()
+    for i,j in zip(strs[0], strs[-1]):
+        if i == j: prefix += i
+        else: break
     return prefix
 
-strs = [""]
+strs = ["alower","flow","flight"]
 print longestCommonPrefix(strs)

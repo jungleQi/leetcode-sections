@@ -8,6 +8,7 @@ def maxRepOpt1(text):
     for c, idxs in tdict.items():
         i = prevlen = curlen = 1
         connect = False
+        intevCnt = 0
 
         while i<len(idxs):
             interv = idxs[i]-idxs[i-1]
@@ -18,10 +19,12 @@ def maxRepOpt1(text):
                 prevlen = curlen
                 curlen = 1
                 connect = True if interv == 2 else False
+                intevCnt += 1
+
             i += 1
-        maxlen = max(maxlen, curlen + (prevlen if connect else 0))
+        maxlen = max(maxlen, curlen + (prevlen if connect else 0) + (1 if intevCnt>1 else 0))
 
     return maxlen
 
-text ="ababa"
+text ="abcdef"
 print maxRepOpt1(text)

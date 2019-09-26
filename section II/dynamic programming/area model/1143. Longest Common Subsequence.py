@@ -1,3 +1,5 @@
+#coding=utf-8
+
 def longestCommonSubsequence(text1, text2):
     N = len(text1)
     M = len(text2)

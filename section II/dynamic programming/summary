@@ -19,9 +19,7 @@ https://cloud.tencent.com/developer/article/1453737
 
 一般，只要解决问题的阶段、状态和状态转移决策确定了，就可以写出状态转移方程（包括边界条件）。
 
-https://leetcode.com/problems/house-robber/
-https://leetcode.com/problems/coin-change/
-https://leetcode.com/problems/maximum-product-subarray/
+
 https://leetcode.com/problems/partition-equal-subset-sum/
 https://leetcode.com/problems/climbing-stairs/
 https://leetcode.com/problems/maximal-square/

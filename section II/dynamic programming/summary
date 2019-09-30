@@ -1,7 +1,8 @@
-动态规划算法的核心是记住已经求过的解，记住求解的方式有两种：①自顶向下的备忘录法 ②自底向上
-
 https://cloud.tencent.com/developer/article/1453737
-动态规划遵循一套固定的流程：递归的暴力解法 -> 带备忘录的递归解法(自顶向下) -> 非递归的动态规划解法(自底向上)
+
+#状态dp[i]，并不一定是指全局的nums，在第i个nums[i]时，切合题意的那个中间状态；
+#可能只有依据所求解的状态，引申dp[i]的含义，才能递推出最后的解
+#这就是状态的定义，有的状态定义比较浅显，依据题意直接定;有的需要挖掘，难度稍微大一点
 
 
 基本思想与策略:
@@ -20,10 +21,6 @@ https://cloud.tencent.com/developer/article/1453737
 一般，只要解决问题的阶段、状态和状态转移决策确定了，就可以写出状态转移方程（包括边界条件）。
 
 
-https://leetcode.com/problems/partition-equal-subset-sum/
-https://leetcode.com/problems/climbing-stairs/
-https://leetcode.com/problems/maximal-square/
-https://leetcode.com/problems/k-concatenation-maximum-sum/
 https://leetcode.com/problems/min-cost-climbing-stairs/
 https://leetcode.com/problems/tallest-billboard/
 https://leetcode.com/problems/out-of-boundary-paths/

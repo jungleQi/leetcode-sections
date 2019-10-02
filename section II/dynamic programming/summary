@@ -21,8 +21,6 @@ https://cloud.tencent.com/developer/article/1453737
 一般，只要解决问题的阶段、状态和状态转移决策确定了，就可以写出状态转移方程（包括边界条件）。
 
 https://leetcode.com/problems/unique-paths-ii/
-https://leetcode.com/problems/minimum-swaps-to-make-sequences-increasing/
-https://leetcode.com/problems/triangle/
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 https://leetcode.com/problems/number-of-longest-increasing-subsequence/
 https://leetcode.com/problems/largest-divisible-subset/
@@ -32,7 +30,6 @@ https://leetcode.com/problems/minimum-cost-for-tickets/
 https://leetcode.com/problems/last-stone-weight-ii/
 https://leetcode.com/problems/word-break/
 https://leetcode.com/problems/cheapest-flights-within-k-stops/
-https://leetcode.com/problems/wiggle-subsequence/
 https://leetcode.com/problems/unique-binary-search-trees-ii/
 https://leetcode.com/problems/longest-turbulent-subarray/
 https://leetcode.com/problems/knight-probability-in-chessboard/

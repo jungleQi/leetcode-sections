@@ -1,35 +1,26 @@
 def longestStrChain(words):
-    wordsmap = {}
-    for word in words:
-        wordlen = len(word)
-        if wordlen not in wordsmap:
-            wordsmap[wordlen] = [word]
-        else:
-            wordsmap[wordlen] += word,
+    bucket = [dict() for _ in range(16)]
 
-    sortWords = sorted(wordsmap.items(), key=lambda x:x[0], reverse=True)
+    for i, w in enumerate(words): bucket[len(w) - 1][w] = i
 
-    length = {}
-    maxLen = 1
-    for idx, item in enumerate(sortWords):
-        wlen, words = item[0], item[1]
+    dp = [1] * len(words)
 
-        for curword in words:
-            length[curword] = 1
+    for i, buck in enumerate(bucket):
 
-        if idx == 0: continue
+        if i == 0 or len(bucket) == 0 or len(bucket[i - 1]) == 0:
+            continue
 
-        for curword in sortWords[idx-1][1]:
-            curIdx = len(curword)-1
-            while curIdx>=0:
-                delWord = curword[:curIdx]+curword[curIdx+1:]
-                if delWord in words:
-                    length[delWord] = max(length[delWord], length[curword]+1)
-                    maxLen = max(maxLen, length[delWord])
+        prev = bucket[i - 1]
 
-                curIdx -= 1
+        for word in buck:
+            idx = buck[word]
 
-    return maxLen
+            for i in range(len(word)):
+                sub = word[:i] + word[i + 1:]
+                if sub in prev:
+                    dp[idx] = max(dp[idx], dp[prev[sub]] + 1)
+
+    return max(dp)
 
 words = ["a"]
 print(longestStrChain(words))

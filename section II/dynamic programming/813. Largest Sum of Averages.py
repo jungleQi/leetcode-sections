@@ -1,20 +1,17 @@
 def largestSumOfAverages(A, K):
+    S = [0]
     N = len(A)
-    if K>=N: return sum(A)*1.0
+    for v in A: S.append(S[-1]+v)
 
-    dp = [[0 for _ in range(K)] for _ in range(N)]
-    for i in range(N):
-        for k in range(min(i+1,K)):
-            if k == 0:
-                dp[i][k] = sum(A[:i + 1])/(i+1)
-                continue
+    def average(i,j):
+        return (S[j]-S[i])/float(j-i)
 
-            m = i-1
-            while m>=0:
-                dp[i][k] = max(dp[m][k-1]+sum(A[m+1:i + 1])/(i-m), dp[i][k])
-                m -= 1
-    #print(dp)
-    return dp[-1][-1]
+    dp = [average(i,N) for i in range(N)]
+    for k in range(K-1):
+        for i in range(N):
+            for j in range(i+1, N):
+                dp[i] = max(dp[i], average(i,j)+dp[j])
+    return dp[0]
 
 A = [9,1,2,3,9]
 K = 3

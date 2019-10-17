@@ -21,9 +21,7 @@ https://cloud.tencent.com/developer/article/1453737
 一般，只要解决问题的阶段、状态和状态转移决策确定了，就可以写出状态转移方程（包括边界条件）。
 
 https://leetcode.com/problems/unique-paths-ii/
-https://leetcode.com/problems/unique-substrings-in-wraparound-string/
-https://leetcode.com/problems/last-stone-weight-ii/
-https://leetcode.com/problems/word-break/
+
 https://leetcode.com/problems/unique-binary-search-trees-ii/
 https://leetcode.com/problems/knight-probability-in-chessboard/
 https://leetcode.com/problems/push-dominoes/
@@ -37,14 +35,12 @@ https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/
 https://leetcode.com/problems/unique-binary-search-trees/
 https://leetcode.com/problems/largest-plus-sign/
 https://leetcode.com/problems/unique-paths/
-https://leetcode.com/problems/integer-break/
 
 https://leetcode.com/problems/minimum-score-triangulation-of-polygon/
 https://leetcode.com/problems/filling-bookcase-shelves/
 https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/
 https://leetcode.com/problems/maximum-length-of-pair-chain/
-https://leetcode.com/problems/combination-sum-iv/
 https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/
 https://leetcode.com/problems/stone-game-ii/
 https://leetcode.com/problems/minimum-falling-path-sum/

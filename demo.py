@@ -1,16 +1,22 @@
-def test1(nums):
-    if nums <= 2:
-        return nums
+#coding=utf-8
 
-    dp = [0]*(nums + 1)
-    dp[1] = 1
-    dp[2] = 2
-    for i in range(3, nums + 1):
-        ratio_cnt = int(math.sqrt(i)) + 1
-        mincnt = i
-        for ratio in range(1, ratio_cnt + 1):
-            if i - ratio * ratio >= 0 and dp[i - ratio * ratio] < mincnt:
-                mincnt = dp[i - ratio * ratio]
-        dp[i] = mincnt + 1
+#if S is very big，cause Memory Limit Exceeded
+def test1(nums,S):
+    total = sum(nums)
+    if total < S: return 0
+
+    target,mod = divmod(total+S, 2)
+    if mod != 0: return 0
+
+    dp = [0 for _ in range(target+1)]
+    dp[0] = 1
+    for num in nums:
+        for j in range(target, num-1, -1):
+            if dp[j-num]:
+                dp[j] += dp[j-num]
 
     return dp[-1]
+
+S = 3
+nums = [1, 1, 1, 1, 1]
+print test1(nums,S)

@@ -5,6 +5,7 @@ class ListNode(object):
          self.val = x
          self.next = None
 
+#very lower and rough
 def deleteDuplicates(head):
     if not head : return None
 
@@ -34,8 +35,25 @@ def deleteDuplicates(head):
 
     return lnode.next
 
+#very wonderfull
+def online_solution(head):
+    if not head or not head.next:
+        return head
+    curr = prev = ListNode(0)
+    curr.next = head
+    while (head and head.next):
+        if head.val == head.next.val:
+            while (head and head.next and head.val == head.next.val):
+                head = head.next
+            head = head.next
+            prev.next = head
+        else:
+            prev = prev.next
+            head = head.next
+    return curr.next
+
 values = [0,0,1,3,4,4,5,5,5]
-nodes = constructlist(values)
+nodes = online_solution(values)
 ret = deleteDuplicates(nodes)
 printList(ret)
 

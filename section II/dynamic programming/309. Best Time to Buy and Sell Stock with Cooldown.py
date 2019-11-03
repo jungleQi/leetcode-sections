@@ -1,3 +1,13 @@
+#time complexity is O(n²)
+def maxProfit(prices):
+    N = len(prices)
+    dp = [0]*(N+1)
+    for i in range(2,N+1):
+        for j in range(1,i):
+            if prices[j]<prices[i]:
+                dp[i] = max(dp[i], dp[j-2])
+    return dp[-1]
+
 def maxProfit_sell_cooldown(prices):
     N = len(prices)
     sell = [0]*N
@@ -27,3 +37,5 @@ def maxProfit_hold_cash(prices):
 
 prices = [6,5,4,3]
 print(maxProfit_hold_cash(prices))
+
+

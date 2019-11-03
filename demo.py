@@ -1,16 +1,37 @@
-def test1(nums):
-    if nums <= 2:
-        return nums
+#coding=utf-8
+import sys
 
-    dp = [0]*(nums + 1)
-    dp[1] = 1
-    dp[2] = 2
-    for i in range(3, nums + 1):
-        ratio_cnt = int(math.sqrt(i)) + 1
-        mincnt = i
-        for ratio in range(1, ratio_cnt + 1):
-            if i - ratio * ratio >= 0 and dp[i - ratio * ratio] < mincnt:
-                mincnt = dp[i - ratio * ratio]
-        dp[i] = mincnt + 1
+def coinChange_2D(coins, amount):
+    if amount == 0: return 0
 
-    return dp[-1]
+    N = len(coins)
+    dp = [[sys.maxint for _ in range(amount + 1)] for _ in range(N + 1)]
+
+    dp[0][0] = 0
+    for j in range(1, amount + 1):
+        for i in range(1, N + 1):
+            if coins[i - 1] == j:
+                dp[i][j] = 1
+            elif coins[i - 1] < j:
+                dp[i][j] = min(dp[i - 1][j], dp[i][j - coins[i - 1]] + 1)
+            else:
+                dp[i][j] = dp[i - 1][j]
+
+    return -1 if dp[-1][-1] == sys.maxint else dp[-1][-1]
+
+
+def coinChange_1D(coins, amount):
+    if amount == 0: return 0
+
+    dp = [sys.maxint]*(amount+1)
+    dp[0] = 0
+    for i in range(1, amount+1):
+        for coin in coins:
+            if coin<=i:
+                dp[i] = min(dp[i], dp[i-coin]+1)
+
+    return dp[i] if dp[i] != sys.maxint else -1
+
+coins =[186,419,83,408]
+amount = 6249
+print coinChange_1D(coins, amount)

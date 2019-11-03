@@ -18,3 +18,4 @@ def printList(pHead):
     while pHead:
         print(pHead.val)
         pHead = pHead.next
+    print("\n")

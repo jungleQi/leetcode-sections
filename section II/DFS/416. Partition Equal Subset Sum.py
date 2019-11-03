@@ -1,6 +1,6 @@
 #coding=utf-8
 
-def canPartition(nums):
+def canPartition_dfs(nums):
     sumer = sum(nums)
     if sumer & 1 == 1:
         return False
@@ -16,6 +16,8 @@ def canPartition(nums):
 
     return dfs(0, sumer//2)
 
+def canPartition(nums):
+    
 
 nums = [1,1]
 print canPartition(nums)

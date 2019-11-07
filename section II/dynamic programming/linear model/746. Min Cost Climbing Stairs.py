@@ -1,10 +1,18 @@
-def minCostClimbingStairs(cost):
-    prev_1 = cost[1]
-    prev_2 = cost[0]
-    for val in cost[2:]:
-        curMin = min(prev_2, prev_1) + val
-        prev_2, prev_1 =  prev_1, curMin
-    return min(prev_1, prev_2)
+'''
+On a staircase, the i-th step has some non-negative cost cost[i] assigned (0 indexed).
 
-cost = [10, 15, 20]
-print minCostClimbingStairs(cost)
+Once you pay the cost, you can either climb one or two steps. You need to find minimum cost to reach the top of the floor,
+and you can either start from the step with index 0, or the step with index 1.
+'''
+
+#[1, 100, 1, 1, 1, 100, 1, 1, 100, 1]
+def minCostClimbingStairs(cost):
+    f1, f2 = 0, 0
+    for x in cost:
+        f1,f2 = min(f1,f2)+x,f1
+
+    return min(f1,f2)
+
+cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]
+print(minCostClimbingStairs(cost))
+

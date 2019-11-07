@@ -35,3 +35,24 @@ def coinChange_1D(coins, amount):
 coins =[186,419,83,408]
 amount = 6249
 print coinChange_1D(coins, amount)
+
+
+def get_root(M, q):
+    if q>=M/2 : return -1
+    if q == 1: return M
+
+    li, ri = 0, M/2
+    while li<=ri:
+        mid = (li+ri)/2
+        powVal = mid**q
+        if powVal == M:
+            return mid
+        elif powVal < M:
+            li = mid+1
+        else:
+            ri = mid-1
+
+    return -1
+
+M, q= 16, 3
+print("root:", get_root(M, q))

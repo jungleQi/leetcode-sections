@@ -75,3 +75,5 @@ t.postOrder(t.root)
 print("level order:")
 t.levelOrder(t.root)
 '''
+
+# [5,4,8,11,null,13,4,7,2,null,null,null,1] error

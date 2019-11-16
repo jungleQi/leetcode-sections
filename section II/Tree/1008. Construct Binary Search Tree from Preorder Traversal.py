@@ -6,6 +6,7 @@ any descendant of node.left has a value < node.val, and any descendant of node.r
 Also recall that a preorder traversal displays the value of the node first, then traverses node.left, then traverses node.right.)
 
 '''
+import bisect
 
 class TreeNode(object):
     def __init__(self, x):
@@ -14,14 +15,14 @@ class TreeNode(object):
         self.right = None
 
 def bstFromPreorder(preorder):
-    if not preorder: return None
+    def _helper(i, j):
+        if i == j:
+            return None
+        node = TreeNode(preorder[i])
+        mid = bisect.bisect(preorder, preorder[i], i + 1, j)
+        node.left = _helper(i + 1, mid)
+        node.right = _helper(mid, j)
+        return node
 
-    N = len(preorder)
-    node = root = TreeNode(preorder[0])
-
-    nodelist = []
-    for i in range(1,N):
-        for j in range(i-1,0,-1):
-            if
-
+    return _helper(0, len(preorder))
 

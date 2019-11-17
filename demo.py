@@ -1,58 +1,23 @@
 #coding=utf-8
 import sys
 
-def coinChange_2D(coins, amount):
-    if amount == 0: return 0
+def _get_intersection(wavnames, txtnames):
+    wavnames.sort()
+    txtnames.sort()
 
-    N = len(coins)
-    dp = [[sys.maxint for _ in range(amount + 1)] for _ in range(N + 1)]
+    intersection = []
+    M, N = len(wavnames), len(txtnames)
+    i, j = 0, 0
+    while i<M and j < N:
+        if wavnames[i] == txtnames[j]:
+            intersection += wavnames[i],
+            i += 1
+            j += 1
+        elif wavnames[i] > txtnames[j]: j += 1
+        else: i += 1
 
-    dp[0][0] = 0
-    for j in range(1, amount + 1):
-        for i in range(1, N + 1):
-            if coins[i - 1] == j:
-                dp[i][j] = 1
-            elif coins[i - 1] < j:
-                dp[i][j] = min(dp[i - 1][j], dp[i][j - coins[i - 1]] + 1)
-            else:
-                dp[i][j] = dp[i - 1][j]
+    return intersection
 
-    return -1 if dp[-1][-1] == sys.maxint else dp[-1][-1]
-
-
-def coinChange_1D(coins, amount):
-    if amount == 0: return 0
-
-    dp = [sys.maxint]*(amount+1)
-    dp[0] = 0
-    for i in range(1, amount+1):
-        for coin in coins:
-            if coin<=i:
-                dp[i] = min(dp[i], dp[i-coin]+1)
-
-    return dp[i] if dp[i] != sys.maxint else -1
-
-coins =[186,419,83,408]
-amount = 6249
-print coinChange_1D(coins, amount)
-
-
-def get_root(M, q):
-    if q>=M/2 : return -1
-    if q == 1: return M
-
-    li, ri = 0, M/2
-    while li<=ri:
-        mid = (li+ri)/2
-        powVal = mid**q
-        if powVal == M:
-            return mid
-        elif powVal < M:
-            li = mid+1
-        else:
-            ri = mid-1
-
-    return -1
-
-M, q= 16, 3
-print("root:", get_root(M, q))
+wavnames = ["abcd", "accd", "4sa","abdd", "abe1","ee"]
+txtnames = ["1a", "abcc", "a", "accd", "a1","abdd","abed","ea"]
+print(_get_intersection(wavnames, txtnames))

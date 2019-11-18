@@ -15,13 +15,18 @@ class TreeNode(object):
         self.right = None
 
 def allPossibleFBT(N):
-    def _helper(N, cur, ret):
-        if N == 0: return None
-        root = TreeNode(0)
-        if N == 3:
-            root.left = TreeNode(0)
-            root.right = TreeNode(0)
-            return root
+    N -= 1
+    if N == 0: return [TreeNode(0)]
+    ret = []
+    for i in range(1, N, 2):
+        for left in allPossibleFBT(i):
+            for right in allPossibleFBT(N - i):
+                root = TreeNode(0)
+                root.left = left
+                root.right = right
+                ret += [root]
 
-        root
+    return ret
+
+
 

@@ -1,28 +1,20 @@
-def findLongestChain_dp(pairs):
-    pairs.sort(key=lambda x:(x[0],x[1]))
+'''
+You are given n pairs of numbers. In every pair, the first number is always smaller than the second number.
 
-    N, maxlen = len(pairs), 1
-    dp = [1]*N
-    for i in range(1,N):
-        if pairs[i][0] == pairs[i - 1]:
-            dp[i] = dp[i - 1]
-        else:
-            for j in range(i):
-                if pairs[i][0] > pairs[j][1]:
-                    dp[i] = max(dp[i], dp[j]+1)
+Now, we define a pair (c, d) can follow another pair (a, b) if and only if b < c.
+Chain of pairs can be formed in this fashion.
 
-        maxlen = max(dp[i], maxlen)
+Given a set of pairs, find the length longest chain which can be formed. You needn't use up all the given pairs.
+You can select pairs in any order.
+'''
 
-    return maxlen
+def findLongestChain(pairs):
+    curTail, pairCnt = float('-inf'),0
+    for pair in sorted(pairs, key=lambda x:x[1]):
+        if pair[0]>curTail:
+            curTail = pair[1]
+            pairCnt += 1
+    return pairCnt
 
-def findLongestChain_greedy(pairs):
-    import operator
-    cur, ans = float('-inf'), 0
-    for x, y in sorted(pairs, key=operator.itemgetter(1)):
-        if cur < x:
-            cur = y
-            ans += 1
-    return ans
-
-pairs = [[1,2], [2,3], [3,6],[4,5]]
-print(findLongestChain_greedy(pairs))
+pairs = [[1,2], [2,3], [3,4]]
+print(findLongestChain(pairs))

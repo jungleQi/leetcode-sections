@@ -1,3 +1,4 @@
+#coding=utf-8
 '''
 Given an array nums of integers, we need to find the maximum possible sum of elements
  of the array such that it is divisible by three.
@@ -12,3 +13,7 @@ def maxSumDivThree(nums):
 
 nums = [1,2,3,4,4]
 print(maxSumDivThree(nums))
+
+'''
+1.每个位置，对应三种状态：余0、余1、余2的最大和
+'''

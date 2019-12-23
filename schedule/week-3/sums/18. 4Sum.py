@@ -23,6 +23,11 @@ A solution set is:
 #        2. 利用第三层循环的l,r来确定结果；
 #        3. 每层循环通过边界元素的sum和target的比较，判断是否需要结束循环
 
+#recursion: 1.可以推广到 kSum of target
+#           2.注意一些边界遍历的控制
+#           3.注意只能在while里判断是否终止循环，在外部判断 if sum(path) > target就终止会有问题，
+#           因为如果target为较小的负数，后续一个元素如果是负数，这种情况符合条件但是因为被终止就失去访问的机会
+
 def fourSum_normal(nums, target):
     ret = []
     N = len(nums)
@@ -51,8 +56,47 @@ def fourSum_normal(nums, target):
                     r -= 1
     return ret
 
-target = 11
-nums = [0,1,5,0,1,5,5,-4]
-print(fourSum_normal(nums, target))
+def fourSum_recursion(nums, target):
+    #此处声明的遍历，能够在_helper里直接访问
+    N = len(nums)
+    ret = []
+    nums.sort()
+
+    def _helper(start, K, path, ret):
+        prevsum = sum(path)
+
+        if K > 2:
+            for i in range(start, N-K+1):
+                if i>start and nums[i-1] == nums[i]: continue
+                _helper(i+1, K-1, path+[nums[i]], ret)
+        else:
+            l,r = start,N-1
+            while l<r:
+                if l>start and nums[l-1] == nums[l]:
+                    l += 1
+                    continue
+                if r<N-1 and nums[r] == nums[r+1]:
+                    r -= 1
+                    continue
+
+                if prevsum+nums[l]+nums[l+1] > target or prevsum+nums[r-1]+nums[r]< target:
+                    break
+
+                cursum = prevsum+nums[l]+nums[r]
+                if cursum == target:
+                    ret += path+[nums[l],nums[r]],
+                    l += 1
+                    r -= 1
+                elif cursum > target:
+                    r -= 1
+                else:
+                    l += 1
+
+    _helper(0, 4, [], ret)
+    return ret
+
+target = -11
+nums = [1,-2,-5,-4,-3,3,3,5]
+print(fourSum_recursion(nums, target))
 
 

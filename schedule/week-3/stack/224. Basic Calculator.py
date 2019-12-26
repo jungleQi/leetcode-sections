@@ -56,5 +56,28 @@ def calculate(s):
         i += 1
     return stack[0]
 
+
+def calulate_grace(s):
+    num, res, sign, stack = 0, 0, 1, []
+    for ch in s:
+        if ch.isdigit():
+            num = num * 10 + ord(ch) - ord('0')
+        elif ch in "+-":
+            res += num * sign
+            num = 0
+            sign = -1 if ch == '-' else 1
+        elif ch == '(':
+            stack.append(res)
+            stack.append(sign)
+            sign = 1
+            res = 0
+        elif ch == ')':
+            res += num * sign
+            num = 0
+            res = stack.pop() * res + stack.pop()
+            sign = 1
+        # print 'num', num, 'sign', sign, 'res', res
+    return res + sign * num
+
 s = "(1+(4+5+2)-3)+(6+8)"
 print(calculate(s))

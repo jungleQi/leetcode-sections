@@ -16,10 +16,13 @@ You may assume that the given expression is always valid.
 Do not use the eval built-in library function.
 '''
 
-#stack: 将 '(', '+', '-'，数字单元 都入栈，当遇到 ')'时，开始做出栈运算
+#native stack: 将 '(', '+', '-'，数字单元 都入栈，当遇到 ')'时，开始做出栈运算
 #为了便于处理原始字符串s首尾没有'(', ')'，最后栈内可能存余多个需要计算的数字
 #非常trick的做法，是在原始字符串s首尾，分别添加'(', ')'，这样可以利用遇到')'时触发的出栈运算
 #最后stack只剩余一个元素，就是最后运算的结果
+
+#grace stack: num记录当前数字，sign为正负号代表加减，res为两个括号之间的所有元素运算结果
+#遇到'('时，就将前序res和sign依次入栈，遇到')'时就做一次出栈操作和当前num做一次运算
 
 def calculate(s):
     s = s.strip()
@@ -58,26 +61,26 @@ def calculate(s):
 
 
 def calulate_grace(s):
-    num, res, sign, stack = 0, 0, 1, []
-    for ch in s:
-        if ch.isdigit():
-            num = num * 10 + ord(ch) - ord('0')
-        elif ch in "+-":
-            res += num * sign
+    res,num,sign,stack = 0,0,1,[]
+    for c in s:
+        if c.isdigit():
+            num = num*10+int(c)
+        elif c in '-+':
+            res += num*sign
             num = 0
-            sign = -1 if ch == '-' else 1
-        elif ch == '(':
+            sign = 1 if c=='+' else -1
+        elif c == '(':
             stack.append(res)
             stack.append(sign)
             sign = 1
             res = 0
-        elif ch == ')':
-            res += num * sign
+        elif c == ')':
+            res += sign*num
+            res = res*stack.pop()+stack.pop()
             num = 0
-            res = stack.pop() * res + stack.pop()
-            sign = 1
-        # print 'num', num, 'sign', sign, 'res', res
-    return res + sign * num
+
+    return res+num*sign
 
 s = "(1+(4+5+2)-3)+(6+8)"
-print(calculate(s))
+print(calulate_grace(s))
+

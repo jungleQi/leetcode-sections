@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 You are given a string, s, and a list of words, that are all of the same length.
 Find all starting indices of substring(s) in s that is a concatenation of each word in
@@ -11,6 +13,8 @@ Output: [0,9]
 '''
 
 #couting in sliding window
+#先对窗口win(窗口长度为len(words))内的字符及其个数与word进行一次比较
+#如果win字典 == word字典，才进行每段单词的依次比较；否则窗口滑动到下一个，做一次两端元素的字典增减
 
 import collections, copy
 

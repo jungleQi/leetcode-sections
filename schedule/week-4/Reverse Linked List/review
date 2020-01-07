@@ -1,0 +1,2 @@
+1.新增dummy头部节点
+2.元组(cur.next, prev, cur) 的packing and unpacking

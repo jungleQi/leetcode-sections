@@ -29,5 +29,19 @@ def combinationSum3(k, n):
     _helper(k,n,candidates,[],ret)
     return ret
 
+def combinationSum3_II(k, n):
+    def _helper(cands, k, n, path, ret):
+        if k == 0 and n == 0:
+            ret.append(path)
+            return
+        for i, can in enumerate(cands):
+            if can > n or (path and path[-1] > n): break
+            _helper(cands[i + 1:], k - 1, n - can, path + [can], ret)
+
+    ret = []
+    candidates = [i + 1 for i in range(9)]
+    _helper(candidates, k, n, [], ret)
+    return ret
+
 k,n = 3, 9
-print(combinationSum3(k, n))
+print(combinationSum3_II(k, n))

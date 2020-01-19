@@ -51,6 +51,25 @@ def combinationSum2_opt(candidates, target):
     _helper(0, len(candidates), target, [], ret)
     return ret
 
+def combinationSum2_II(candidates, target):
+    def _helper(cands, tar, path, ret):
+        if tar == 0:
+            ret.append(path)
+
+        for i,can in enumerate(cands):
+            if i>0 and cands[i-1] == can:
+                continue
+            if can > tar or (path and path[-1]>tar):
+                break
+
+            _helper(cands[i+1:],tar-can, path+[can], ret)
+
+    ret = []
+    candidates.sort()
+    _helper(target, [], ret)
+    return ret
+
+
 target = 8
-candidates = [4,4]
+candidates = [10,1,2,7,6,1,5]
 print(combinationSum2_opt(candidates, target))

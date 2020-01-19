@@ -41,6 +41,22 @@ def combinationSum_backtracking(candidates, target):
     _helper(target, [], ret)
     return ret
 
+def combinationSum(candidates, target):
+    def _helper(cands, tar, path, ret):
+        if tar == 0:
+            ret.append(path)
+
+        for i,can in enumerate(cands):
+            if can > tar: break
+            _helper(cands[i:] ,tar-can, path+[can], ret)
+
+    if not candidates: return []
+
+    ret = []
+    candidates.sort()
+    _helper(candidates, target, [], ret)
+    return ret
+
 candidates = [2,3,6,7]
 target = 7
-print(combinationSum_backtracking(candidates, target))
+print(combinationSum(candidates, target))

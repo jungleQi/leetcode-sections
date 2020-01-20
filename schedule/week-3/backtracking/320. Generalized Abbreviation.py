@@ -29,5 +29,6 @@ def generateAbbreviations(word):
     _helper(0, "", 0)
     return ret
 
+
 word = "word"
 print(generateAbbreviations(word))

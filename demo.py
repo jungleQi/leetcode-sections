@@ -1,13 +1,16 @@
-def maxProfit(prices):
-    maxsum, start, end = 0,0,0
-    for i, p in enumerate(prices):
-        if i>0 and p>=prices[i-1]:
-            end = p
-        else:
-            maxsum += end-start
-            start = end = p
-    maxsum += end-start
-    return maxsum
+def generateAbbreviations_iterator(word):
+    n = len(word)
+    ret = []
 
-prices = [4,3,8]
-print(maxProfit(prices))
+    def _helper(pos, cur, count):
+        if pos == n:
+            ret.append(cur+str(count) if count>0 else cur)
+            return
+
+        _helper(pos+1, cur, count+1)
+        _helper(pos+1, cur+(str(count) if count>0 else "")+word[pos], 0)
+
+    _helper(0, "", 0)
+    return ret
+
+print(generateAbbreviations_iterator("word"))

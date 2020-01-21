@@ -1,16 +1,29 @@
-def generateAbbreviations_iterator(word):
-    n = len(word)
+def expand(S):
+    n = len(S)
     ret = []
 
-    def _helper(pos, cur, count):
+    def _helper(pos, path):
         if pos == n:
-            ret.append(cur+str(count) if count>0 else cur)
+            ret.append(path)
             return
 
-        _helper(pos+1, cur, count+1)
-        _helper(pos+1, cur+(str(count) if count>0 else "")+word[pos], 0)
+        if S[pos] == '{':
+            end = pos
+            while S[end] != '}': end += 1
+            opts = S[pos:end].split(",")
+            for c in opts:
+                _helper(end+1, path+c)
+        else:
+            _helper(pos+1,path+S[pos])
 
-    _helper(0, "", 0)
+    _helper(0, "")
     return ret
 
-print(generateAbbreviations_iterator("word"))
+S = "{a,b}def"
+print(expand(S))
+
+
+
+
+
+

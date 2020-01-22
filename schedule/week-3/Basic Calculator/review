@@ -1,0 +1,5 @@
+1.运算时机：'+-*/'或者'()'
+2.变量维护：num , sign , (res), stack
+3.数字形成：num*10+int(c)
+4.运算宿主：res or stack[-1]
+

@@ -21,6 +21,13 @@ Explanation:The 0th and 1st students are direct friends, so they are in a friend
 The 2nd student himself is in a friend circle. So return 2.
 '''
 
+#dfs稍不注意就有坑：
+
+#从I开始只做比I大的dfs，如果当前I已经在visitor就结束dfs返回
+#记录当前路径pah的每个元素，结束从I开始的遍历后，将path并入visitor
+##1->4,2->5,3->4,3->5  这种case就会有bug
+
+
 import collections
 def findCircleNum(M):
     N = len(M)
@@ -55,6 +62,30 @@ def findCircleNum(M):
 
     return circles if circles > 0 else 1
 
+
+def findCircleNum_unionFind(M):
+    def find(parent, i):
+        if parent[i] == -1:
+            return i
+        return find(parent, parent[i])
+
+    def union(parent, x, y):
+        xset = find(parent, x)
+        yset = find(parent, y)
+        if xset != yset:
+            parent[xset] = yset
+
+    N = len(M)
+    parent = [-1]*N
+    for i in range(N):
+        for j in range(i+1, N):
+            if M[i][j] == 1:
+                union(parent, i, j)
+    ans = 0
+    for i in range(N):
+        if parent[i] == -1:
+            ans += 1
+    return ans
 
 # M = [[1,1,0,0,0,0,0,1,0,0,0,0,0,0,0],
 #      [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0],

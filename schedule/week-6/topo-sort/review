@@ -10,4 +10,12 @@
 当且仅当一个有向图为有向无环图（directed acyclic graph，或称DAG）时，才能得到对应于该图的拓扑排序。
 每一个有向无环图都至少存在一种拓扑排序
 
+三部曲：
+1. 构造node:[node1, node2,..] , 即邻接表(非邻域矩阵)
+2. 计算出indegree
+3. topo sort(by bfs)
+
+注意坑：
+1.在统计indegree时，容易重复计数，导致某个节点的入度变大，导致后续排序结果错误
+
 https://www.jianshu.com/p/3347f54a3187

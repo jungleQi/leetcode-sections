@@ -90,6 +90,8 @@ def cloneGraph_solution(node):
     # Return the clone of the node from visited.
     return visited[node]
 
+#1.遍历无向图，要记住访问过的Node，这些Node不能再次进入deque
+#2.若要双向连通，记住V对象，当U对象反连V时，提取V对象加入到U的邻域对象列表
 def cloneGraph_bfs(node):
     if not node: return None
 

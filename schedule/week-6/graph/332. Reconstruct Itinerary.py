@@ -39,6 +39,37 @@ def findItinerary(tickets):
     dfs(graph, "JFK", res)
     return res[::-1]
 
+def findItinerary_backtracking(tickets):
+    def backtracking(origin, path, result):
+        if len(path) == flightNum + 1:
+            result.append(path)
+            return True
+
+        for i, arrive in enumerate(flight[origin]):
+            if not visitorMap[origin][i]:
+                visitorMap[origin][i] = True
+                ret = backtracking(arrive, path + [arrive], result)
+                visitorMap[origin][i] = False
+                if ret: return True
+        return False
+
+    path = ['JFK']
+    if not tickets: return path
+    flight = collections.defaultdict(list)
+    for ticket in tickets:
+        flight[ticket[0]].append(ticket[1])
+
+    visitorMap = {}
+    for depts, arrives in flight.items():
+        arrives.sort()
+        visitorMap[depts] = [False] * len(arrives)
+
+    flightNum = len(tickets)
+    result = []
+
+    backtracking('JFK', path, result)
+    return result[0]
+
 #tickets = [["JFK", "SFO"], ["JFK", "ATL"], ["SFO", "ATL"], ["ATL", "JFK"], ["ATL", "SFO"]]
 tickets = [["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]]
-print(findItinerary(tickets))
+print(findItinerary_backtracking(tickets))

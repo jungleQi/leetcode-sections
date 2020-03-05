@@ -9,17 +9,19 @@ code pattern:
 #find可以通过循环或者递归，递归更加简练
 #查找的过程，会整理set内部关系,即将当前i直接挂在root下面，然后返回父节点，也就是根节点
 
-    def find(self,i):
-        while i != self.parent[i]:
-            self.parent[i] = self.parent[self.parent[i]]
-            i = self.parent[i]
-
-        return i
-
-    def find(self,i):
+#如果父子只是连接关系，不需要加入路径权值，就直接将返回值赋给parent[i]
+    def find(i):
         if i != self.parent[i]:
             self.parent[i] = self.find(self.parent[i])
         return self.parent[i]
+
+#否则，就需要在循环中得到返回值后，对返回值做权值叠加，然后赋给parent[i]
+    def find(x):
+        p, xr = parent.setdefault(x, (x, 1.0))
+        if p != x:
+            r, pr = find(p)
+            parent[x] = r, pr * xr
+        return parent[x]
 
 #union可以直接合并两个set，也可以按照rank来合并
 直接合并：

@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
 
@@ -50,5 +52,24 @@ def longestConsecutive(nums):
     return uf.maxUnion()
 
 
+#时间复杂度为O(n)
+# the numbers are stored in a HashSet (or Set, in Python) to allow O(1) lookups
+# we only attempt to build sequences from numbers that are not already part of a longer sequence
+def longestConsecutive_n(nums):
+    numsSet = set(nums)
+    longestStreak = 1
+
+    for num in numsSet:
+        if num-1 in numsSet:
+            continue
+
+        curStreak = 1
+        curNum = num+1
+        while curNum in numsSet:
+            curStreak += 1
+            curNum += 1
+        longestStreak = max(longestStreak, curStreak)
+    return longestStreak
+
 nums = [100, 4, 200, 1, 3, 2]
-print(longestConsecutive(nums))
+print(longestConsecutive_n(nums))

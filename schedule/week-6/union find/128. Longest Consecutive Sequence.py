@@ -17,10 +17,12 @@ class UF(object):
         self.N = n
         self.parent = range(n)
 
+    #
     def find(self,i):
         while i != self.parent[i]:
             self.parent[i] = self.parent[self.parent[i]]
             i = self.parent[i]
+
         return i
 
     def union(self, i, j):

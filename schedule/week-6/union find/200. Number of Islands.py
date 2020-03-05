@@ -69,7 +69,9 @@ def numIslands_unionFind(grid):
             if j-1 >= 0 and grid[i][j-1] == "1":
                 uf.union(i,j, i,j-1)
     #sum的应用
-    return sum(1 for node in uf.parent if node == uf.parent[node])
+    #如果有if else 的判断：sum([1 if node == uf.parent[node] else 0 for node in uf.parent])
+    #如果只有if的判断：sum([ 1 for node in uf.parent if node == uf.parent[node] ])
+    return sum([1 for node in uf.parent if node == uf.parent[node]])
 
 
 

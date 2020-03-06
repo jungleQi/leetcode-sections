@@ -1,26 +1,25 @@
-class UF(object):
-    def __init__(self):
-        self.par = dict()
 
-    def find(self, x):
-        px = self.par.setdefault(x, x)
-        if x != px:
-            self.par[x] = self.find(self.par[x])
-        return self.par[x]
+import collections
+def findOrder(numCourses, prerequisites):
+    indegree = [0]*numCourses
+    graph = collections.defaultdict(list)
 
-    def union(self,x,y):
-        px,py = self.find(x), self.find(y)
-        if px == py:
-            return False
-        else:
-            self.par[py] = px
-            return True
+    for pair in prerequisites:
+        indegree[pair[0]] += 1
+        graph[pair[1]].append(pair[0])
 
-def findRedundantConnection(edges):
-    uf = UF()
-    for edge in edges:
-        if not uf.union(edge[0], edge[1]):
-            return edge
+    deque = collections.deque([i for i in range(numCourses) if indegree[i] == 0])
+    ret = []
+    while deque:
+        course = deque.popleft()
+        ret.append(course)
+        for nextCourse in graph[course]:
+            indegree[nextCourse] -= 1
+            if indegree[nextCourse] == 0:
+                deque.append(nextCourse)
 
-edges = [[1,2], [2,3], [3,4], [1,4], [1,5]]
-print(findRedundantConnection(edges))
+    return ret if len(ret) == numCourses else []
+
+numCourses = 1
+prerequisites = []
+print(findOrder(numCourses, prerequisites))

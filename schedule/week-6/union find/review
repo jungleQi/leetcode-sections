@@ -3,6 +3,7 @@ Union Find可用于解决集合相关问题，如判断某元素是否属于集�
 
 如果需要的功能不仅仅是检测两个节点是否连通，还需要在连通时得到具体的路径，那么就需要用到别的算法了，比如DFS或者BFS
 
+！！！ 此法适合undirect graph, 不适合direct graph
 
 code pattern:
 

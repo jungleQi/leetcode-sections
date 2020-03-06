@@ -1,33 +1,29 @@
-#coding=utf-8
 
 class UF(object):
-    def __init__(self):
-        self.parent = dict()
+    def __init__(self, N):
+        self.N = N
+        self.parent = range(self.N)
 
-    def find(self, x):
-        #如果找到就得到，找不到就设置
-        p,xr = self.parent.setdefault(x, (x, 1.0))
-        if p != x:
-            r, pr = self.find(p)
-            self.parent[x] = r, pr*xr
-        return self.parent[x]
+    def find(self, i):
+        if i != self.parent[i]:
+            self.parent[i] = self.find(self.parent[i])
+        return self.parent[i]
 
-    def union(self, x, y, load):
-        px,xr = self.find(x)
-        py,yr = self.find(y)
-        if load:
-            self.parent[px] = py, load*xr/yr
-        else:
-            return xr/yr if px == py else -1
+    def union(self, i, j):
+        ri,rj = self.find(i), self.find(j)
+        if ri != rj:
+            self.parent[ri] = rj
+            self.N -= 1
 
-def calcEquation(equations, values, queries):
-    uf = UF()
-    for (x,y), v in zip(equations, values):
-        uf.union(x, y, v)
+def findCircleNum(M):
+    N = len(M)
+    uf = UF(N)
+    for i in range(N):
+        for j in range(i+1, N):
+            if M[i][j] == 1:
+                uf.union(i,j)
 
-    return [uf.union(x,y,0) if x in uf.parent and y in uf.parent else -1.0 for x, y in queries]
+    return uf.N
 
-equations = [["a","b"],["b","c"]]
-values = [2.0,3.0]
-queries = [["a","c"],["b","a"],["a","e"],["a","a"],["x","x"]]
-print(calcEquation(equations, values, queries))
+M = [[1,1,0],[1,1,0],[0,0,1]]
+print(findCircleNum(M))

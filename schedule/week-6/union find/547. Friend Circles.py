@@ -63,29 +63,32 @@ def findCircleNum(M):
     return circles if circles > 0 else 1
 
 
+class UF(object):
+    def __init__(self, N):
+        self.N = N
+        self.parent = range(self.N)
+
+    def find(self, i):
+        if i != self.parent[i]:
+            self.parent[i] = self.find(self.parent[i])
+        return self.parent[i]
+
+    def union(self, i, j):
+        ri,rj = self.find(i), self.find(j)
+        if ri != rj:
+            self.parent[ri] = rj
+            #每次合并根节点合二为一，递减根节点数量，最后根节点数量就是朋友圈的数量
+            self.N -= 1
+
 def findCircleNum_unionFind(M):
-    def find(parent, i):
-        if parent[i] == -1:
-            return i
-        return find(parent, parent[i])
-
-    def union(parent, x, y):
-        xset = find(parent, x)
-        yset = find(parent, y)
-        if xset != yset:
-            parent[xset] = yset
-
     N = len(M)
-    parent = [-1]*N
+    uf = UF(N)
     for i in range(N):
         for j in range(i+1, N):
             if M[i][j] == 1:
-                union(parent, i, j)
-    ans = 0
-    for i in range(N):
-        if parent[i] == -1:
-            ans += 1
-    return ans
+                uf.union(i,j)
+
+    return uf.N
 
 # M = [[1,1,0,0,0,0,0,1,0,0,0,0,0,0,0],
 #      [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0],

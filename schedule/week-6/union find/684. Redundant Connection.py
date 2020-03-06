@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 In this problem, a tree is an undirected graph that is connected and has no cycles.
 
@@ -36,35 +38,30 @@ def findRedundantConnection(edges):
     return ans
 
 
-class DSU(object):
+class UF(object):
     def __init__(self):
-        self.par = range(1001)
-        self.rnk = [0]*1001
+        self.par = dict()
 
     def find(self, x):
-        if x != self.par[x]:
+        #很巧妙的将par的初始化和par[x]的获取结合在一起
+        #如果没有就初始化为指向自己，如果有父节点就返回父节点
+        px = self.par.setdefault(x, x)
+        if x != px:
             self.par[x] = self.find(self.par[x])
         return self.par[x]
 
-    def union(self, x, y):
-        xr,yr = self.find(x), self.find(y)
-        if xr == yr:
+    def union(self,x,y):
+        px,py = self.find(x), self.find(y)
+        if px == py:
             return False
-        if self.rnk[xr] > self.rnk[yr]:
-            self.par[yr] = xr
-        elif self.rnk[xr] < self.rnk[yr]:
-            self.par[xr] = yr
         else:
-            self.par[xr] = yr
-            self.rnk[xr] += 1
-        return True
-
-
+            self.par[py] = px
+            return True
 
 def findRedundantConnection_I(edges):
-    dsu = DSU()
+    uf = UF()
     for edge in edges:
-        if not dsu.union(*edge):
+        if not uf.union(edge[0], edge[1]):
             return edge
 
 edges = [[1,2], [2,3], [3,4], [1,4], [1,5]]

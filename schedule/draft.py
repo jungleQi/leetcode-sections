@@ -1,25 +1,28 @@
-
 import collections
-def findOrder(numCourses, prerequisites):
-    indegree = [0]*numCourses
+def longestIncreasingPath(matrix):
+    M,N = len(matrix), len(matrix[0])
+    indegree = collections.defaultdict(int)
     graph = collections.defaultdict(list)
 
-    for pair in prerequisites:
-        indegree[pair[0]] += 1
-        graph[pair[1]].append(pair[0])
+    for i in range(M):
+        for j in range(N):
+            neighbor = [(i-1,j),(i+1,j),(i,j-1),(i,j+1)]
+            for m,n in neighbor:
+                if m>=0 and m<M and n>=0 and n<N and matrix[m][n]>matrix[i][j]:
+                    graph[(i, j)].append((m, n))
+                    indegree[(m,n)] += 1
 
-    deque = collections.deque([i for i in range(numCourses) if indegree[i] == 0])
-    ret = []
+    deque = collections.deque([(i, j) for i in range(M) for j in range(N) if (i, j) not in indegree])
+    maxLen = 0
     while deque:
-        course = deque.popleft()
-        ret.append(course)
-        for nextCourse in graph[course]:
-            indegree[nextCourse] -= 1
-            if indegree[nextCourse] == 0:
-                deque.append(nextCourse)
+        maxLen += 1
+        for _ in range(len(deque)):
+            i,j = deque.popleft()
+            for item in graph[(i,j)]:
+                indegree[item] -= 1
+                if indegree[item]==0:
+                    deque.append(item)
+    return maxLen
 
-    return ret if len(ret) == numCourses else []
-
-numCourses = 1
-prerequisites = []
-print(findOrder(numCourses, prerequisites))
+matrix = [[9,9,4],[6,6,8],[2,1,1]]
+print(longestIncreasingPath(matrix))

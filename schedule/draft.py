@@ -1,22 +1,17 @@
-def combinationSum2(candidates, target):
-    def helper(cands, target, path, ret):
-        if target == 0:
+def combinationSum3(k, n):
+    def helper(nums, k, n, path, ret):
+        if k == 0 and n == 0:
             ret.append(path)
             return
 
-        for i,cand in enumerate(cands):
-            if cand>target:
-                return
-            if i>0 and cands[i-1] == cand:
-                continue
-            helper(cands[i+1:], target-cand, path+[cand], ret)
+        for i, num in enumerate(nums):
+            if num > n: return
+            helper(nums[i+1:], k-1, n-num, path+[num], ret)
 
+    nums = range(1,10)
     ans = []
-    candidates.sort()
-    helper(candidates, target, [], ans)
+    helper(nums, k, n, [], ans)
     return ans
 
-candidates = [2,5,2,1,2]
-target = 5
-print(combinationSum2(candidates, target))
-
+k,n = 0,0
+print(combinationSum3(k, n))

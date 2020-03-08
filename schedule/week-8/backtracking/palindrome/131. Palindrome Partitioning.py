@@ -17,30 +17,18 @@ Output:
 #对当前输入列表(字符串)进行切片，作为下一层的递归输入
 
 def partition(s):
-
-    #deprecated
-    def ispalin(part):
-        l,r = 0, len(part)-1
-        if r == -1: return False
-        while l < r:
-            if part[l] != part[r]: return False
-            l += 1
-            r -= 1
-        return True
-
-    def _helper(curs, part, ret):
-        if not curs:
-            ret += part,
+    def helper(s, comb, ret):
+        if not s:
+            ret.append(comb)
             return
 
-        i,n = 1,len(curs)
-        while i<=n:
-            if curs[:i] == curs[:i][::-1]:
-                _helper(curs[i:], part+[curs[:i]], ret)
-            i += 1
+        for i in range(1, len(s) + 1):
+            subs = s[:i]
+            if subs == subs[::-1]:
+                helper(s[i:], comb + [subs], ret)
 
     ret = []
-    _helper(s, [], ret)
+    helper(s, [], ret)
     return ret
 
 s = "aab"

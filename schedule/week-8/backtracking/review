@@ -49,3 +49,6 @@ candidate is worth exploring further (i.e. is_valid(next_candidate)), which allo
 
 2.There are two symmetric functions that allow us to mark the decision (place(candidate))
 and revert the decision (remove(candidate)).
+
+遇到的坑：
+    1.回溯毕竟是搜索穷举，有的求总数的问题就会遇到TLE，转而用dp。

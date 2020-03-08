@@ -1,17 +1,17 @@
-def combinationSum3(k, n):
-    def helper(nums, k, n, path, ret):
-        if k == 0 and n == 0:
-            ret.append(path)
+def partition(s):
+    def helper(s, comb, ret):
+        if not s:
+            ret.append(comb)
             return
 
-        for i, num in enumerate(nums):
-            if num > n: return
-            helper(nums[i+1:], k-1, n-num, path+[num], ret)
+        for i in range(1,len(s)+1):
+            subs = s[:i]
+            if subs == subs[::-1]:
+                helper(s[i:], comb+[subs], ret)
 
-    nums = range(1,10)
-    ans = []
-    helper(nums, k, n, [], ans)
-    return ans
+    ret = []
+    helper(s, [], ret)
+    return ret
 
-k,n = 0,0
-print(combinationSum3(k, n))
+s = ""
+print(partition(s))

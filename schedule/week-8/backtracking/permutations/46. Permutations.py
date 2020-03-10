@@ -2,18 +2,19 @@
 Given a collection of distinct integers, return all possible permutations.
 '''
 
+#time complexity : O(n!)
+
 def permute(nums):
-    def _helper(nums, i, path, ret):
-        if i == 0:
-            ret += path,
+    def helper(nums, comb, ret):
+        if not nums:
+            ret.append(comb)
             return
 
-        for n in nums:
-            if n in path: continue
-            _helper(nums, i-1, path+[n], ret)
+        for i, num in enumerate(nums):
+            helper(nums[:i]+nums[i+1:], comb+[num], ret)
 
     ret = []
-    _helper(nums, len(nums), [], ret)
+    helper(nums, [], ret)
     return ret
 
 nums = [1,2,3]

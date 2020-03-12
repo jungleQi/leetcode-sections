@@ -11,4 +11,5 @@ def isSameTree(root1, root2):
     if root1.val != root2.val:
         return False
 
-    return isSameTree(root1.left, root2.left) and isSameTree(root1.right, root2.right)
+    return isSameTree(root1.left, root2.left) and \
+           isSameTree(root1.right, root2.right)

@@ -39,3 +39,19 @@ def flatten(root):
         if i > 0:
             ret[i - 1].left = None
             ret[i - 1].right = node
+
+#无需缓存遍历节点，只需按照遍历过程中modify tree
+def flatten_slice(root):
+    def flatten_tree(root):
+        if not root: return None
+
+        lt = flatten_tree(root.left)
+        rt = flatten_tree(root.right)
+
+        if root.left:
+            lt.right, root.right, root.left = root.right, root.left, None
+
+        return rt or lt or root
+
+    flatten_tree(root)
+

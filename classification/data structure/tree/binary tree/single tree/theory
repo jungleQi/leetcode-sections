@@ -1,0 +1,22 @@
+1.二叉树问题类型：
+主要有三类：遍历，调整树结构，结点计算
+
+2.问题分析步骤：
+2.1 问题总览：
+    二叉树就是一棵递归树，天生就适合用递归，对局部的解决方案适用于整棵树。
+    A common strategy for tree modification problems is recursion.
+A tree is a recursive structure when it comes to problems where the
+structure of the tree has to be modified or we have to traverse the
+tree in general, recursion is one of the top approaches that comes
+to mind simply because it's easy enough to code up and also is very
+intuitive to understand
+
+2.2 将问题放到单个节点和最小子树来求解
+    2.2.1 单个子节点求解：是为了设定结束递归时的处理方式
+    2.2.2 最小子树求解：是为了得到递归中每个节点的处理方式
+    2.2.3 对节点的左右子树分别递归，是为了将最小处理，扩展到整体
+
+3.解决套路：
+3.1 对于纯遍历问题，需要得到遍历之后的结果，就需要给定一个容器(list 或者 dict)来记录
+3.2 对于调整树结构问题，需要在递归返回的用于调整结构所需要的节点
+3.3 对于结点计算问题，注意递归返回一个有意义的值，让计算逻辑变得简单清晰

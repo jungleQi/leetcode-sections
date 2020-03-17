@@ -19,6 +19,7 @@ Output: return the tree root node representing the following tree:
         1
 '''
 
+
 class TreeNode:
     def __init__(self, val):
         self.val = val

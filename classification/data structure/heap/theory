@@ -82,4 +82,8 @@ portfolio = [
 cheap = heapq.nsmallest(3, portfolio, key=lambda s: s['price'])
 expensive = heapq.nlargest(3, portfolio, key=lambda s: s['price'])
 
+
+注意：
+对数组堆化之后，数组的顺序
+
 https://www.jianshu.com/p/801318c77ab5

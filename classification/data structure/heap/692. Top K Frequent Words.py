@@ -30,13 +30,6 @@ def topKFrequent_submission(words, k):
     heapq.heapify(heap)
     return [heapq.heappop(heap)[1] for _ in xrange(k)]
 
-def test():
-    nums = [(1,"c"),(1,"b"),(2,"d"),(2,"a")]
-    heapq.heapify(nums)
-    print([heapq.heappop(nums)[1] for _ in xrange(4)])
-    print(nums)
-
 words = ["i", "love", "leetcode", "i", "love", "coding"]
 k = 2
-#print(topKFrequent(words, k))
-test()
+#print(topKFrequent_submission(words, k))

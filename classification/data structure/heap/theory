@@ -1,0 +1,85 @@
+
+快速排序，平均情况下，它的时间复杂度为 O(nlogn)。
+尽管这两种排序算法的时间复杂度都是 O(nlogn)，甚至堆排序比快速排序的时间复杂度还要稳定，
+但是，在实际的软件开发中，快速排序的性能要比堆排序好
+
+堆是一种特殊的树：
+1.堆是一个完全二叉树；
+2.堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。
+
+一、存储堆
+用数组来存储完全二叉树是非常节省存储空间的。
+数组中下标为 i 的节点：
+左子节点就是下标为 i∗2 的节点，
+右子节点就是下标为 i∗2+1 的节点
+父节点就是下标为 2i​ 的节点
+
+二、堆化
+让其重新满足堆的特性，就叫作堆化（heapify）
+堆化非常简单，就是顺着节点所在的路径，向上或者向下，对比，然后交换
+
+三、堆的操作
+3.1 往堆中插入一个元素
+3.2 删除堆顶元素
+
+我们知道，一个包含 n 个节点的完全二叉树，树的高度不会超过 log2​n。
+堆化的过程是顺着节点所在路径比较交换的，所以堆化的时间复杂度跟树的高度成正比，也就是 O(logn)。
+插入数据和删除堆顶元素的主要逻辑就是堆化，所以，往堆中插入一个元素和删除堆顶元素的时间复杂度都是 O(logn)。
+
+整个堆排序的过程，都只需要极个别临时存储空间，所以堆排序是原地排序算法。
+堆排序包括建堆和排序两个操作，排序过程的时间复杂度是 O(nlogn)，
+所以，堆排序整体的时间复杂度是 O(nlogn)
+
+
+四、python heapq
+
+import heapq
+
+4.1、建堆：
+heapq有两种方式创建堆， 一种是使用一个空列表，然后使用heapq.heappush()函数把值加入堆中，
+另外一种就是使用heap.heapify(list)转换列表成为堆结构
+
+# 第一种
+nums = [2, 3, 5, 1, 54, 23, 132]
+heap = []
+for num in nums:
+    heapq.heappush(heap, num)  # 加入堆
+print([heapq.heappop(heap) for _ in range(len(nums))])  # 堆排序结果
+
+# 第二种
+nums = [2, 3, 5, 1, 54, 23, 132]
+heapq.heapify(nums)
+print([heapq.heappop(heap) for _ in range(len(nums))])  # 堆排序结果
+
+4.2、访问堆内容
+堆创建好后，可以通过`heapq.heappop()函数弹出堆中最小值
+nums = [2, 43, 45, 23, 12]
+heapq.heapify(nums)
+heapq.heappop(nums)
+
+4.3、获取堆最大或最小值
+heapq.nlargest / heapq.nsmallest
+
+nums = [1, 3, 4, 5, 2]
+print(heapq.nlargest(3, nums))
+print(heapq.nsmallest(3, nums))
+
+"""
+输出：
+[5, 4, 3]
+[1, 2, 3]
+"""
+
+这两个函数还接受一个key参数，用于dict或其他数据结构类型使用
+portfolio = [
+    {'name': 'IBM', 'shares': 100, 'price': 91.1},
+    {'name': 'AAPL', 'shares': 50, 'price': 543.22},
+    {'name': 'FB', 'shares': 200, 'price': 21.09},
+    {'name': 'HPQ', 'shares': 35, 'price': 31.75},
+    {'name': 'YHOO', 'shares': 45, 'price': 16.35},
+    {'name': 'ACME', 'shares': 75, 'price': 115.65}
+]
+cheap = heapq.nsmallest(3, portfolio, key=lambda s: s['price'])
+expensive = heapq.nlargest(3, portfolio, key=lambda s: s['price'])
+
+https://www.jianshu.com/p/801318c77ab5

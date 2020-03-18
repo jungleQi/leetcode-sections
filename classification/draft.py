@@ -1,30 +1,28 @@
-class TreeNode:
-    def __init__(self, val):
-        self.val = val
-        self.left = None
-        self.right = None
+import heapq
 
-#inorder = [9,3,15,20,7]
-#postorder = [9,15,7,20,3]
+def heapify():
+    nums = [1,4,2,7,5]
+    heap = []
+    for num in nums:
+        heapq.heappush(heap, num)
+    print(heap)
 
-'''
-Input: [3,2,1,6,0,5]
-Output: return the tree root node representing the following tree:
+    sortRet = [heapq.heappop(heap) for _ in range(len(heap))]
+    print(sortRet)
 
-      6
-    /   \
-   3     5
-    \    /
-     2  0
-       \
-        1
-'''
+    heapq.heapify(nums)
+    print(nums)
 
-def constructMaximumBinaryTree(nums):
-    if not nums: return None
+    sortRet = [heapq.heappop(nums) for _ in range(len(nums))]
+    print(sortRet)
 
-    idx = nums.index(max(nums))
-    root = TreeNode(nums[idx])
-    root.left = constructMaximumBinaryTree(nums[:idx])
-    root.right = constructMaximumBinaryTree(nums[idx+1:])
-    return root
+def heapOperate():
+    nums = [1,4,2,7,5]
+    #heapq.heapify(nums)
+
+    ret1 = heapq.nlargest(2, nums)
+    print(ret1)
+    ret2 = heapq.nsmallest(2, nums)
+    print(ret2)
+
+heapOperate()

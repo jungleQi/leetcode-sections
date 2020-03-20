@@ -30,6 +30,7 @@ def kSmallestPairs(nums1, nums2, k):
     while k > 0 and heap:
         _, i, j = heapq.heappop(heap)
         pair.append([nums1[i], nums2[j]])
+        #这是一组非常高明的选择Pair入堆过程！
         push(i, j + 1)
         if j == 0: # 防止同一pair重复入堆；当前较小的pair入堆
             push(i + 1, j)

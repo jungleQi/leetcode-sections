@@ -3,6 +3,10 @@
 尽管这两种排序算法的时间复杂度都是 O(nlogn)，甚至堆排序比快速排序的时间复杂度还要稳定，
 但是，在实际的软件开发中，快速排序的性能要比堆排序好
 
+The advantage of this solution is it can deal with real-time(online) stream data.It does not have to know the size of the data previously.
+The disadvatage of this solution is it is not the most efficient solution.
+
+
 堆是一种特殊的树：
 1.堆是一个完全二叉树；
 2.堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。

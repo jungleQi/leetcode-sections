@@ -35,3 +35,27 @@ def reverseBetween(head, m, n):
     if h1: h1.next = prev
 
     return ret.next
+
+
+def reverseBetween_onepass(head, m, n):
+    def helper(head, i):
+        if i == n:
+            return head, head.next
+
+        #递归到尽头后，需要记录起始的node
+        # 便于后面在中间区间[m,n]进行逆转后，和被分割的头部区间、尾部区间链接成整体
+        p, q = helper(head.next, i + 1)
+        if i >= m:
+            head.next.next = head
+            head.next = None
+        elif i == m - 1:
+            head.next.next = q
+            head.next = p
+
+        return p, q
+
+    #对于端点问题，为保证递归逻辑的完整性，这里添加dummy
+    dummy = ListNode(-1)
+    dummy.next = head
+    helper(dummy, 0)
+    return dummy.next

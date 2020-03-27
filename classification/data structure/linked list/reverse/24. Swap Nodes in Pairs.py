@@ -1,4 +1,4 @@
-from utils import *
+from ..utils import *
 
 def swapPairs(head):
     dummy = ListNode(-1)
@@ -20,7 +20,3 @@ arr = [1,2,3,4]
 mylist = List(arr)
 ret = swapPairs(mylist.head)
 mylist.printList(ret)
-
-
-
-

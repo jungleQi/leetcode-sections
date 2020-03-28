@@ -1,23 +1,19 @@
 from utils import *
 
-def removeNthFromEnd(head, n):
-    def helper(head):
-        if not head:
-            return 0
-        ret = helper(head.next)
-        if ret == n:
-            head.next = head.next.next
-        return ret + 1
+def deleteDuplicates(head):
+    if not head or not head.next: return head
 
-    dummy = ListNode(-1)
-    dummy.next = head
-    helper(dummy)
-    return dummy.next
+    if head.val == head.next.val:
+        head.next = head.next.next
+        deleteDuplicates(head)
+    else:
+        deleteDuplicates(head.next)
 
+    return head
 
-arr = [1]
+arr = []
 mylist = List(arr)
-ret = removeNthFromEnd(mylist.head, 1)
+ret = deleteDuplicates(mylist.head)
 mylist.printList(ret)
 
 

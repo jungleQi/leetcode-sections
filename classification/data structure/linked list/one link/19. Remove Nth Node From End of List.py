@@ -1,9 +1,29 @@
+#coding=utf-8
+
+'''
+Given a linked list, remove the n-th node from the end of list and return its head.
+
+Example:
+
+Given linked list: 1->2->3->4->5, and n = 2.
+
+After removing the second node from the end, the linked list becomes 1->2->3->5.
+Note:
+
+Given n will always be valid.
+
+Follow up:
+
+Could you do this in one pass?
+'''
 from common import *
 
 class ListNode(object):
     def __init__(self, x):
         self.val = x
         self.next = None
+
+#递归：1.递的路上处理问题；2.归的路上处理问题。这题是第二种情况
 
 def removeNthFromEnd(head, n):
     if not head: return None

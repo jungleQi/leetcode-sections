@@ -1,24 +1,23 @@
 from utils import *
 
-def swapPairs(head):
-    dummy = ListNode(-1)
-    prev = dummy
-    prev.next = head
+def removeNthFromEnd(head, n):
+    def helper(head):
+        if not head:
+            return 0
+        ret = helper(head.next)
+        if ret == n:
+            head.next = head.next.next
+        return ret + 1
 
-    while head and head.next:
-        #reverse
-        prev.next = head.next
-        head.next = head.next.next
-        prev.next.next = head
-        #prepare for next reverse
-        prev = head
-        head = head.next
+    dummy = ListNode(-1)
+    dummy.next = head
+    helper(dummy)
     return dummy.next
 
 
-arr = [1,2,3,4]
+arr = [1]
 mylist = List(arr)
-ret = swapPairs(mylist.head)
+ret = removeNthFromEnd(mylist.head, 1)
 mylist.printList(ret)
 
 

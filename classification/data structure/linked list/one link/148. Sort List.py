@@ -1,3 +1,17 @@
+#coding=utf-8
+
+'''
+Sort a linked list in O(n log n) time using constant space complexity.
+
+Example 1:
+
+Input: 4->2->1->3
+Output: 1->2->3->4
+Example 2:
+
+Input: -1->5->3->4->0
+Output: -1->0->3->4->5
+'''
 from common import *
 
 class ListNode(object):
@@ -37,9 +51,25 @@ def sortList(head):
 
     return merge(sortList(head), sortList(headb))
 
+#list sort 或者merge的问题，转换成arr，然后排序，是一种简洁的方法
+def sortList_arr(head):
+    l = []
+    cur = head
+    while cur:
+        l.append(cur.val)
+        cur = cur.next
 
-#values = [1,1,1,2,2,3,4,5,5]
-values = [4,19,14,5,-3,1,8,5,11,15]
+    l.sort()
+    i = 0
+    cur = head
+    while cur:
+        cur.val = l[i]
+        cur = cur.next
+        i += 1
+    return head
+
+values = [1,1,1,2,2,3,4,5,5]
+#values = [4,19,14,5,-3,1,8,5,11,15]
 head = constructlist(values)
-ret = sortList(head)
+ret = sortList_arr(head)
 printList(ret)

@@ -1,24 +1,21 @@
 from utils import *
 
-def sortList(head):
-    curr = head
-    l = []
-    while curr is not None:
-        l.append(curr.val)
-        curr = curr.next
-    l.sort()
-    i = 0
-    curr = head
-    while i < len(l):
-        curr.val = l[i]
-        curr = curr.next
-        i = i + 1
-    return head
+def middleNode(head):
+    if not head or not head.next: return head
 
-arr = [4,2,1,3]
+    slow, fast = head, head.next
+    while fast:
+        fast = fast.next
+        if fast: fast = fast.next
+        slow = slow.next
+    return slow
+
+
+arr = [1]
 mylist = List(arr)
-ret = sortList(mylist.head)
-mylist.printList(ret)
+ret = middleNode(mylist.head)
+print(ret.val)
+#mylist.printList(ret)
 
 
 

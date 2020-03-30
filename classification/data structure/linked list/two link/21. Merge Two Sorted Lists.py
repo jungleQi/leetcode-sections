@@ -8,7 +8,7 @@ Input: 1->2->4, 1->3->4
 Output: 1->1->2->3->4->4
 '''
 
-from ..utils import *
+from leetcode.classification.utils import *
 def mergeTwoLists(l1, l2):
     head = cur = ListNode(0)
     while l1 and l2:

@@ -13,7 +13,7 @@ Input:
 Output: 1->1->2->3->4->4->5->6
 '''
 
-from ..utils import *
+from leetcode.classification.utils import *
 def mergeKLists(lists):
     all_nodes = []
     for list in lists:

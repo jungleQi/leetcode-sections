@@ -1,4 +1,4 @@
-from ..utils import *
+from leetcode.classification.utils import *
 
 def swapPairs(head):
     dummy = ListNode(-1)

@@ -15,7 +15,7 @@ Input: 1->1->1->2->3
 Output: 2->3
 '''
 
-from ..utils import *
+from leetcode.classification.utils import *
 
 class ListNode(object):
      def __init__(self, x):

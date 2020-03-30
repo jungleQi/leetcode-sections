@@ -38,7 +38,7 @@ class Node(object):
         self.neighbors = []
 
 visited = {}
-def cloneGraph(node):
+def cloneGraph_recursive(node):
     """
     :type node: Node
     :rtype: Node
@@ -50,39 +50,31 @@ def cloneGraph(node):
     clone_node = Node(node.val, [])
     visited[node] = clone_node
     if node.neighbors:
-        clone_node.neighbors = [cloneGraph(n) for n in node.neighbors]
+        clone_node.neighbors = [cloneGraph_recursive(n) for n in node.neighbors]
 
     return clone_node
 
-import collections
 
+#防坑：注意建立旧node和新node的时机：
+# 1. 在旧node入列queue之后，紧接着建立visitor[oldNode] = newNode的映射是可靠的
+# 2. 在deque.pop得到的oldNode,建立旧新节点的映射，存在已有新topo结构被覆盖的问题
+
+import collections
 def cloneGraph_solution(node):
-    """
-    :type node: Node
-    :rtype: Node
-    """
-    if not node:
-        return node
+    if not node: return node
 
     # Dictionary to save the visited node and it's respective clone
     # as key and value respectively. This helps to avoid cycles.
     visited = {}
-
-    # Put the first node in the queue
     queue = collections.deque([node])
-    # Clone the node and put it in the visited dictionary.
     visited[node] = Node(node.val, [])
 
-    # Start BFS traversal
     while queue:
-        # Pop a node say "n" from the from the front of the queue.
         n = queue.popleft()
-        # Iterate through all the neighbors of the node
         for neighbor in n.neighbors:
             if neighbor not in visited:
                 # Clone the neighbor and put in the visited, if not present already
                 visited[neighbor] = Node(neighbor.val, [])
-                # Add the newly encountered node to the queue.
                 queue.append(neighbor)
             # Add the clone of the neighbor to the neighbors of the clone node "n".
             visited[n].neighbors.append(visited[neighbor])
@@ -90,31 +82,20 @@ def cloneGraph_solution(node):
     # Return the clone of the node from visited.
     return visited[node]
 
-#1.遍历无向图，要记住访问过的Node，这些Node不能再次进入deque
-#2.若要双向连通，记住V对象，当U对象反连V时，提取V对象加入到U的邻域对象列表
-def cloneGraph_bfs(node):
-    if not node: return None
-
+def cloneGraph_ERROR(node):
+    visitor = {}
     deque = collections.deque([node])
-    head = Node(node.val)
-    map = {node.val: head}
-    visitor = set([node.val])
-
     while deque:
-        oldnode = deque.popleft()
-        newnode = map[oldnode.val]
-        for neigh in oldnode.neighbors:
-            #此处判断，是为了让两个node能够互通，而不会对同一val申请两个不同Node,呈V的连通
-            if neigh.val not in map:
-                newNeigh = Node(neigh.val)
-                map[neigh.val] = newNeigh
-            else:
-                newNeigh = map[neigh.val]
+        curNode = deque.popleft()
+        #[2]. 但是，将[1]中nei对应原有的新nei覆盖掉，使nei的后续拓扑断裂
+        visitor[curNode] = Node(node.val, [])
 
-            newnode.neighbors.append(newNeigh)
+        for nei in curNode.neighbors:
+            if nei not in visitor:
+                deque.append(nei)
+                visitor[nei] = Node(nei.val, [])
+            #[1]. 此刻，nei 的新复制对象，进入了新curNode的邻居列表
+            visitor[curNode].neighbors.append(visitor[nei])
+    return visitor[node]
 
-            #避免死循环
-            if neigh.val not in visitor:
-                deque.append(neigh)
-                visitor.add(neigh.val)
-    return head
+

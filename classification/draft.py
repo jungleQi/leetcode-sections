@@ -3,32 +3,35 @@
 from utils import *
 import collections
 
-def validTree(n, edges):
-    adjacent = [[] for _ in range(n)]
-    for edge in edges:
-        adjacent[edge[0]].append(edge[1])
-        adjacent[edge[1]].append(edge[0])
+def findItinerary(tickets):
+    arrivals = collections.defaultdict(list)
+    for ticket in tickets:
+        arrivals[ticket[0]].append(ticket[1])
 
-    def dfs(prev, cur):
-        for nei in adjacent[cur]:
-            #坑：如果不放在 if nei in visitor 之前 进行判断，会出现误判
-            if nei == prev: continue
-            if nei in visitor: return False
+    visitor = collections.defaultdict(list)
+    for key in arrivals.keys():
+        visitor[key] = [False]*len(arrivals[key])
 
-            visitor.add(nei)
-            ret = dfs(cur, nei)
-            if not ret: return False
+    def travel(dept, path, n, ans):
+        if n == N:
+            ans.append(path)
+            return True
+        if not arrivals[dept] and n<N:
+            return False
 
-        return True
+        for i, arrival in enumerate(arrivals[dept]):
+            if not visitor[dept][i]:
+                visitor[dept][i] = True
+                ret = travel(arrival, path+[arrival], n+1, ans)
+                visitor[dept][i] = False
 
-    #定义在外部，嵌套函数也可以操作访问
-    visitor = set([0])
-    return dfs(-1, 0) and len(visitor) == n
+                if ret: return True
+        return False
 
-n = 4
-edges = [[0,1],[2,3],[1,2]]
-print(validTree(n, edges))
+    N = len(tickets) + 1
+    ans = []
+    travel("JFK", ["JFK"], 1, ans)
+    return ans[0]
 
-
-
-
+tickets = [["EZE","AXA"],["TIA","ANU"],["ANU","JFK"],["JFK","ANU"],["ANU","EZE"],["TIA","ANU"],["AXA","TIA"],["TIA","JFK"],["ANU","TIA"],["JFK","TIA"]]
+print(findItinerary(tickets))

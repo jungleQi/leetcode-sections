@@ -16,8 +16,14 @@ How long will it take for all nodes to receive the signal? If it is impossible, 
 #3. 每个节点dist[node]表示最小的到达时间，如果当前到达时间大于已有的到达时间，就返回；
 # 否则更新为当前更小的到达时间
 
-import collections
+#坑：注意这是graph，不是tree，这里面有两个节点之间双向互连的可能，也有环的可能
+#1. dfs,避免不出现死循环，想用visitor来记录已经访问过的节点，如果已经访问过，就立即返回。
+#   这样虽然避免了死循环，但是会误伤另外一条路径访问同一个节点时，可能耗时更短的可能
 
+#key: 为了即不陷入graph的死循环，又不误伤到达同一节点的耗时更短路径，可以通过记录每个节点最小耗时。
+#    如果当前路径耗时小于记录的最短耗时，就更新记录的最短耗时，继续dfs；否则就不做任何dfs处理，就此默认返回
+
+import collections
 def networkDelayTime(times, N, K):
     graph = collections.defaultdict(list)
     for u,v,w in times:

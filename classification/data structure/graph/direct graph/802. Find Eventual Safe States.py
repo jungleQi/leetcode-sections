@@ -33,6 +33,8 @@ Here is a diagram of the above graph.
 #   2.2 产生分支处：对neighbor的判断，如果neighbor已经被定性为BLACK就无需再对该neighbor分支进行判断；
 #       如果neighbors中，只要出现了一个neighbor是GRAY，或者neighbor的分支返回False，整个递归链条就层层返回，全是GRAY
 
+#回顾：有很多graph问题
+
 import collections
 def eventualSafeNodes(graph):
     WHITE, GRAY, BLACK = 0, 1, 2

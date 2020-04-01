@@ -26,6 +26,13 @@ Here is a diagram of the above graph.
 #visit node，entry的时候mark为GRAY, exit的时候mark为BLACK。
 # 如果我们在DFS过程中看到了GRAY，它肯定是一个cycle
 
+#厘清：
+# 1.回溯点或者分支点，是在recursion调用产生，它的调用返回，也是一个分支遍历结束后的状态
+# 2.pruning有两处：
+#   2.1 递归函数入口处：如果已经被定性过GRAY or BLACK，就返回
+#   2.2 产生分支处：对neighbor的判断，如果neighbor已经被定性为BLACK就无需再对该neighbor分支进行判断；
+#       如果neighbors中，只要出现了一个neighbor是GRAY，或者neighbor的分支返回False，整个递归链条就层层返回，全是GRAY
+
 import collections
 def eventualSafeNodes(graph):
     WHITE, GRAY, BLACK = 0, 1, 2

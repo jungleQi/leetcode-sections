@@ -13,3 +13,8 @@
 2.1 图为了防止死循环递归，需要记录访问过节点的备忘数据，从而判断某个节点是否已经访问过，有多种方式：
     set([node1, node2 ...])，visitor[node][False, True, ...], pathWeight[node]
 2.2 判断访问完graph所有的边或者节点
+
+图问题，就是dfs+backtracking算法在邻接表上的应用，主要注意三个问题：
+A.何时返回（显式或者隐式）
+B.pruning
+C.防止死循环

@@ -17,8 +17,14 @@
     set([node1, node2 ...])，visitor[node][False, True, ...], pathWeight[node]
 2.2 判断访问完graph所有的边或者节点
 
-图问题，就是dfs+backtracking算法在邻接表上的应用，主要注意三个问题：
+图问题，就是dfs+backtracking算法在邻接表上的应用，主要注意几个问题：
 A.何时返回（显式或者隐式）
 B.pruning
 C.防止死循环
 D.节点的状态：[False，True]-避免死循环，[WHITE, GRAY, BLACK]-避免死循环+哪些导致或者不会导致死循环
+
+框架：
+1.对数据集和只需要做 是与否 的判断：
+    如果找到想要的结果就马上撤，一般返回True，递归返回判断是True，就层层返回；
+    如果在某个节点建立子树时进行pruning，一般是conitue；
+    如果没有找到，前面一直没有机会返回True，就在最后返回False

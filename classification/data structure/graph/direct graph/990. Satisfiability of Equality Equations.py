@@ -22,8 +22,15 @@ def equationsPossible(equations):
 
     visitor = collections.defaultdict(list)
     def dfs(node, unequationCnt):
+        visitor[node] = unequationCnt
         for nei, label in graph[node]:
+            if visitor[nei] > 0:
+                if visitor[nei] - unequationCnt == 1:
+                    return False
+                else:
+                    return True
 
-            visitor[node] = unequationCnt
-            dfs(nei, unequationCnt+label)
+            ret = dfs(nei, unequationCnt+label)
+            if not ret: return False
 
+        return True

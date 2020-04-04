@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-In a directed graph, we start at some node and every turn, walk along a directed edge of the graph.
+In a directed direct graph, we start at some node and every turn, walk along a directed edge of the direct graph.
 If we reach a node that is terminal (that is, it has no outgoing directed edges), we stop.
 
 Now, say our starting node is eventually safe if and only if we must eventually walk to a terminal node.
@@ -10,13 +10,13 @@ Now, say our starting node is eventually safe if and only if we must eventually 
 
 Which nodes are eventually safe?  Return them as an array in sorted order.
 
-The directed graph has N nodes with labels 0, 1, ..., N-1, where N is the length of graph.
-The graph is given in the following form: graph[i] is a list of labels j such that (i, j) is a directed edge of the graph.
+The directed direct graph has N nodes with labels 0, 1, ..., N-1, where N is the length of direct graph.
+The direct graph is given in the following form: direct graph[i] is a list of labels j such that (i, j) is a directed edge of the direct graph.
 
 Example:
-Input: graph = [[1,2],[2,3],[5],[0],[5],[],[]]
+Input: direct graph = [[1,2],[2,3],[5],[0],[5],[],[]]
 Output: [2,4,5,6]
-Here is a diagram of the above graph.
+Here is a diagram of the above direct graph.
 '''
 
 #WHITE  表示没有被访问过

@@ -1,9 +1,9 @@
 #coding=utf-8
 '''
-Given a reference of a node in a connected undirected graph.
-Return a deep copy (clone) of the graph.
+Given a reference of a node in a connected undirected direct graph.
+Return a deep copy (clone) of the direct graph.
 
-Each node in the graph contains a val (int) and a list (List[Node]) of its neighbors.
+Each node in the direct graph contains a val (int) and a list (List[Node]) of its neighbors.
 class Node {
     public int val;
     public List<Node> neighbors;
@@ -13,18 +13,18 @@ class Node {
 Test case format:
     For simplicity sake, each node's value is the same as the node's index (1-indexed).
     For example, the first node with val = 1, the second node with val = 2, and so on.
-    The graph is represented in the test case using an adjacency list.
+    The direct graph is represented in the test case using an adjacency list.
 
-Adjacency list is a collection of unordered lists used to represent a finite graph.
-Each list describes the set of neighbors of a node in the graph.
+Adjacency list is a collection of unordered lists used to represent a finite direct graph.
+Each list describes the set of neighbors of a node in the direct graph.
 
 The given node will always be the first node with val = 1.
-You must return the copy of the given node as a reference to the cloned graph.
+You must return the copy of the given node as a reference to the cloned direct graph.
 
 Example:
 Input: adjList = [[2,4],[1,3],[2,4],[1,3]]
 Output: [[2,4],[1,3],[2,4],[1,3]]
-Explanation: There are 4 nodes in the graph.
+Explanation: There are 4 nodes in the direct graph.
 1st node (val = 1)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).
 2nd node (val = 2)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).
 3rd node (val = 3)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).

@@ -21,7 +21,7 @@ import collections
 def longestIncreasingPath(matrix):
     if not matrix: return 0
 
-    # Step 1: build a directed acyclic graph
+    # Step 1: build a directed acyclic direct graph
     graph = collections.defaultdict(list)
     indegree = collections.defaultdict(int)
 

@@ -22,9 +22,9 @@ There is no way to assign the variables to satisfy both equations.
 #比较自然的思维方式：对所有==的建立一个graph，依次拿每个src!=dst去graph找路径[src ... dst]，如果存在
 #这样的路径，那就认为出现了矛盾，立即返回就行
 
-#The idea here is to build a graph comprising of nodes connected by '=='.
-#Subsequently, traverse the graph to check whether you have a "reachable"
-#  path between nodes connected by '!=' in the original graph.
+#The idea here is to build a direct graph comprising of nodes connected by '=='.
+#Subsequently, traverse the direct graph to check whether you have a "reachable"
+#  path between nodes connected by '!=' in the original direct graph.
 #If one such path exists, then the equation is not feasible.
 
 import collections

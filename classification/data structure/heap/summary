@@ -1,1 +1,14 @@
 大顶堆 和 小顶堆，最大的用途之一：动态维护当前数据集，以最快的方式从中得到当前最小或者最大的K个值(K>=1)
+
+【code pattern】：
+一、从数组列表中，取第K小的数：
+1. 初始化空的 heap = []
+2. heapq.heappush(heap, -num)
+3. if i > K:
+      heapq.heappop(heap)
+
+二、从数组列表中，取第K大的数：
+1. 初始化空的 heap = []
+2. heapq.heappush(heap, num)
+3. if i > K:
+      heapq.heappop(heap)

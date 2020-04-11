@@ -1,27 +1,21 @@
 #coding=utf-8
 
-import collections
-def numSquarefulPerms(A):
-    graph = collections.defaultdict(list)
-    count = collections.Counter(A)
-    for x in count:
-        for y in count:
-            if int((x + y) ** .5 + 0.5) ** 2 == x + y:
-                graph[x].append(y)
+import heapq
+def kthSmallest(matrix, k):
+    heap = []
+    cnt = 0
+    M,N = len(matrix), len(matrix[0])
+    for i in range(M):
+        for j in range(N):
+            if cnt < k:
+                heapq.heappush(heap, -matrix[i][j])
+            elif -matrix[i][j] > heap[0]:
+                heapq.heapreplace(heap, -matrix[i][j])
+            cnt += 1
+    return -heap[0]
 
-    N = len(A)
+matrix = [[1,5,9],[10,11,13],[12,13,15]]
+k = 8
+print kthSmallest(matrix, k)
 
-    def travel(n, path, ret):
-        count[n] -= 1
-        if len(path) == N:
-            ret[0] += 1
-        else:
-            for nei in graph[n]:
-                if count[nei] <= 0: continue
-                travel(nei, path + [nei], ret)
-        count[n] += 1
 
-    ret = [0]
-    for n in count:
-        travel(n, [n], ret)
-    return ret[0]

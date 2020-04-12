@@ -22,6 +22,9 @@ Output: [0,1,1]
 
 #dfs会遍历理论上所有的解空间递归子树，即便做了较好的pruing，也会在一些情况下有较差的性能
 #bfs在解决一些最少递归层数的问题，有比较好的性能优势
+#该题能够对dfs和bfs差异和与缺点，有更深刻的理解。
+#1.与最短路径相关的问题考虑bfs，因为是层级搜索。如果搜索到目标数字，可以判定最短路径已经找到，可以立即返回。
+#  dfs就做不到找到目标数字立即返回，因为它不能确定当前的这条路径是否是最短的。需要所有节点全部遍历完，才能判定。
 
 import collections
 def shortestAlternatingPaths_dfs_tle(n, red_edges, blue_edges):
@@ -75,6 +78,38 @@ def shortestAlternatingPaths_bfs(n, red_edges, blue_edges):
             if nei[1] != item[1] and not visitor[item[0]][idx]:
                 deque.append(nei+[item[2]+1])
                 visitor[item[0]][idx] = True
+
+    return ans
+
+#通过filled进行Pruning返回，没必要在继续广度搜索下去
+def shortestAlternatingPaths_bfs_pruning(n, red_edges, blue_edges):
+    graph = collections.defaultdict(list)
+    for edge in red_edges:
+        graph[edge[0]].append([edge[1], 0])
+    for edge in blue_edges:
+        graph[edge[0]].append([edge[1], 1])
+
+    visitor = {}
+    for key, val in graph.items():
+        visitor[key] = [False] * len(val)
+
+    ans = [-1]*n
+    filled = [0]*n
+    deque = collections.deque([[0,-1,0]])
+    while deque:
+        if sum(filled) == n: break
+
+        item = deque.popleft()
+        #在此处操作，比在for循环里面操作，能额外解决节点自己访问自己，step = 0这种case
+        if item[0] < n and ans[item[0]] == -1:
+            ans[item[0]] = item[2]
+            filled[nei[0]] = 1
+
+        for i, nei in enumerate(graph[item[0]]):
+            if nei[1] == item[1] or visitor[item[0]][i]: continue
+
+            visitor[item[0]][i] = 1
+            deque.append(nei+[item[2]+1])
 
     return ans
 

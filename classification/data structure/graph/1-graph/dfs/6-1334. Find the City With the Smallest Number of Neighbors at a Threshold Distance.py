@@ -30,7 +30,7 @@ import collections
 def findTheCity(n, edges, distanceThreshold):
     def travel(cur, weights, cities):
         for nei, weight in graph[cur]:
-            if weights+weight > distanceThreshold or visitor[nei] :
+            if weights+weight > distanceThreshold:
                 continue
 
             # if we have a condition on when to visit a node, then it would be better.
@@ -41,9 +41,9 @@ def findTheCity(n, edges, distanceThreshold):
 
             cities.add(nei)
             nodeWeight[nei] = weights+weight
-            visitor[nei] = True
+            #visitor[nei] = True
             travel(nei, weights+weight, cities)
-            visitor[nei] = False
+            #visitor[nei] = False
 
     graph = collections.defaultdict(list)
     for edge in edges:
@@ -52,13 +52,13 @@ def findTheCity(n, edges, distanceThreshold):
 
     ans = []
     smallest = n
-    visitor = [False]*n
+    #visitor = [False]*n
     for i in range(n):
         cities = set()
         nodeWeight = [float("inf")] * n
-        visitor[i] = True
+        #visitor[i] = True
         travel(i, 0, cities)
-        visitor[i] = False
+        #visitor[i] = False
         if len(cities) <= smallest:
             smallest = len(cities)
             ans.append(i)

@@ -3,35 +3,30 @@ from utils import Node
 import heapq
 import collections
 
-class UF(object):
-    def __init__(self, M, N, grid):
-        self.parent = {}
-        for i in range(M):
-            for j in range(N):
-                if grid[i][j] == '1':
-                    self.parent[(i,j)] = (i,j)
+def canPartition(nums):
+        total = sum(nums)
+        if total % 2 != 0:
+            return False
+        target = total // 2
+        n = len(nums)
 
-    def find(self, i, j):
-        if (i,j) != self.parent[(i,j)]:
-            self.parent[(i,j)] = self.find(self.parent[(i,j)])
-        return self.parent[(i,j)]
+        dp = [[False] * (target + 1) for _ in range(n + 1)]
+        dp[0][0] = True
 
-    def union(self,i,j, m,n):
-        (ri, rj) = self.find(i,j)
-        (rm, rn) = self.find(m, n)
-        self.parent[(ri,rj)] = (rm, rn)
+        for i in range(1, n + 1):
+            dp[i][0] = True
 
-def numIslands_unionFind(grid):
-    if not grid : return 0
-    M,N = len(grid), len(grid[0])
-    uf = UF(M, N, grid)
-    for i in range(M):
-        for j in range(N):
-            if grid[i][j] == '0': continue
-            if i-1 >= 0:
-                uf.union(i,j,i-1,j)
-            if j-1 >= 0:
-                uf.union(i,j,i,j-1)
+        for j in range(1, target + 1):
+            dp[0][j] = False
 
-    return sum([1 for node in uf.parent if node == uf.parent[node]])
+        for i in range(1, n + 1):
+            for j in range(1, target + 1):
+                dp[i][j] = dp[i - 1][j]
+                if j >= nums[i - 1]:
+                    dp[i][j] = dp[i][j] or dp[i - 1][j - nums[i - 1]]
+
+        return dp[n][target]
+
+nums = [1,2,5]
+print canPartition(nums)
 

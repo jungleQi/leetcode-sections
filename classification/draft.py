@@ -4,29 +4,17 @@ import heapq
 import collections
 
 
-def calcEquation(equations, values, queries):
-    parent = dict()
+def findMaxForm(strs, m, n):
+    dp = [[0]*(n+1) for _ in range(m+1)]
+    for str in strs:
+        n0, n1 = str.count('0'), str.count('1')
+        for i in range(m, -1, -1):
+            for j in range(n, -1, -1):
+                if n0 > i or n1>j: break
+                dp[i][j] = max(dp[i][j], dp[i-n0][j-n1]+1)
+    return dp[-1][-1]
 
-    def find(x):
-        px, pv = parent.setdefault(x, (x, 1.0))
-        if px != x:
-            rx,rv = find(px)
-            parent[x] = rx, rv*pv
-        return parent[x]
-
-    def union(i,j, load):
-        (ri, vi), (rj, vj) = find(i), find(j)
-        if not load:
-            return vi/vj if ri == rj else -1.0
-        else:
-            parent[ri] = rj, load*vj/vi
-
-    for (i,j), v in zip(equations, values):
-        union(i,j,v)
-
-    return [union(i,j,0) if i in parent and j in parent else -1.0 for i, j in queries]
-
-equations = [["a","b"],["e","f"],["b","e"]]
-values = [3.4,1.4,2.3]
-queries = [["b","a"],["a","f"],["f","f"],["e","e"],["c","c"],["a","c"],["f","e"]]
-print calcEquation(equations, values, queries)
+strs = {"10", "0001", "111001", "1", "0"}
+m = 0
+n = 0
+print findMaxForm(strs, m, n)

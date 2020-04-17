@@ -3,30 +3,30 @@ from utils import Node
 import heapq
 import collections
 
-def canPartition(nums):
-        total = sum(nums)
-        if total % 2 != 0:
-            return False
-        target = total // 2
-        n = len(nums)
 
-        dp = [[False] * (target + 1) for _ in range(n + 1)]
-        dp[0][0] = True
+def calcEquation(equations, values, queries):
+    parent = dict()
 
-        for i in range(1, n + 1):
-            dp[i][0] = True
+    def find(x):
+        px, pv = parent.setdefault(x, (x, 1.0))
+        if px != x:
+            rx,rv = find(px)
+            parent[x] = rx, rv*pv
+        return parent[x]
 
-        for j in range(1, target + 1):
-            dp[0][j] = False
+    def union(i,j, load):
+        (ri, vi), (rj, vj) = find(i), find(j)
+        if not load:
+            return vi/vj if ri == rj else -1.0
+        else:
+            parent[ri] = rj, load*vj/vi
 
-        for i in range(1, n + 1):
-            for j in range(1, target + 1):
-                dp[i][j] = dp[i - 1][j]
-                if j >= nums[i - 1]:
-                    dp[i][j] = dp[i][j] or dp[i - 1][j - nums[i - 1]]
+    for (i,j), v in zip(equations, values):
+        union(i,j,v)
 
-        return dp[n][target]
+    return [union(i,j,0) if i in parent and j in parent else -1.0 for i, j in queries]
 
-nums = [1,2,5]
-print canPartition(nums)
-
+equations = [["a","b"],["e","f"],["b","e"]]
+values = [3.4,1.4,2.3]
+queries = [["b","a"],["a","f"],["f","f"],["e","e"],["c","c"],["a","c"],["f","e"]]
+print calcEquation(equations, values, queries)

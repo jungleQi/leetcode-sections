@@ -50,6 +50,7 @@ def calcEquation_unionfind(equations, values, queries):
         if not load:
             return rx / ry if px == py else -1.0
         if px != py:
+            #注意分子分母不要颠倒
             parent[px] = (py, ry / rx * load)
 
     for (x, y), v in zip(equations, values):

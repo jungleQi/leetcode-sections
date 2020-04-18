@@ -31,4 +31,6 @@ code pattern:
         rj = self.find(j)
         self.parent[ri] = rj
 
+#基于parent[i] = j，一个并查集中的所有元素的父节点不一定都是根节点，有的节点层级可能是3，有的可能是2
+
 

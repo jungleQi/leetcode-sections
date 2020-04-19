@@ -23,26 +23,13 @@ class UF(object):
 
     def union(self,i,j):
         ri,rj = self.find(i), self.find(j)
-        self.parent[ri] = rj
+        if ri != rj:
+            self.parent[ri] = rj
 
-import collections
 def countComponents(n, edges):
-    def travel(cur):
-        if visitor[cur]: return
-        visitor[cur] = 1
-        for nei in graph[cur]:
-            uf.union(cur, nei)
-            travel(nei)
-
-    graph = collections.defaultdict(list)
-    for edge in edges:
-        graph[edge[0]].append(edge[1])
-        graph[edge[1]].append(edge[0])
-
     uf = UF(n)
-    visitor = [0]*n
-    for i in range(n):
-        travel(i)
+    for edge in edges:
+        uf.union(edge[0],edge[1])
 
     return sum([1 for node in range(n) if node == uf.parent[node]])
 

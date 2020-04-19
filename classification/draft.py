@@ -3,41 +3,28 @@ from utils import Node
 import heapq
 import collections
 
-def findTargetSumWays_2D(nums, S):
-    numSum = sum(nums)
-    if numSum < S: return 0
+class UF(object):
+    def __init__(self, n):
+        self.parent = range(n)
 
-    target, mod = divmod(numSum+S, 2)
-    if mod: return 0
+    def find(self, i):
+        if i != self.parent[i]:
+            self.parent[i] = self.find(self.parent[i])
+        return self.parent[i]
 
-    N = len(nums)
-    dp = [[0]*(target+1) for _ in range(N+1)]
-    dp[0][0] = 1
+    def union(self,i,j):
+        ri,rj = self.find(i), self.find(j)
+        if ri != rj:
+            self.parent[ri] = rj
 
-    for i in range(1, N+1):
-        for j in range(target+1):
-            if nums[i-1]<=j:
-                dp[i][j] = dp[i-1][j-nums[i-1]] + dp[i - 1][j]
-            else:
-                dp[i][j] = dp[i - 1][j]
+import collections
+def countComponents(n, edges):
+    uf = UF(n)
+    for edge in edges:
+        uf.union(edge[0],edge[1])
 
-    return dp[-1][-1]
+    return sum([1 for node in range(n) if node == uf.parent[node]])
 
-def findTargetSumWays_1D(nums, S):
-    numSum = sum(nums)
-    if numSum < S: return 0
-
-    target, mod = divmod(numSum+S, 2)
-    if mod: return 0
-
-    N = len(nums)
-    dp = [1] + [0]*target
-
-    for i in range(1, N+1):
-        for j in range(target, nums[i-1]-1, -1):
-            dp[j] += dp[j-nums[i-1]]
-    return dp[-1]
-
-nums = [1, 1, 1, 1, 1]
-S = 3
-print findTargetSumWays_1D(nums, S)
+nums = [[0, 1], [1, 2], [2, 3], [3, 4]]
+n = 5
+print countComponents(n, nums)

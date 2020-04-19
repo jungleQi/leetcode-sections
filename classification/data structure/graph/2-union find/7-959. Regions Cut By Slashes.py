@@ -9,6 +9,12 @@ These characters divide the square into contiguous regions.
 Return the number of regions.
 '''
 
+#关键在于：
+# 1.对每个 1 x 1 square 进行子区域划分，划分成4个
+# 2.对划分的区域内部进行连通
+# 3.对相邻square区域，两者之间相邻的1/4子区域进行连通
+# 4.为了做好子区域连通，需要对每个square的4个子区域进行编号，编号从0开始递增到4*N*N
+
 class DSU(object):
     def __init__(self, N):
         self.p = range(N)

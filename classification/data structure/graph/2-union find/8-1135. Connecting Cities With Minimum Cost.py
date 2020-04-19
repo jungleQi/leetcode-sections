@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 There are N cities numbered from 1 to N.
 
@@ -36,6 +38,39 @@ def minimumCost(N, connections):
 
     return min(ret) if ret else -1
 
-N = 5
-connections = [[2,1,50459],[3,2,47477],[4,2,52585],[5,3,16477]]
-print(minimumCost(N, connections))
+#关键
+# 1.对connections的cost进行排序
+# 2.将当前连接并入一个并查集
+# 3.如果当前connect的两个city已经在一个集合中，那这个connect应该放弃，因为已有的连接方式优于这次连接
+#
+class UnionFind(object):
+    def __init__(self, N):
+        self.parent = {i:i for i in range(1,N+1)}
+
+    def find(self, i):
+        if i != self.parent[i]:
+            self.parent[i] = self.find(self.parent[i])
+        return self.parent[i]
+
+    def union(self, i, j):
+        ri, rj = self.find(i), self.find(j)
+        if ri == rj:
+            return False
+        else:
+            self.parent[ri] = rj
+            return True
+
+def minimumCost_unionFind(N, connections):
+    connections.sort(key=lambda x:x[2])
+    uf = UnionFind(N)
+    ans = 0
+    for conn in connections:
+        if uf.union(conn[0], conn[1]):
+            ans += conn[2]
+
+    return ans if sum([1 for i in range(1,N+1) if i == uf.parent[i]]) == 1 else -1
+
+N = 4
+connections = [[1,2,3],[3,4,4]]
+
+print(minimumCost_unionFind(N, connections))

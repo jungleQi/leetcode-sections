@@ -1,12 +1,12 @@
 #coding=utf-8
 
 '''
-Implement a basic calculator to evaluate a simple expression string.
+Implement a basic calculator to evaluate a simple expression 6-string.
 
-The expression string may contain open ( and closing parentheses ),
+The expression 6-string may contain open ( and closing parentheses ),
 the plus + or minus sign -, non-negative integers and empty spaces .
 
-The expression string contains only non-negative integers, +, -, *, / operators ,
+The expression 6-string contains only non-negative integers, +, -, *, / operators ,
 open ( and closing parentheses ) and empty spaces . The integer division should truncate toward zero.
 
 You may assume that the given expression is always valid.
@@ -20,7 +20,7 @@ Some examples:
 "(2+6* 3+5- (3*14/7+2)*5)+3"=-12
 '''
 
-#stack:
+#5-stack:
 # 1.遇到数字字符，就累积到num；
 # 2.遇到'('，让前面的那个operator字符入栈，op='+',num=0
 # 3.遇到'+-*/)',就将它前面的num以及num前面的operator一起，

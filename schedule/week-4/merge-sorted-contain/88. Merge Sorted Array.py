@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
+Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted 7-array.
 
 Note:
 

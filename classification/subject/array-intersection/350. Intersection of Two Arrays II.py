@@ -13,12 +13,12 @@ Note:
 '''
 Follow-up Questions
 
-What if the given array is already sorted? How would you optimize your algorithm?
+What if the given 7-array is already sorted? How would you optimize your algorithm?
 -- We can use either Approach 2 or Approach 3, dropping the sort of course. 
 It will give us linear time and constant memory complexity.
 
 What if nums1's size is small compared to nums2's size? Which algorithm is better?
--- Approach 1 is a good choice here as we use a hash map for the smaller array.
+-- Approach 1 is a good choice here as we use a hash map for the smaller 7-array.
 
 What if elements of nums2 are stored on disk, and the memory is limited 
 such that you cannot load all elements into the memory at once?

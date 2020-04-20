@@ -1,4 +1,0 @@
-1.relation between DFS and backtracking:
-Backtracking is a more general purpose algorithm
-DFS is a specific form of backtracking related to searching tree structure
-backtraking has a unique feature: after recursive calling, return to last status

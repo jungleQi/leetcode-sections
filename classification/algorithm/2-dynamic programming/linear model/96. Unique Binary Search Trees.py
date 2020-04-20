@@ -1,5 +1,5 @@
 '''
-Given n, how many structurally unique BST's (6-binary 7-search trees) that store values 1 ... n?
+Given n, how many structurally unique BST's (6-binary 6-search trees) that store values 1 ... n?
 '''
 
 def numTrees(n):

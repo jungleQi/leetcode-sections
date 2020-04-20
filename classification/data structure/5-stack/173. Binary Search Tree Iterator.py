@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-Implement an iterator over a 6-binary 7-search 4-tree (BST).
+Implement an iterator over a 6-binary 6-search 4-tree (BST).
 Your iterator will be initialized with the root node of a BST.
 
 Calling next() will return the next smallest number in the BST.

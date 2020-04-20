@@ -1,5 +1,5 @@
 '''
-Given a 6-binary 7-search 4-tree and a node in it, find the in-order successor of that node in the BST.
+Given a 6-binary 6-search 4-tree and a node in it, find the in-order successor of that node in the BST.
 The successor of a node p is the node with the smallest key greater than p.val.
 '''
 

@@ -56,3 +56,5 @@ else O(i, w) = max(O(i-1, w), vi + O(i-1, w-wi))
         #如果一个coin只能选择一次，就需要采用amount+1 ->coin的降序
         for i in range(coin, amount + 1):
             dp[i] += dp[i-coin]
+
+3.坑：在3 level loop 里面，不能将2D -> 1D

@@ -1,0 +1,18 @@
+生成树是将原图的全部顶点以最少的边连通的子图，对于有n个顶点的连通图，
+生成树有n-1条边，若边数小于此数就不可能将各顶点连通，如果边的数量多于n-1条边，必定会产生回路
+对于一个带权连通图，生成树不同，树中各边上权值总和也不同，权值总和最小的生成树则称为图的最小生成树
+
+解最小生成树一种常见的算法是Kruskal算法：
+每次都从剩余边中选取权值最小的，当然，这条边不能使已有的边产生回路。
+算法逻辑很容易理解，但用代码判断当前边是否会引起环的出现则很棘手，这个问题可以用并查集来解决
+
+问题一：边有权重，求总成本最小的问题
+1.按照最小生成树的Kruskal算法，求解最小总和
+
+问题二：边有权重，节点也有权重，求总成本最小的问题：
+1.新增一个虚拟节点，将它和每一个已有节点连接，边的权重是每个节点本身的权重值
+2.按照最小生成树的Kruskal算法，求解最小总和
+
+#we model this problem as a graph problem
+#Add a virtual node, connect it to houses with edges weighted by the costs to build wells in these houses.
+#The problem is now reduced to a Minimum Spanning Tree problem.

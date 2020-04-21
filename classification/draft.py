@@ -3,17 +3,31 @@ from utils import Node
 import heapq
 import collections
 
-def numRollsToTarget(d, f, target):
-    dp = [1]+[0]*target
+def findOrder(numCourses, prerequisites):
+    graph = collections.defaultdict(list)
+    indegree = [0]*numCourses
 
-    for i in range(1, d + 1):
-        for j in range(target, 0, -1):
-            for k in range(1, f + 1):
-                if k > j: break
-                dp[j] += dp[j-k]
-    return dp[-1] % (10**9 + 7)
+    for pre in prerequisites:
+        graph[pre[1]].append(pre[0])
+        indegree[pre[0]] += 1
 
-d = 30
-f = 30
-target = 500
-print numRollsToTarget(d, f, target)
+    deque = collections.deque()
+    for i in range(numCourses):
+        if indegree[i] == 0:
+            deque.append(i)
+
+    ans = []
+    while deque:
+        course = deque.popleft()
+        ans.append(course)
+        for nei in graph[course]:
+            indegree[nei] -= 1
+            if indegree[nei] == 0:
+                deque.append(nei)
+
+    return ans if len(ans) == numCourses else []
+
+
+numCourses = 1
+prerequisites = []
+print findOrder(numCourses, prerequisites)

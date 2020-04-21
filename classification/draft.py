@@ -3,31 +3,24 @@ from utils import Node
 import heapq
 import collections
 
-def findOrder(numCourses, prerequisites):
-    graph = collections.defaultdict(list)
-    indegree = [0]*numCourses
+def minPathSum(grid):
+    if not grid: return 0
 
-    for pre in prerequisites:
-        graph[pre[1]].append(pre[0])
-        indegree[pre[0]] += 1
+    M,N = len(grid), len(grid[0])
+    dp = [[0]*N for _ in range(M)]
 
-    deque = collections.deque()
-    for i in range(numCourses):
-        if indegree[i] == 0:
-            deque.append(i)
+    for i in range(M):
+        for j in range(N):
+            if i ==0 and j ==0 :
+                dp[i][j] = grid[0][0]
+            elif i == 0:
+                dp[i][j] = dp[i][j-1] + grid[i][j]
+            elif j == 0:
+                dp[i][j] = dp[i-1][j] + grid[i][j]
+            else:
+                dp[i][j] = min(dp[i][j-1], dp[i-1][j]) + grid[i][j]
 
-    ans = []
-    while deque:
-        course = deque.popleft()
-        ans.append(course)
-        for nei in graph[course]:
-            indegree[nei] -= 1
-            if indegree[nei] == 0:
-                deque.append(nei)
+    return dp[-1][-1]
 
-    return ans if len(ans) == numCourses else []
-
-
-numCourses = 1
-prerequisites = []
-print findOrder(numCourses, prerequisites)
+grid = [[1]]
+print minPathSum(grid)

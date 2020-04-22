@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 Given an integer matrix, find the length of the longest increasing path.
 
@@ -28,15 +30,18 @@ def longestIncreasingPath(matrix):
     M,N = len(matrix), len(matrix[0])
     for i in range(M):
         for j in range(N):
+            #对当前点的四个领域进行判断，采用这种方式最优雅！
             neigh = [(i-1,j),(i+1,j),(i,j-1),(i,j+1)]
             for m,n in neigh:
                 if m>=0 and m<M and n>=0 and n<N and matrix[i][j]<matrix[m][n]:
                     graph[(i,j)].append((m,n))
                     indegree[(m,n)] += 1
 
-    # Step 2: Topological sorting with Kahn's algorithm
+    #不在indegree中的，认为入度都为0，作为第一批起始点
     queue = collections.deque([(i,j) for i in range(M) for j in range(N) if (i,j) not in indegree])
     maxlen = 0
+
+    # Step 2: Topological sorting with Kahn's algorithm
     while queue:
         maxlen += 1
         for _ in range(len(queue)):

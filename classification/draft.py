@@ -3,24 +3,43 @@ from utils import Node
 import heapq
 import collections
 
-def minPathSum(grid):
-    if not grid: return 0
-
-    M,N = len(grid), len(grid[0])
-    dp = [[0]*N for _ in range(M)]
-
+def longestIncreasingPath(matrix):
+    graph = collections.defaultdict(list)
+    M,N = len(matrix), len(matrix[0])
+    indegree = collections.defaultdict(int)
     for i in range(M):
         for j in range(N):
-            if i ==0 and j ==0 :
-                dp[i][j] = grid[0][0]
-            elif i == 0:
-                dp[i][j] = dp[i][j-1] + grid[i][j]
-            elif j == 0:
-                dp[i][j] = dp[i-1][j] + grid[i][j]
-            else:
-                dp[i][j] = min(dp[i][j-1], dp[i-1][j]) + grid[i][j]
+            if i > 0 and matrix[i][j]<matrix[i-1][j]:
+                graph[(i,j)].append((i-1,j))
+                indegree[(i-1,j)] += 1
+            if j > 0 and matrix[i][j]<matrix[i][j-1]:
+                graph[(i,j)].append((i, j-1))
+                indegree[(i, j-1)] += 1
+            if i < M-1 and matrix[i][j]<matrix[i+1][j]:
+                graph[(i,j)].append((i+1,j))
+                indegree[(i+1, j)] += 1
+            if j < N-1 and matrix[i][j]<matrix[i][j+1]:
+                graph[(i,j)].append((i,j+1))
+                indegree[(i, j+1)] += 1
+            if indegree[(i,j)] == 0:
+                indegree[(i, j)] = 0
 
-    return dp[-1][-1]
+    deque = collections.deque()
+    for coord, cnt in indegree.items():
+        if cnt == 0:
+            deque.append(coord)
 
-grid = [[1]]
-print minPathSum(grid)
+    maxLen = 0
+    while deque:
+        maxLen += 1
+        for i in range(len(deque)):
+            cur = deque.popleft()
+            for nei in graph[cur]:
+                indegree[nei] -= 1
+                if indegree[nei] == 0:
+                    deque.append(nei)
+    return maxLen
+
+
+matrix = []
+print longestIncreasingPath(matrix)

@@ -32,7 +32,13 @@ def alienOrder(words):
     #adjacent list：
     letters = collections.defaultdict(set)
     for f, b in zip(words[:-1], words[1:]):
-        for i in range(0, min(len(f), len(b))):
+        fl, bl = len(f), len(b)
+        minlen = min(fl, bl)
+
+        #["wrtkj","wrt"] 这种case，应该为invalid，需要单独判断
+        if f[:minlen] == b[:minlen] and fl > bl: return ""
+
+        for i in range(0, ):
             #特别容易错，此处如果不做判断，会导致相同的pair重复判断，indegree的计算出现错误
             if b[i] in letters[f[i]]:
                 break
@@ -59,6 +65,6 @@ def alienOrder(words):
 
     return "".join(ans) if len(ans) == len(chars) else ""
 
-words = ["za","zb","ca","cb"]
+words = ["ab","b"]
 #words = ["wrt","wrf","er","ett","rftt","te"]
 print(alienOrder(words))

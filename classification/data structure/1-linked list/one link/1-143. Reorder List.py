@@ -13,12 +13,7 @@ Example 2:
 Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
 '''
 
-from common import *
 
-#如果是从尾部开始修改链表，多半是在 "归" 的路上处理节点
-# 如果必要，需要递归返回下一个需要操作的节点
-# 注意临界条件时的拦截返回
-# 注意节点调整时，不要形成环
 
 def reorderList_recursion(head):
     def helper(prev, head):
@@ -61,10 +56,5 @@ def reorderList_interator(head):
         prev = nodes[-(i + 1)]
     prev.next = None
     return prev
-
-values = [1]
-head = constructlist(values)
-reorderList_recursion(head)
-printList(head)
 
 

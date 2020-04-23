@@ -1,2 +1,12 @@
 1.padd a dummy head node, make many case more easily to process
 2.using recursive to solve the problem on the back way
+
+题型一：
+#如果是从尾部开始修改链表，多半是在 "归" 的路上处理节点
+# 如果必要，需要递归返回下一个需要操作的节点
+# 注意临界条件时的拦截返回
+# 注意节点调整时，不要形成环
+
+题型二：
+#list sort 或者merge的问题，转换成arr，然后排序，是一种简洁的方法
+#保持next不变，只改变每个Node的val，按照sort顺序依次赋值

@@ -12,7 +12,6 @@ Example 2:
 Input: -1->5->3->4->0
 Output: -1->0->3->4->5
 '''
-from common import *
 
 class ListNode(object):
     def __init__(self, x):
@@ -51,7 +50,7 @@ def sortList(head):
 
     return merge(sortList(head), sortList(headb))
 
-#list sort 或者merge的问题，转换成arr，然后排序，是一种简洁的方法
+
 def sortList_arr(head):
     l = []
     cur = head
@@ -67,9 +66,3 @@ def sortList_arr(head):
         cur = cur.next
         i += 1
     return head
-
-values = [1,1,1,2,2,3,4,5,5]
-#values = [4,19,14,5,-3,1,8,5,11,15]
-head = constructlist(values)
-ret = sortList_arr(head)
-printList(ret)

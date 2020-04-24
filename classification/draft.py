@@ -4,19 +4,12 @@ from utils import ListNode
 import heapq
 import collections
 
-#1.怎么使初始对象，随着递归而更新
-# 1.1 作为递归函数的形参好像不行
-# 1.2 在外部主函数声明，在递归函数内部更新，好像也不行
-# 1.3
+def maxProduct(nums):
+    minProd, maxProd, maxTotal = nums[0], nums[0], nums[0]
+    for num in nums[1:]:
+        minProd, maxProd = min(minProd*num, maxProd*num), max(minProd*num, maxProd*num)
+        maxTotal = max(minProd, maxProd, maxTotal)
+    return maxTotal
 
-def isPalindrome(head):
-    def helper(cur):
-        if not cur or not cur.next:
-            return head
-
-        curHead = helper(cur.next)
-        if not curHead  or curHead.val != cur.next.val:
-            return None
-        return curHead.next
-
-    return helper(head) != None
+nums = [0,2]
+print maxProduct(nums)

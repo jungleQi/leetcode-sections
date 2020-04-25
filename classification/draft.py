@@ -4,12 +4,12 @@ from utils import ListNode
 import heapq
 import collections
 
-def maxProduct(nums):
-    minProd, maxProd, maxTotal = nums[0], nums[0], nums[0]
-    for num in nums[1:]:
-        minProd, maxProd = min(minProd*num, maxProd*num), max(minProd*num, maxProd*num)
-        maxTotal = max(minProd, maxProd, maxTotal)
-    return maxTotal
-
-nums = [0,2]
-print maxProduct(nums)
+# 1 ->  1   ->  2   ->  3   ->3   ->  4   ->  NULL
+def deleteDuplicates(head):
+    cur = head
+    while cur and cur.next:
+        if cur.val == cur.next.val:
+            cur.next = cur.next.next
+        else:
+            cur = cur.next
+    return head

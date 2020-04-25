@@ -16,7 +16,6 @@ Follow up:
 
 Could you do this in one pass?
 '''
-from common import *
 
 class ListNode(object):
     def __init__(self, x):
@@ -43,7 +42,3 @@ def removeNthFromEnd(head, n):
     _helper(lnode)
     return lnode.next
 
-values = []
-head = constructlist(values)
-ret = removeNthFromEnd(head, 0)
-printList(ret)

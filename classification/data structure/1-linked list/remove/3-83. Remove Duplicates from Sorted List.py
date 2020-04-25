@@ -11,23 +11,19 @@ Input: 1->1->2->3->3
 Output: 1->2->3
 '''
 
-from common import *
-
 class ListNode(object):
     def __init__(self, x):
         self.val = x
         self.next = None
 
 def deleteDuplicates(head):
-    ret = head
-    while head:
-        fastnode = head
-        while fastnode.next and fastnode.val == fastnode.next.val:
-            fastnode = fastnode.next
-        head.next = fastnode.next
-        head = fastnode.next
-
-    return ret
+    cur = head
+    while cur and cur.next:
+        if cur.val == cur.next.val:
+            cur.next = cur.next.next
+        else:
+            cur = cur.next
+    return head
 
 def deleteDuplicates_recursion(head):
     if not head or not head.next: return head
@@ -39,8 +35,3 @@ def deleteDuplicates_recursion(head):
         deleteDuplicates_recursion(head.next)
 
     return head
-
-values = [1,1,1,2,2,3,4,5,5]
-head = constructlist(values)
-ret = deleteDuplicates(head)
-printList(ret)

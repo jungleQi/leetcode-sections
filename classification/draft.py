@@ -3,21 +3,46 @@ from utils import Node
 from utils import ListNode
 import heapq
 import collections
+#
+# d -> 1    -> 2    ->    3  ->   4 ->  5   ->  NULL
+# p   c     n  tmp
+# x <- 1   2  -> 3
+def reverseKGroup(head, k):
+    def _reverse(_head, i):
+        prev, cur, next = None, _head, _head.next
+        while i > 0:
+            cur.next = prev
+            prev = cur
+            cur = next
+            next = next.next
+            i -= 1
+        return cur
 
-# [2,7,9,3,1]
-def nthUglyNumber(n):
-    i2,i3,i5 = 0,0,0
-    ans = [1,]
-    for i in range(1,n):
-        ugly = min(ans[i2]*2, ans[i3]*3, ans[i5]*5)
-        ans.append(ugly)
-        if ugly == ans[i2]*2:
-            i2 += 1
-        if ugly == ans[i3]*3:
-            i3 += 1
-        if ugly == ans[i5]*5:
-            i5 += 1
+    dummy = ListNode(0)
+    dummy.next = head
 
-    return ans[-1]
+    newHead = dummy
+    while newHead:
 
-print nthUglyNumber(10)
+        #judge if can reverse k nodes
+        i = 1
+        prob = newHead.next
+        while i<k and prob:
+            prob = prob.next
+            i += 1
+        if i != k: break
+
+        #reverve k nodes
+        tail = _reverse(newHead.next, i)
+        tmp = newHead.next
+        newHead.next.next  = prob
+        newHead.next = tail
+        newHead = tmp
+
+    return dummy.next
+
+
+
+
+
+

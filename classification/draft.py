@@ -4,19 +4,16 @@ from utils import ListNode
 import heapq
 import collections
 #
+#        p     c       n
+#   N <- 1  <-   2     NULL
+def reverseList(head):
+    if not head or not head.next:
+        return head
 
-def lengthOfLIS(nums):
-    N = len(nums)
-    dp = [1]*N
-    for i in range(1,N):
-        for j in range(i-1, -1, -1):
-            if nums[j] < nums[i]:
-                dp[i] = max(dp[i], dp[j]+1)
-    return dp[-1]
-
-#nums = [10,9,2,5,3,7,101,18]
-nums = [1,3,6,7,9,4,10,5,6]
-print lengthOfLIS(nums)
+    ret = reverseList(head.next)
+    head.next.next = head
+    head.next = None
+    return ret
 
 
 

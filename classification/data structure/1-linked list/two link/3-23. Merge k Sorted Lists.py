@@ -13,7 +13,8 @@ Input:
 Output: 1->1->2->3->4->4->5->6
 '''
 
-from leetcode.classification.utils import *
+from ....utils import *
+
 def mergeKLists(lists):
     all_nodes = []
     for list in lists:
@@ -29,16 +30,19 @@ def mergeKLists(lists):
 
 import heapq
 def mergeKLists_heap(lists):
+    dummy = ListNode(0)
+    head = dummy
+
     heap = []
-    for i, lt in enumerate(lists):
-        if not lt: continue
-        heapq.heappush(heap, [lt.val, lt])
+    for i, l in enumerate(lists):
+        if not l: continue
+        heapq.heappush(heap, [l.val, l])
+        lists[i] = l.next
 
-    head = cur = ListNode(-1)
     while heap:
-        minNode = heapq.heappop(heap)
-        cur.next, cur = minNode[1], minNode[1]
-        if cur.next:
-            heapq.heappush(heap, [cur.next.val, cur.next])
+        head.next = heapq.heappop(heap)[1]
+        head = head.next
 
-    return head.next
+        if head.next:
+            heapq.heappush(heap, [head.next.val, head.next])
+    return dummy.next

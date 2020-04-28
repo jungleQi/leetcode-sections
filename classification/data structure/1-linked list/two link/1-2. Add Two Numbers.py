@@ -12,7 +12,7 @@ Output: 7 -> 0 -> 8
 Explanation: 342 + 465 = 807.
 '''
 
-from utils import *
+from ....utils import ListNode
 def addTwoNumbers(l1, l2):
     head = cur = ListNode(0)
     extra = 0
@@ -43,6 +43,22 @@ def addTwoNumbers(l1, l2):
         cur.next = ListNode(1)
     return head.next
 
+def addTwoNumbers_grace(l1, l2):
+    carry = 0
+    dummy = cur = ListNode(0)
+    while l1 or l2 or carry:
+        v1 = v2 = 0
+        if l1:
+            v1 = l1.val
+            l1 = l1.next
+        if l2:
+            v2 = l2.val
+            l2 = l2.next
+        carry, v = divmod(v1 + v2 + carry, 10)
+        cur.next = ListNode(v)
+        cur = cur.next
+    return dummy.next
+
 def addTwoNumbers_recursion(l1, l2):
     def toInt(l):
         if not l: return 0
@@ -57,11 +73,3 @@ def addTwoNumbers_recursion(l1, l2):
         return cur
 
     return intToList(toInt(l1)+toInt(l2))
-
-arr1 = [0]
-arr2 = [1,2]
-l1, l2 = List(arr1), List(arr2)
-ret = addTwoNumbers_recursion(l1.head, l2.head)
-
-mylist = List(None)
-mylist.printList(ret)

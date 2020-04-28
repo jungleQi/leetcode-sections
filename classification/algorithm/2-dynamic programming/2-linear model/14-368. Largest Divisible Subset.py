@@ -1,3 +1,17 @@
+#coding=utf-8
+
+'''
+Given a set of distinct positive integers,
+find the largest subset such that every pair (Si, Sj) of elements in this subset satisfies:
+Si % Sj = 0 or Sj % Si = 0.
+
+If there are multiple solutions, return any subset is fine.
+
+Example 1:
+Input: [1,2,3]
+Output: [1,2] (of course, [1,3] will also be ok)
+'''
+
 def largestDivisibleSubset(nums):
     if not nums: return []
     dp = [[num] for num in nums]

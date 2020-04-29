@@ -10,15 +10,14 @@ Output the minimum number of steps to get n 'A'.
 '''
 
 def minSteps(n):
-    dp = [i for i in range(n+1)]
-    for i in range(3,n+1):
-        for j in range(2,i/2+1):
-            if i%j == 0:
-                dp[i] = min(dp[i], dp[j]+i/j)
-                #if i == 741:
-                #    print(dp[i],i/j, dp[i/j], i,j)
-
+    if n <= 1: return 0
+    dp = range(n + 1)
+    for i in range(2, n + 1):
+        for mod in range(2, i / 2 + 1):
+            if i % mod == 0:
+                dp[i] = min(dp[i], dp[i / mod] + mod)
     return dp[-1]
+
 
 def minSteps_fast(n):
     if n <= 1: return n

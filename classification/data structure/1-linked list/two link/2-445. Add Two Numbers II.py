@@ -16,7 +16,7 @@ Input: (7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 8 -> 0 -> 7
 '''
 
-from leetcode.classification.utils import *
+from ....utils import *
 def addTwoNumbers(l1, l2):
     def travel(l):
         arr = []
@@ -66,6 +66,7 @@ def addTwoNumbers_submission(l1, l2):
         res = res // 10
 
     #对[0], [0]这种特殊case的额外处理
+    #坑，容易出BUG的地方！！！
     if curr_node == None:
         return ListNode(0)
 

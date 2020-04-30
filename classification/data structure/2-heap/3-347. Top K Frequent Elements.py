@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-Given a non-empty 7-array of integers, return the k most frequent elements.
+Given a non-empty array of integers, return the k most frequent elements.
 
 Example 1:
 
@@ -14,7 +14,7 @@ Output: [1]
 Note:
 
 You may assume k is always valid, 1 <= k <= number of unique elements.
-Your algorithm's time complexity must be better than O(n log n), where n is the 7-array's size.
+Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 '''
 
 #2-heap.heapify 默认构建小顶堆

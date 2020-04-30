@@ -25,7 +25,7 @@ class TreeNode:
 
 #O(N)
 def buildTree(preorder, inorder):
-    if not preorder or not inorder: return None
+    if not inorder: return None
 
     curval = preorder[0]
     curidx = inorder.index(curval)

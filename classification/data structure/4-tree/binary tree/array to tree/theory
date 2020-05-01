@@ -7,6 +7,20 @@
 4. 最后返回根节点
 5.在递归中完成以上4步，因为二叉树是规律非常强的树，只需要对最简单的数组和子树做一次推演，就代表整棵树适用
 
+[code pattern]:
+    def recursion(Arr):
+        if not arr: return None
+
+        val = "get from Arr"
+        root = treeNode(val)
+
+        valIdx = "get from Arr by val"
+        leftSubArr = "get from Arr by valIdx"
+        rightSubArr = "get from Arr by valIdx"
+
+        root.left = recursion(leftSubArr)
+        root.right = recursion(rightSubArr)
+        return root
 
 二、二叉树和链表的递归处理方式，思想内核一致，不同在于：
 1.链表只需要关注当前节点一条路径的递与归
@@ -16,10 +30,3 @@
 基本上就确定了另一边子树的处理方式，所以一般并行递归处理左右子树。
     从这个层面来说，二叉树和链表的递归处理是一个类型的问题
 
-三.intuition:  ？？？
-可以先对求解的二叉树进行一次遍历，得到这个数组，从而理清数组的形成规律，一般规律有一下几个：
-其中比较重要的是得到根节点值，和左右子树对应的子数组
-A. 一个数组是BST遍历而来，这个数组是升序的，那么len(nums)/2就是根节点
-   (如果数组个数是偶数，中间有两个数都可能是根节点，选择一个就可以建树) ???
-B. nums是先序或者后序遍历而来，那么根节点分别对应数组的第一个或者最后一个，
-   左子树和右子树就要从中序遍历中根据当前根节点的值，将其一分为二。???

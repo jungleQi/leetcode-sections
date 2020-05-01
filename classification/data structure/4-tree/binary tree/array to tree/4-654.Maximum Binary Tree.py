@@ -28,13 +28,10 @@ class TreeNode:
 
 def constructMaximumBinaryTree(nums):
     if not nums: return None
+    val = max(nums)
+    idx = nums.index(val)
 
-    maxIdx,maxNum = 0,nums[0]
-    for i,num in enumerate(nums):
-        if num>maxNum:
-            maxIdx, maxNum = i, num
-
-    root = TreeNode(maxNum)
-    root.left = constructMaximumBinaryTree(nums[:maxIdx])
-    root.right = constructMaximumBinaryTree(nums[maxIdx+1:])
+    root = TreeNode(val)
+    root.left = constructMaximumBinaryTree(nums[:idx])
+    root.right = constructMaximumBinaryTree(nums[idx + 1:])
     return root

@@ -2,14 +2,14 @@
 
 '''
 Alex and Lee continue their games with piles of stones.  There are a number of piles arranged in a row,
-and each pile has a positive integer number of stones piles[i].  The objective of the 5-game is to end with the most stones.
+and each pile has a positive integer number of stones piles[i].  The objective of the 6-game is to end with the most stones.
 
 Alex and Lee take turns, with Alex starting first.  Initially, M = 1.
 
 On each player's turn, that player can take all the stones in the first X remaining piles, where 1 <= X <= 2M.
 Then, we set M = max(M, X).
 
-The 5-game continues until all the stones have been taken.
+The 6-game continues until all the stones have been taken.
 
 Assuming Alex and Lee play optimally, return the maximum number of stones Alex can get.
 '''

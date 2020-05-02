@@ -4,6 +4,17 @@ The successor of a node p is the node with the smallest key greater than p.val.
 '''
 
 
+def inorderSuccessor_iterator(root, p):
+    succ = None
+    while root:
+        if root.val <= p.val:
+            root = root.right
+        else:
+            succ = root
+            root = root.left
+
+    return succ
+
 class Solution(object):
     visitor = False
 

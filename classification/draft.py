@@ -3,41 +3,35 @@ from utils import Node
 from utils import ListNode
 import heapq
 import collections
-#
-#        p     c       n
-#   N <- 1  <-   2     NULL
 
 
-def deleteAndEarn(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    if not nums: return 0
-    nums = [0] + nums
-    N = len(nums)
+def longestStrChain(words):
+    def predec(word1, word2):
+        for i, c in enumerate(word2):
+            if word1 == word2[:i]+word2[i+1:]:
+                return True
+        return False
 
-    counter = collections.Counter(nums)
-    earn, delete = [0] * N, [0] * N
 
-    nums.sort()
-    for i in range(1, N):
-        if nums[i] - nums[i - 1] == 1:
-            earn[i] = max(delete[i - 1], earn[i - 1] - counter[nums[i - 1]] * nums[i - 1]) + nums[i]
-        elif nums[i] == nums[i - 1]:
-            ##
-            earn[i] = earn[i - 1] + nums[i]
-        else:
-            earn[i] = max(delete[i - 1], earn[i - 1]) + nums[i]
+    N = len(words)
+    dp = [1]*N
 
-        if nums[i] == nums[i - 1]:
-            delete[i] = delete[i - 1]
-        else:
-            delete[i] = max(earn[i - 1], delete[i - 1])
+    words.sort(key=lambda x: len(x))
+    for i in range(1,N):
+        j = i-1
+        while j>=0:
+            dist = len(words[i])-len(words[j])
+            if dist == 0:
+                j -= 1
+            elif dist == 1:
+                if predec(words[j], words[i]):
+                    dp[i] = max(dp[i], dp[j]+1)
+            else:
+                break
+            j -= 1
+    return max(dp) if dp else 0
 
-    return max(max(earn), max(delete))
+words = []
+print longestStrChain(words)
 
-#nums = [2, 2, 3, 3, 3, 4]
-nums = [3,3,3,4,2]
-print deleteAndEarn(nums)
 

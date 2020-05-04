@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 Given a list of words, each word consists of English lowercase letters.
 
@@ -11,8 +13,60 @@ Return the longest possible length of a word chain with words chosen from the gi
 
 '''
 
+#1492 ms
+def longestStrChain_raw(words):
+    def predec(word1, word2):
+        for i, c in enumerate(word2):
+            if word1 == word2[:i] + word2[i + 1:]:
+                return True
+        return False
+
+    N = len(words)
+    dp = [1] * N
+
+    words.sort(key=lambda x: len(x))
+    for i in range(1, N):
+        j = i - 1
+        while j >= 0:
+            dist = len(words[i]) - len(words[j])
+            if dist == 1:
+                if predec(words[j], words[i]):
+                    dp[i] = max(dp[i], dp[j] + 1)
+            elif dist > 2:
+                break
+            j -= 1
+    return max(dp) if dp else 0
+
+#68 ms
+#lightspot:
+# 1.将原始数据重新组织成一个新的数据结构 bucket: [dict(), ... , dict()]，这非常有利于本问题的高效求解
+# 2.将阶段从 原始数据 转换成 bucket的16个桶
+# 3.dp[i]，表示以原始数据第i个字符串结尾的最长chain长度
+# 4.所有阶段的求解，是以[2]为阶段来求解的，而不是以dp[0...i]里的索引值为阶段求解
+
+def longestStrChain_grace(words):
+    bucket = [dict() for _ in range(16)]
+    for i, w in enumerate(words): bucket[len(w) - 1][w] = i
+
+    dp = [1] * len(words)
+    for i, buck in enumerate(bucket):
+        if i == 0 or len(bucket) == 0 or len(bucket[i - 1]) == 0:
+            continue
+
+        prev = bucket[i - 1]
+        for word in buck:
+            idx = buck[word]
+
+            for i in range(len(word)):
+                sub = word[:i] + word[i + 1:]
+                if sub in prev:
+                    dp[idx] = max(dp[idx], dp[prev[sub]] + 1)
+
+    return max(dp)
+
+
 import collections
-def longestStrChain(words):
+def longestStrChain_submission(words):
     word_seg = collections.defaultdict(list)
     for word in words:
         word_seg[len(word)].append(word)

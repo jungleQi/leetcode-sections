@@ -1,3 +1,13 @@
+A common strategy for tree modification problems is recursion. A tree is a recursive structure.
+Every node gets to be a root node of some tree and that tree further has a bunch of smaller subtrees each with their own root nodes.
+
+So, when it comes to problems where the structure of the tree has to be modified or we have to traverse the tree in general,
+recursion is one of the top approaches that comes to mind simply
+because it's easy enough to code up and also is very intuitive to understand.
+
+a recursive solution for this problem is essentially based on the idea that
+assuming we have already transformed the left and the right halves of a given root node
+
 1.二叉树问题类型：
 主要有三类：遍历，调整树结构，结点计算
 

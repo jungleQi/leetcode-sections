@@ -15,7 +15,7 @@ time complex : avarage O(1)
 next involves two major operations. 
 One is where we pop an element from the stack which becomes the next smallest element to return. This is a O(1) operation. 
 However, we then make a call to our helper function _inorder_left which iterates over a bunch of nodes. 
-This is clearly a linear time operation i.e. O(N) in the worst case. This is true.
+This is clearly a linear classify time operation i.e. O(N) in the worst case. This is true.
 
 However, the important thing to note here is that we only make such a call for nodes which have a right child. 
 Otherwise, we simply return. 

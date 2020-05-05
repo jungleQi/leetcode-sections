@@ -18,4 +18,10 @@ def maxDepth(root):
     travel(root, 1, ret)
     return ret[0] if root else 0
 
+def maxDepth_concise(root):
+    if not root:
+        return 0
 
+    left = maxDepth(root.left)
+    right = maxDepth(root.right)
+    return max(left, right) + 1

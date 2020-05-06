@@ -26,10 +26,13 @@ class TreeNode(object):
 #O(n)
 def rightSideView(root):
     def travel(root, level, path):
+        #judge if level is already visited
         if not root or path.get(level, None) is not None:
             return
 
         path[level] = root.val
+
+        #lightspot: the right-left sequence is nice!!
         travel(root.right, level+1, path)
         travel(root.left, level + 1, path)
 

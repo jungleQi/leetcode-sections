@@ -6,15 +6,23 @@ According to the definition of LCA on Wikipedia:
 that has both p and q as descendants (where we allow a node to be a descendant of itself)."
 '''
 
+'''
+Algorithm
+
+1.Start traversing the tree from the root node.
+
+2.If the current node itself is one of p or q, we would mark a variable mid 
+as True and continue the search for the other node in the left and right branches.
+
+3.If either of the left or the right branch returns True, 
+this means one of the two nodes was found below.
+
+4.If at any point in the traversal, any two of the three flags left, right or mid become True, 
+this means we have found the lowest common ancestor for the nodes p and q.
+'''
+
 #O(n)
 def lowestCommonAncestor_slow(root, p, q):
-    """
-    :type root: TreeNode
-    :type p: TreeNode
-    :type q: TreeNode
-    :rtype: TreeNode
-    """
-
     def travel(root, path, ret):
         if not root:
             return
@@ -38,7 +46,7 @@ def lowestCommonAncestor_slow(root, p, q):
     return ret[0][i - 1]
 
 
-def lowestCommonAncestor_backtrack(root, p, q):
+def lowestCommonAncestor_grace(root, p, q):
     def recurse_tree(current_node, ret):
         # If reached the end of a branch, return False.
         if not current_node or ret[0]:
@@ -57,7 +65,7 @@ def lowestCommonAncestor_backtrack(root, p, q):
         # Return True if either of the three bool values is True.
         return mid or left or right
 
-    # Traverse the 4-tree
+    # Traverse the tree
     ret = [None]
     recurse_tree(root, ret)
     return ret[0]

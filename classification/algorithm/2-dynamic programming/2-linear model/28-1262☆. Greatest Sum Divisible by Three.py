@@ -28,6 +28,8 @@ def maxSumDivThree_concise(nums):
         # seen在循环体内被改变，这里需要预先复制一份，
         # 如果不复制，会导致后续i，取的是新计算出来，而不是原有的值
         for i in seen[:]:
+            #状态seen  索引：余数0/1/2， 值：余数分别对应的最大和
+            #状态转移： 新的求和A，对应新的取余i，它的最大和是 新的求和A和原有i对应的旧和 之间的较大者
             seen[(i+num)%3] = max(seen[(i+num)%3], i+num)
     return seen[0]
 

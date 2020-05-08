@@ -11,7 +11,7 @@ tree in general, recursion is one of the top approaches that comes
 to mind simply because it's easy enough to code up and also is very
 intuitive to understand
 
-2.2 将问题放到单个节点和最小子树来求解
+2.2 三原则：将问题放到单个节点和最小子树来求解
     2.2.1 单个子节点求解：是为了设定结束递归时的处理方式
     2.2.2 最小子树求解：是为了得到递归中每个节点的处理方式
     2.2.3 对节点的左右子树分别递归，是为了将最小处理，扩展到整体

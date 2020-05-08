@@ -30,6 +30,12 @@ Note: The merging process must start from the root nodes of both trees.
 #Time complexity : O(m). A total of mm nodes need to be traversed.
 # Here, m represents the minimum number of nodes from the two given trees.
 
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
 def mergeTrees(t1, t2):
     def helper(n1, n2):
         if not n2 or not n1: return
@@ -49,12 +55,23 @@ def mergeTrees(t1, t2):
     helper(t1, t2)
     return t1
 
-def mergeTrees(t1, t2):
+def mergeTrees_I(t1, t2):
     if not t1: return t2
     if not t2: return t1
     t1.val += t2.val
     t1.left = mergeTrees(t1.left, t2.left)
     t1.right = mergeTrees(t1.right, t2.right)
     return t1
+
+def mergeTrees_II(self, t1, t2):
+    #lightspot
+    if not t1 or not t2:
+        return t1 or t2
+
+    t3 = TreeNode(t1.val + t2.val)
+    t3.left = self.mergeTrees(t1.left, t2.left)
+    t3.right = self.mergeTrees(t1.right, t2.right)
+    return t3
+
 
 

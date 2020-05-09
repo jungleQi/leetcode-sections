@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
 
@@ -12,6 +14,22 @@ Output: tail connects to node index 1
 Explanation: There is a cycle in the linked list, where tail connects to the second node.
 '''
 
+#Approach 1: Hash Table
+def detectCycle_hashtable(head):
+    visited = set()
+
+    node = head
+    while node is not None:
+        if node in visited:
+            return node
+        else:
+            visited.add(node)
+            node = node.next
+
+    return None
+
+#背后的原理与推导还不清楚
+#Approach 2: Tortoise and Hare
 def detectCycle(head):
     if not head or not head.next or not head.next.next: return None
     slow, fast = head.next, head.next.next

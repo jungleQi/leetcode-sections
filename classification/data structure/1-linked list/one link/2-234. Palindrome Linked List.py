@@ -19,6 +19,9 @@ Could you do it in O(n) time and O(1) space?
 #2. 在递归函数之外，定义一个头部节点lnode，每次"归"时，lnode移动到next
 
 def isPalindrome_recursive(head):
+
+    #该递归实际上执行了2*(n-1)次，e 递了n-1个数，归了n-1个数，
+    # 归的过程中[1 .. n-2]相互比较了两次，0, n-1只比较了一次
     def helper(e):
         if not e or not e.next:
             return head

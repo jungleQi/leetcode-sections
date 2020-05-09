@@ -15,3 +15,23 @@ def middleNode(head):
         slow = slow.next
         fast = fast.next.next
     return slow
+
+#递归返回节点对象
+# 如果返回值为None，说明目前已经得到结果，可用于中断归中后续判断
+# 如果返回值非None，这是归中下一个需要用于处理的目标节点
+def middleNode_recursive(head):
+    def travel(node):
+        if not node: return head
+
+        ret = travel(node.next)
+        if not ret: return None
+
+        if ret == node or ret.next == node:
+            ans[0] = node
+            return None
+
+        return ret.next
+
+    ans = [None]
+    travel(head)
+    return ans[0]

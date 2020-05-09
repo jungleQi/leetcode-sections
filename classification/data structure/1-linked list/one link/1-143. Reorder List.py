@@ -27,7 +27,7 @@ def reorderList_recursion(head):
         tmp = cur.next
         cur.next = head.next
         head.next.next = tmp
-        head.next = None
+        head.next = None #防止环
 
         return tmp
 

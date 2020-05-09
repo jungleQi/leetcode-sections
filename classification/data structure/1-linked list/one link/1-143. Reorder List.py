@@ -15,19 +15,22 @@ Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
 
 
 def reorderList_recursion(head):
-    def helper(prev, head):
-        if not head or not head.next:
+    def helper(prev, tail):
+        # 为了对最终尾节点的next赋值None,从而防止环
+        # 这里需要在head是最后一个节点时就返回，而不是为None时才返回，
+        # 这样就无法为断后提供操作节点(tail.next == None)
+        if not tail or not tail.next:
             return prev
 
-        cur = helper(prev, head.next)
+        newHead = helper(prev, tail.next)
         #结束执行reorder的关键
-        if not cur or cur == head or not cur.next:
+        if not newHead or newHead == tail or not newHead.next:
             return None
 
-        tmp = cur.next
-        cur.next = head.next
-        head.next.next = tmp
-        head.next = None #防止环
+        tmp = newHead.next
+        newHead.next = tail.next
+        tail.next.next = tmp
+        tail.next = None #防止环
 
         return tmp
 

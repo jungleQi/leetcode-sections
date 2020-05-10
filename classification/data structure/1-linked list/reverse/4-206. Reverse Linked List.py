@@ -18,18 +18,12 @@ class ListNode(object):
         self.next = None
 
 def reverseList_4step(head):
-    newhead = None
-    while head:
-        tmp = head.next
-        head.next = newhead
-        newhead = head
-        head = tmp
-    return newhead
-
-def reverseList_3step(head):
-    prev, cur = None, head
+    prev, cur = None, head,
     while cur:
-        cur.next, prev, cur = prev, cur, cur.next
+        next = cur.next
+        cur.next = prev
+        prev = cur
+        cur = next
     return prev
 
 #只是reverse, 只需return.如果是返回最深的那个端点，就按照下面的方式返回。

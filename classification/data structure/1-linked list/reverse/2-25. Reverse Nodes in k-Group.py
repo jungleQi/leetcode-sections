@@ -20,10 +20,16 @@ Only constant extra memory is allowed.
 You may not alter the values in the list's nodes, only nodes itself may be changed.
 '''
 
-#新增链表头部的dummy(val:-1)
-#判断剩余链表是否有K个节点，如果没有就退出循环
-#元组三变量packing + unpacking
-#最后如果还剩残余链表，将其接到前一个group子链表的尾部next
+#1.新增链表头部的dummy(val:-1)
+#2.判断剩余链表是否有K个节点，如果没有就退出循环
+#3.选定[head, tail]区域进行reverse，注意迭代过程后，对结果的合法性检查：
+#   if i < k or not tail 合法之后才进行该区域的reverse
+#4.最后进行三个区域的串联（已reversed 刚reversed 未reversed）
+
+#关键控制变量：
+# 锚点anchor，用于串联reverse之后的[head, tail]区域
+# tailnext，用于串联调整好的链表 和 tail之后待处理的子链表
+
 
 class ListNode(object):
     def __init__(self, x):
@@ -31,29 +37,34 @@ class ListNode(object):
         self.next = None
 
 def reverseKGroup(head, k):
+    def reverse(cur, tail):
+        if cur == tail: return
+        reverse(cur.next, tail)
+        cur.next.next = cur
+        cur.next = None
+
     if k <= 1: return head
 
-    dummy = ListNode(-1)
+    dummy = ListNode()
     dummy.next = head
-    curtail = dummy
-
-    while head:
-        probe = head
-        cnt = 0
-        while probe and cnt < k:
-            cnt += 1
-            probe = probe.next
-
-        if cnt != k: break
-
+    anchor = dummy
+    while anchor:
+        tail = anchor.next
         i = 1
-        prev, curhead = None, head
-        while i <= k:
-            head.next, prev, head = prev, head, head.next
+        while i < k and tail:
+            tail = tail.next
             i += 1
-        curtail.next = prev
-        curtail = curhead
-    if head: curtail.next = head
+        if i < k or not tail: break
+
+        tailnext = tail.next
+        newanchor = anchor.next
+
+        reverse(anchor.next, tail)
+
+        anchor.next.next = tailnext
+        anchor.next = tail
+
+        anchor = newanchor
     return dummy.next
 
 #递归方式可以做到 one-pass

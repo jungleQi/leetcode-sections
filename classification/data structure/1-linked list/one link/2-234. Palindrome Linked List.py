@@ -38,26 +38,27 @@ def isPalindrome_recursive(head):
     ret = helper(head)
     return ret != None
 
-class Solution(object):
-    lnode = None
 
-    def isPalindrome(self, head):
-        """
-        :type head: ListNode
-        :rtype: bool
-        """
-        if not head or not head.next: return True
+def isPalindrome(head):
+    def travel(node, ans):
+        if not node: return head
 
-        self.lnode = head
-        return self._helper(head)
+        ret = travel(node.next, ans)
+        if not ret or ret.val != node.val:
+            return None
 
-    def _helper(self, nod):
-        if not nod.next:
-            return self.lnode.val == nod.val
+        if ret == node or ret.next == node:
+            ans[0] = True
+            return None
 
-        res = self._helper(nod.next)
-        self.lnode = self.lnode.next
-        return res and self.lnode.val == nod.val
+        return ret.next
+
+    if not head: return True
+
+    ans = [False]
+    travel(head, ans)
+    return ans[0]
+
 
 def isPalindrome(head):
     l = []

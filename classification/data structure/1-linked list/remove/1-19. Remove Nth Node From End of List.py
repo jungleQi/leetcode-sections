@@ -20,22 +20,20 @@ class ListNode(object):
         self.next = None
 
 #递归：1.递的路上处理问题；2.归的路上处理问题。这题是第二种情况
-
+# 返回的技巧是 (not curNode or not curNode.next)
+# 递归之后接着就能处理当前node和其他node之间的关系
 def removeNthFromEnd(head, n):
-    if not head: return None
+    def removeNode(curNode):
+        if not curNode or not curNode.next:
+            return 1
 
-    lnode = ListNode(0)
-    lnode.next = head
+        ret = removeNode(curNode.next)
+        if ret == n:
+            curNode.next = curNode.next.next
+        return ret + 1
 
-    def _helper(head):
-        if not head:
-            return 0
-
-        endidx = _helper(head.next) + 1
-        if endidx == n+1:
-            head.next = head.next.next
-        return endidx
-
-    _helper(lnode)
-    return lnode.next
+    dummy = ListNode()
+    dummy.next = head
+    removeNode(dummy)
+    return dummy.next
 

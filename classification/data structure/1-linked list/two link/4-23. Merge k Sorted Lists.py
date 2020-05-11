@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 Merge k sorted linked lists and return it as one sorted list.
 Analyze and describe its complexity.
@@ -39,6 +41,8 @@ def mergeKLists_heap(lists):
         heapq.heappush(heap, [l.val, l])
         lists[i] = l.next
 
+    #通过堆顶元素的next作为下一个入堆对象，是非常合理的
+    #如果通过遍历list，每次 依次出堆，然后依次将遍历list的节点入堆，是思维处于模糊状态，不优雅且错误的做法
     while heap:
         head.next = heapq.heappop(heap)[1]
         head = head.next

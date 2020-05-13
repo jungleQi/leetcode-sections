@@ -31,6 +31,9 @@ def findKthLargest_heap(nums, k):
 
     return heap[0]
 
+def findKthLargest_concise(nums, k):
+    return heapq.nlargest(k, nums)[-1]
+
 nums = [3,2,1,5,6,4]
 k = 2
 print(findKthLargest_heap(nums, k))

@@ -30,6 +30,15 @@ def topKFrequent_submission(words, k):
     heapq.heapify(heap)
     return [heapq.heappop(heap)[1] for _ in xrange(k)]
 
+def topKFrequent_concise(words, k):
+    freq = collections.Counter(words)
+    # 用heapq.nsmallest而不是heapq.nlargest，是因为更利于lambda x 对x进行两个维度的比较:
+    # 频率从大到小和字符从小到大的排序，采用heapq.nsmallest，只需要将频率取负号，就能够
+    # 对pair(-freq, alphabetical order)进行统一的排序
+    heap = heapq.nsmallest(k, freq.items(), key=lambda x: (-x[1], x[0]))
+
+    return zip(*heap)[0]
+
 words = ["i", "love", "leetcode", "i", "love", "coding"]
 k = 2
 #print(topKFrequent_submission(words, k))

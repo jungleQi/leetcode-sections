@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 Given an integer 7-array, return the k-th smallest distance among all the pairs.
 The distance of a pair (A, B) is defined as the absolute difference between A and B.
@@ -21,6 +23,8 @@ Note:
 
 #Time Complexity: O((k+N)logN), where N is the length of nums. As k = O(N^2),
 # this is O(N^2*logN) in the worst case
+
+#用堆会TLE，需要用二分+prefix sum
 
 import heapq
 def smallestDistancePair(nums, k):

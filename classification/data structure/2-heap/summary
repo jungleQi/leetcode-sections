@@ -12,3 +12,14 @@
 2. heapq.heappush(heap, num)
 3. if i > K:
       heapq.heappop(heap)
+
+三、从数组列表中，取最大/小的K个数
+#先按x[1]排序，若x[1]相等再按x[0]排序
+ret = heaq.nlargest(k, iterator, key=lambda x:(x[1],x[0]))
+ret = heaq.nsmallest(k, iterator, key=lambda x:(x[1],x[0]))
+返回的ret是按照顺序排列的数组
+如果要取第K个，就返回ret[-1]或者ret[0]
+
+四、如果容器中，数据有进有出，还要求动态的排列数据顺序，随时获取当前最小或者最大的元素
+1.对容器进行堆化
+2.元素的更新(pop/push)，采用replace / pop / push

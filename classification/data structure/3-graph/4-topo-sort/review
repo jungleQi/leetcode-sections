@@ -11,21 +11,20 @@
 2.3 判断是否存在有向环：根据入度+bfs(queue)遍历结果，判断是否遍历完所有节点，如果存在有向环，环上的节点不会进入queue，不会被访问到
 
 三部曲：
-1. 构造node:[node1, node2,..] , 即邻接表(非邻域矩阵)
-2. 计算出indegree
-3. topo sort(by bfs)
+1. 构建graph结构，node:[node1, node2,..] , 即邻接表(非邻域矩阵) 和 indegree
+2. topo sort(by bfs)，用collection.deque() 队列 和 while循环结构
     3.1 遍历完整个有向图，得到遍历的节点个数，只需两层循环，第一层deque非空，第二层遍历节点的后序节点
     3.2 遍历完整个有向图，得到遍历的最长路径，即最深层数，需要三层循环，第一层deque非空且递增层数，
         第二层将deque(当前层)遍历完，即popleft的次数是当前len(deque)，遍历它们后序节点追加到deque，用于下一层遍历
 
 注意坑：
 1.在统计indegree时，容易重复计数，导致某个节点的入度变大，导致后续排序结果错误
+2.if b not in graph[c] {...} 会让graph生成 'c': []， 所以改成 if b in graph[c]: break
 
 心得：
 对于有向图，采用indegree+bfs遍历完后，会有两中可能：
 1.有环：环上的节点遍历不到
 2.无环：所有的节点都能遍历到，并且按照topo顺序排列
 
-if b not in graph[c] {...} 会让graph生成 'c': []
-所以改成 if b in graph[c]: break
+
 

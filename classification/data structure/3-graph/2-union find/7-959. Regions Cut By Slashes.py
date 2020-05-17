@@ -49,5 +49,6 @@ def regionsBySlashes(grid):
 
     return sum(dsu.find(i) == i for i in range(4*N*N))
 
-grid = [" /","/ "]
-print(regionsBySlashes(grid))
+grid = ["\\/","/\\"]
+print len(grid), len(grid[0]), grid[0][0], grid[0][1]
+#print(regionsBySlashes(grid))

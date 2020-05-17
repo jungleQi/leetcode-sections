@@ -26,5 +26,6 @@
 1.有环：环上的节点遍历不到
 2.无环：所有的节点都能遍历到，并且按照topo顺序排列
 
-if b not in graph[c] 会让graph生成 'c': []
+if b not in graph[c] {...} 会让graph生成 'c': []
+所以改成 if b in graph[c]: break
 

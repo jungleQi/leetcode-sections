@@ -21,7 +21,7 @@ connect the other houses to it with cost 2 so the total cost is 3.
 
 '''
 
-#we model this problem as a 3-graph problem
+#we model this problem as a graph problem
 #Add a virtual node, connect it to houses with edges weighted by the costs to build wells in these houses.
 #The problem is now reduced to a Minimum Spanning Tree problem.
 

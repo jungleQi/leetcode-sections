@@ -38,7 +38,7 @@ def alienOrder(words):
         #["wrtkj","wrt"] 这种case，应该为invalid，需要单独判断
         if f[:minlen] == b[:minlen] and fl > bl: return ""
 
-        for i in range(0, ):
+        for i in range(0, minlen):
             #特别容易错，此处如果不做判断，会导致相同的pair重复判断，indegree的计算出现错误
             if b[i] in letters[f[i]]:
                 break

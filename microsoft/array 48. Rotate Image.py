@@ -1,3 +1,9 @@
+#coding=utf-8
+
+#key point:
+#1.第i行和第j列对角线元素对调
+#2.对每行元素reverse
+
 def rotate(matrix):
     """
     :type matrix: List[List[int]]

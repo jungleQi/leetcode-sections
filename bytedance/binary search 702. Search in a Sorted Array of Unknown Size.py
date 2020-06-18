@@ -1,3 +1,8 @@
+#coding=utf-8
+
+#key point:
+# 1.寻找右边界 如果ri的元素值小于target，就将le=ri，并且ri翻倍
+
 def search(reader, target):
     """
     :type reader: ArrayReader

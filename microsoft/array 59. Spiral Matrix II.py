@@ -1,3 +1,5 @@
+#coding=utf-8
+
 def generateMatrix(n):
     """
     :type n: int
@@ -10,6 +12,7 @@ def generateMatrix(n):
     di = 0
     i, j = 0, 0
     for num in range(1, n * n + 1):
+        #填充的位置很重要，放在第一步处理
         ans[i][j] = num
 
         ni, nj = i + dr[di], j + dc[di]

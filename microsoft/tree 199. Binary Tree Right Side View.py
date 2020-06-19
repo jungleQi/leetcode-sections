@@ -3,18 +3,16 @@ def rightSideView(root):
     :type root: TreeNode
     :rtype: List[int]
     """
-    nodeLevel = {}
 
-    def travel(curnode, level):
-        if not curnode:
-            return
+    def helper(root, level, ret):
+        if not root: return
 
-        if level not in nodeLevel:
-            nodeLevel[level] = curnode.val
+        if len(ret) == level:
+            ret.append(root.val)
 
-        travel(curnode.right, level + 1)
-        travel(curnode.left, level + 1)
+        helper(root.right, level + 1, ret)
+        helper(root.left, level + 1, ret)
 
-    if not root: return []
-    travel(root, 1)
-    return zip(*sorted(nodeLevel.items(), key=lambda x: x[0]))[1]
+    ret = []
+    helper(root, 0, ret)
+    return ret

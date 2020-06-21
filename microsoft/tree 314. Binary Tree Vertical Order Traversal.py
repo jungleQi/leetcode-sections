@@ -1,5 +1,29 @@
 import collections
-def verticalOrder(root):
+
+
+def verticalOrder_bfs(root):
+    """
+    :type root: TreeNode
+    :rtype: List[List[int]]
+    """
+    if not root: return []
+    data = collections.defaultdict(list)
+    deque = collections.deque([(root, 0)])
+
+    while deque:
+        node, col = deque.popleft()
+        data[col].append(node.val)
+
+        if node.left:
+            deque.append((node.left, col - 1))
+        if node.right:
+            deque.append((node.right, col + 1))
+
+    ret = sorted(data.items(), key=lambda x: x[0])
+    return zip(*ret)[1]
+
+
+def verticalOrder_dfs(root):
     """
     :type root: TreeNode
     :rtype: List[List[int]]

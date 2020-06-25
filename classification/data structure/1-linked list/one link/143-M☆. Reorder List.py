@@ -45,7 +45,6 @@ def reorderList_interator(head):
     if head == None:
         return head
     temp = head
-    k = 0
     nodes = list()
     while temp:
         nodes.append(temp)

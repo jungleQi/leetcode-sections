@@ -25,6 +25,7 @@ rotate the input matrix in-place such that it becomes:
 '''
 
 #key point:
+#0.将Rotate分解为以下两步：
 #1.第i行和第j列对角线元素对调
 #2.对每行元素reverse
 

@@ -1,5 +1,16 @@
 #coding=utf-8
 
+'''
+Given a string text, we are allowed to swap two of the characters in the string.
+Find the length of the longest substring with repeated characters.
+
+Example 1:
+Input: text = "ababa"
+Output: 3
+Explanation: We can swap the first 'b' with the last 'a', or the last 'b' with the first 'a'.
+Then, the longest repeated character substring is "aaa", which its length is 3.
+'''
+
 import collections
 def maxRepOpt1(text):
     """

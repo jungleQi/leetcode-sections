@@ -34,9 +34,11 @@ def online_solution(head):
 
     while anchor:
         cur = anchor.next
-        while cur and cur.next and cur.val != cur.next.val:
+        #和anchor值相同的节点都跳过，直至cur的值和anchor的值不同
+        while cur and cur.next and cur.val == cur.next.val:
             cur = cur.next
 
+        #保证了anchor的唯一性
         if anchor.next != cur:
             anchor.next = cur.next
         else:

@@ -23,17 +23,22 @@ class ListNode(object):
 # 返回的技巧是 (not curNode or not curNode.next)
 # 递归之后接着就能处理当前node和其他node之间的关系
 def removeNthFromEnd(head, n):
-    def removeNode(curNode):
-        if not curNode or not curNode.next:
-            return 1
+    def helper(node):
+        if not node: return 0
 
-        ret = removeNode(curNode.next)
-        if ret == n:
-            curNode.next = curNode.next.next
-        return ret + 1
+        idxFromTail = helper(node.next)
+
+        #完成要求操作之后，就直接层层返回
+        if idxFromTail == -1: return -1
+        #归途中，触发操作，设定返回，便于后续直接返回
+        if idxFromTail == n:
+            node.next = node.next.next
+            return -1
+
+        return idxFromTail + 1
 
     dummy = ListNode()
     dummy.next = head
-    removeNode(dummy)
+    helper(dummy)
     return dummy.next
 

@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 You are given two non-empty linked lists representing two non-negative integers.
 The digits are stored in reverse order and each of their nodes contain a single digit.
@@ -13,36 +15,8 @@ Explanation: 342 + 465 = 807.
 '''
 
 from ....utils import ListNode
-def addTwoNumbers(l1, l2):
-    head = cur = ListNode(0)
-    extra = 0
-    while l1 or l2:
-        if not l1 or not l2:
-            if not l2:
-                l2 , l1= l1, l2
-            if l2.val + extra >= 10:
-                val = l2.val + extra-10
-                extra = 1
-            else:
-                val = l2.val + extra
-                extra = 0
-        else:
-            if l1.val+l2.val+extra>=10:
-                val = l1.val+l2.val+extra-10
-                extra = 1
-            else:
-                val = l1.val+l2.val+extra
-                extra = 0
-            l1 = l1.next
 
-        l2 = l2.next
-        cur.next = ListNode(val)
-        cur = cur.next
-
-    if extra == 1:
-        cur.next = ListNode(1)
-    return head.next
-
+#对carry的控制极为出色！
 def addTwoNumbers_grace(l1, l2):
     carry = 0
     dummy = cur = ListNode(0)

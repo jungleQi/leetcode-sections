@@ -18,8 +18,38 @@ Constraints:
 The relative order inside both the even and odd groups should remain as it was in the input.
 The first node is considered odd, the second node even and so on ...
 '''
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-def oddEvenList(head):
+def oddEvenList_clear(head):
+    """
+    :type head: ListNode
+    :rtype: ListNode
+    """
+    oddDummy, evenDummy = ListNode(), ListNode()
+    oddHead = oddDummy
+    evenHead = evenDummy
+
+    idx = 0
+    while head:
+        if idx % 2 == 0:
+            evenHead.next = head
+            evenHead = evenHead.next
+        else:
+            oddHead.next = head
+            oddHead = oddHead.next
+
+        head = head.next
+        idx += 1
+
+    oddHead.next = None
+    evenHead.next = oddDummy.next
+
+    return evenDummy.next
+
+def oddEvenList_concise(head):
     """
     :type head: ListNode
     :rtype: ListNode

@@ -20,21 +20,36 @@ class ListNode(object):
 def reverseBetween(head, m, n):
     if m == n: return head
 
-    h1 = ret = ListNode(-1)
-    ret.next = head
+    dummy = ListNode()
+    dummy.next = head
+    head = dummy
+
+    # 移动到m
     i = 1
     while i < m:
-        h1, head = head, head.next
+        head = head.next
         i += 1
 
-    prev, cur = None, head
-    while i <= n and cur:
-        cur.next, prev, cur = prev, cur, cur.next
-        i += 1
-    if h1 and h1.next: h1.next.next = cur
-    if h1: h1.next = prev
+    #关键控制性节点变量：
+    #anchor 逆转区域前序节点，用于连接逆转之后的区域
+    #newTail 逆转之后区域的尾结点
+    #cur 初始化为待逆转区域的首节点
+    anchor, newTail, cur = head, head.next, head.next
 
-    return ret.next
+    #区域逆转
+    prev = None
+    while m <= n:
+        next = cur.next
+        cur.next = prev
+        prev = cur
+        cur = next
+        m += 1
+
+    #连接原始前部区域、逆转区域、原始后部区域
+    anchor.next = prev
+    newTail.next = cur
+
+    return dummy.next
 
 
 def reverseBetween_onepass(head, m, n):

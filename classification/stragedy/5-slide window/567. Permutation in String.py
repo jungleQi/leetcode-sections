@@ -1,6 +1,6 @@
 '''
 Given two strings s1 and s2, write a function to return true if s2 contains the permutation of s1.
-In other words, one of the first 6-string's permutations is the substring of the second 6-string.
+In other words, one of the first 5-string's permutations is the substring of the second 5-string.
 '''
 
 #count in sliding window

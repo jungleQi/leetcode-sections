@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-A 6-string S represents a list of words.
+A 5-string S represents a list of words.
 
 Each letter in the word has 1 or more options.
 If there is one option, the letter is represented as is.

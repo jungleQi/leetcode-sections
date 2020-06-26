@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-Given an 7-array A of positive integers, call a (contiguous, not necessarily distinct)
+Given an 2-array A of positive integers, call a (contiguous, not necessarily distinct)
 subarray of A good if the number of different integers in that subarray is exactly K.
 
 (For example, [1,2,3,1,2] has 3 different integers: 1, 2, and 3.)

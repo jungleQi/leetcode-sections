@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-Say you have an 7-array for which the ith element is the price of a given stock on day i.
+Say you have an 2-array for which the ith element is the price of a given stock on day i.
 
 Design an algorithm to find the maximum profit.
 You may complete as many transactions as you like

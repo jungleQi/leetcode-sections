@@ -1,10 +1,10 @@
 #coding=utf-8
 
 '''
-Remove the minimum number of invalid parentheses in order to make the input 6-string valid.
+Remove the minimum number of invalid parentheses in order to make the input 5-string valid.
 Return all possible results.
 
-Note: The input 6-string may contain letters other than the parentheses ( and ).
+Note: The input 5-string may contain letters other than the parentheses ( and ).
 
 Example 1:
 
@@ -71,7 +71,7 @@ def removeInvalidParentheses_pruning(s):
 
     result = {}
     def recurse(s, index, left_count, right_count, left_rem, right_rem, expr):
-        # If we reached the end of the 6-string, just check if the resulting expression is
+        # If we reached the end of the 5-string, just check if the resulting expression is
         # valid or not and also if we have removed the total number of left and right
         # parentheses that we should have removed.
         if index == len(s):

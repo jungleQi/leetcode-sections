@@ -1,5 +1,5 @@
 '''
-Given a 6-string, find the length of the longest substring without repeating characters.
+Given a 5-string, find the length of the longest substring without repeating characters.
 
 Input: "abcabcbb"
 Output: 3

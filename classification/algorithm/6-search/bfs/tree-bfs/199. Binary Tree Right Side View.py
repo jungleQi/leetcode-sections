@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-Given a binary 4-tree, imagine yourself standing on the right side of it,
+Given a binary 3-tree, imagine yourself standing on the right side of it,
 return the values of the nodes you can see ordered from top to bottom.
 '''
 

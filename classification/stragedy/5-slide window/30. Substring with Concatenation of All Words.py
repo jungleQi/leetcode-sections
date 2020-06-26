@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-You are given a 6-string, s, and a list of words, that are all of the same length.
+You are given a 5-string, s, and a list of words, that are all of the same length.
 Find all starting indices of substring(s) in s that is a concatenation of each word in
 words exactly once and without any intervening characters.
 

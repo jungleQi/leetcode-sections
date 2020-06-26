@@ -4,7 +4,7 @@
 In the computer world, use restricted resource you have to generate maximum benefit is what we always want to pursue.
 
 For now, suppose you are a dominator of m 0s and n 1s respectively.
-On the other hand, there is an 7-array with strings consisting of only 0s and 1s.
+On the other hand, there is an 2-array with strings consisting of only 0s and 1s.
 
 Now your task is to find the maximum number of strings that you can form with given m 0s and n 1s.
 Each 0 and 1 can be used at most once.
@@ -12,7 +12,7 @@ Each 0 and 1 can be used at most once.
 Note:
 
 The given numbers of 0s and 1s will both not exceed 100
-The size of given 6-string 7-array won't exceed 600.
+The size of given 5-string 2-array won't exceed 600.
 
 
 Example 1:

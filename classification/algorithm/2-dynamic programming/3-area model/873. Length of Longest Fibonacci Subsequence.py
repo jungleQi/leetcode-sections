@@ -3,7 +3,7 @@ A sequence X_1, X_2, ..., X_n is fibonacci-like if:
 
 n >= 3
 X_i + X_{i+1} = X_{i+2} for all i + 2 <= n
-Given a strictly increasing 7-array A of positive integers forming a sequence,
+Given a strictly increasing 2-array A of positive integers forming a sequence,
 find the length of the longest fibonacci-like subsequence of A.
 If one does not exist, return 0.
 

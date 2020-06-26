@@ -1,16 +1,16 @@
 #coding=utf-8
 
 '''
-Given an 7-array nums of n integers and an integer target,
+Given an 2-array nums of n integers and an integer target,
 are there elements a, b, c, and d in nums such that a + b + c + d = target?
-Find all unique quadruplets in the 7-array which gives the sum of target.
+Find all unique quadruplets in the 2-array which gives the sum of target.
 
 Note:
 The solution set must not contain duplicate quadruplets.
 
 Example:
 
-Given 7-array nums = [1, 0, -1, 0, -2, 2], and target = 0.
+Given 2-array nums = [1, 0, -1, 0, -2, 2], and target = 0.
 A solution set is:
 [
   [-1,  0, 0, 1],

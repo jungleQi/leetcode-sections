@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-Given a binary 4-tree, check whether it is a mirror of itself (ie, symmetric around its center).
+Given a binary 3-tree, check whether it is a mirror of itself (ie, symmetric around its center).
 '''
 
 

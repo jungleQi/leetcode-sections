@@ -1,5 +1,5 @@
 '''
-Given a binary 4-tree, return the bottom-up level order traversal of its nodes' values.
+Given a binary 3-tree, return the bottom-up level order traversal of its nodes' values.
 (ie, from left to right, level by level from leaf to root).
 '''
 

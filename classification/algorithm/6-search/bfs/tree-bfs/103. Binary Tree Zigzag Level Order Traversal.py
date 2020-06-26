@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-Given a binary 4-tree, return the zigzag level order traversal of its nodes' values.
+Given a binary 3-tree, return the zigzag level order traversal of its nodes' values.
  (ie, from left to right, then right to left for the next level and alternate between).
 '''
 

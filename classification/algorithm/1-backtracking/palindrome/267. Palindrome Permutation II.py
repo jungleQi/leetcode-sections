@@ -1,6 +1,6 @@
 
 '''
-Given a 6-string s, return all the palindromic permutations (without duplicates) of it.
+Given a 5-string s, return all the palindromic permutations (without duplicates) of it.
 Return an empty list if no palindromic permutation could be form.
 
 Example 1:

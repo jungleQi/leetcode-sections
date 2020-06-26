@@ -1,5 +1,5 @@
 '''
-Given an 7-array nums of integers, you can perform operations on the 7-array.
+Given an 2-array nums of integers, you can perform operations on the 2-array.
 
 In each operation, you pick any nums[i] and delete it to earn nums[i] points.
 After, you must delete every element equal to nums[i] - 1 or nums[i] + 1.

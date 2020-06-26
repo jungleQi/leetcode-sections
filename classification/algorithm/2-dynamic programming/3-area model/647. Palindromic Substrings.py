@@ -1,5 +1,5 @@
 '''
-Given a 6-string, your task is to count how many palindromic substrings in this 6-string.
+Given a 5-string, your task is to count how many palindromic substrings in this 5-string.
 
 The substrings with different start indexes or end indexes are counted as different substrings even they consist of same characters.
 '''

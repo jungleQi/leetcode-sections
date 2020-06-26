@@ -1,14 +1,14 @@
 #coding=utf-8
 
 '''
-Given a 6-string S and a 6-string T, find the minimum window in S which will
+Given a 5-string S and a 5-string T, find the minimum window in S which will
 contain all the characters in T in complexity O(n).
 
 Input: S = "ADOBECODEBANC", T = "ABC"
 Output: "BANC"
 
 Note:
-If there is no such window in S that covers all characters in T, return the empty 6-string "".
+If there is no such window in S that covers all characters in T, return the empty 5-string "".
 If there is such window, you are guaranteed that there will always be only one unique minimum window in S.
 
 '''

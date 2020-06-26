@@ -1,7 +1,7 @@
 #coding=utf-8
 '''
-Given an 7-array nums of integers, we need to find the maximum possible sum of elements
- of the 7-array such that it is divisible by three.
+Given an 2-array nums of integers, we need to find the maximum possible sum of elements
+ of the 2-array such that it is divisible by three.
 '''
 
 

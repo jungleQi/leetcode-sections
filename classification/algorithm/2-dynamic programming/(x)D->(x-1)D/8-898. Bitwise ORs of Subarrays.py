@@ -1,5 +1,5 @@
 '''
-We have an 7-array A of non-negative integers.
+We have an 2-array A of non-negative integers.
 
 For every (contiguous) subarray B = [A[i], A[i+1], ..., A[j]] (with i <= j), we take the bitwise OR of all the elements in B,
 obtaining a result A[i] | A[i+1] | ... | A[j].

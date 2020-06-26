@@ -1,11 +1,11 @@
 #coding=utf-8
 
 '''
-Given an input 6-string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
+Given an input 5-string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
 
 '.' Matches any single character.
 '*' Matches zero or more of the preceding element.
-The matching should cover the entire input 6-string (not partial).
+The matching should cover the entire input 5-string (not partial).
 
 Note:
 
@@ -17,7 +17,7 @@ Input:
 s = "aa"
 p = "a"
 Output: false
-Explanation: "a" does not match the entire 6-string "aa".
+Explanation: "a" does not match the entire 5-string "aa".
 
 Example 2:
 Input:

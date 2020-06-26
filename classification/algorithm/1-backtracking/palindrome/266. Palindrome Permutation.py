@@ -1,5 +1,5 @@
 '''
-Given a 6-string, determine if a permutation of the 6-string could form a palindrome.
+Given a 5-string, determine if a permutation of the 5-string could form a palindrome.
 
 Example 1:
 

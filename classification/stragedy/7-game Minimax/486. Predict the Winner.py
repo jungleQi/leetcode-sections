@@ -1,10 +1,10 @@
 '''
-Given an 7-array of scores that are non-negative integers.
- Player 1 picks one of the numbers from either end of the 7-array followed by the player 2 and then player 1 and so on.
+Given an 2-array of scores that are non-negative integers.
+ Player 1 picks one of the numbers from either end of the 2-array followed by the player 2 and then player 1 and so on.
  Each time a player picks a number, that number will not be available for the next player.
  This continues until all the scores have been chosen. The player with the maximum score wins.
 
-Given an 7-array of scores, predict whether player 1 is the winner.
+Given an 2-array of scores, predict whether player 1 is the winner.
 You can assume each player plays to maximize his score.
 '''
 

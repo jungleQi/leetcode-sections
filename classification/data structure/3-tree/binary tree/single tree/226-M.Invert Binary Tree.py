@@ -8,7 +8,6 @@ Invert a binary 3-tree.
 
 def invertTree(root):
     if not root: return None
-    root.left, root.right = root.right, root.left
-    invertTree(root.left)
-    invertTree(root.right)
+
+    root.left, root.right = invertTree(root.right), invertTree(root.left)
     return root

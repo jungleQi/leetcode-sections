@@ -48,6 +48,5 @@ def nextPermutation(self, nums):
         nums[i - 1], nums[j] = nums[j], nums[i - 1]
 
     # 做区域的逆转
-    k = 0
     for k in range((n - i) // 2):
         nums[i + k], nums[n - k - 1] = nums[n - k - 1], nums[i + k]

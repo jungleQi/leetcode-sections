@@ -28,7 +28,7 @@ def inorderTraversal(root):
     travel(root, ret)
     return ret
 
-def inorderTraversal_iterator(self, root):
+def inorderTraversal_iterator(root):
     ans = []
     if not root: return ans
 

@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 Given a node in a binary search tree, find the in-order successor of that node in the BST.
 
@@ -26,7 +28,7 @@ Could you solve it without looking up any of the node's values?
 #2. Node has no right child, and hence its successor is somewhere upper in the tree.
 # Go up till the node that is left child of its parent. The answer is the parent.
 
-def inorderSuccessor(node):
+def inorderSuccessor_recursive(node):
     """
     :type node: Node
     :rtype: Node
@@ -47,3 +49,22 @@ def inorderSuccessor(node):
         return downTravel(node.right)
     else:
         return upTravel(node, node.val)
+
+def inorderSuccessor(node):
+    """
+    :type node: Node
+    :rtype: Node
+    """
+    if not node: return None
+
+    # 有右子节点：就是右节点的最左子节点
+    if node.right:
+        curNode = node.right
+        while curNode and curNode.left:
+            curNode = curNode.left
+        return curNode
+    else:  # 没有右子节点，向上找，第一个有左子节点的节点
+        curNode = node
+        while curNode.parent and curNode.parent.right == curNode:
+            curNode = curNode.parent
+        return curNode.parent

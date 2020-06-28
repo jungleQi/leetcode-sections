@@ -1,3 +1,5 @@
+Part I
+
 1.二叉树问题类型：
 主要有三类：遍历，调整树结构，结点计算
 
@@ -20,3 +22,37 @@ intuitive to understand
 3.1 对于纯遍历问题，需要得到遍历之后的结果，就需要给定一个容器(list 或者 dict)来记录
 3.2 对于调整树结构问题，需要在递归返回的用于调整结构所需要的节点
 3.3 对于结点计算问题，注意递归返回一个有意义的值，让计算逻辑变得简单清晰
+
+
+Part II 数组转二叉树(或者bst)
+一、数组(一对)转成二叉树 algorithm：
+    recursion(arr1, arr2)
+1. 在"递"的时候，就新建当前根节点root，通过两个数组，找出一个值 赋给根节点 root.val
+2. 当前root的左右两个子树root.left/root.right，通过递归返回赋值。
+   递归传入的子树的数组，是在依据root.val对两个数组分别分裂之后得到的子数组集合
+3. 进入递归就判断数组如果为空，返回none，结束递归的"递"，开始"归"
+4. 最后返回根节点
+5.在递归中完成以上4步，因为二叉树是规律非常强的树，只需要对最简单的数组和子树做一次推演，就代表整棵树适用
+
+[code pattern]:
+    def recursion(Arr):
+        if not arr: return None
+
+        val = "get from Arr"
+        root = treeNode(val)
+
+        valIdx = "get from Arr by val"
+        leftSubArr = "get from Arr by valIdx"
+        rightSubArr = "get from Arr by valIdx"
+
+        root.left = recursion(leftSubArr)
+        root.right = recursion(rightSubArr)
+        return root
+
+二、二叉树和链表的递归处理方式，思想内核一致，不同在于：
+1.链表只需要关注当前节点一条路径的递与归
+2.二叉树，需要关注当前节点的左、右子树两条路径的递与归
+    那么，是不是意味着二叉树问题比链表问题，更难以处理呢？
+    其实不是，二叉树的规律性极强，对左子树和右子树的处理逻辑是相同（对称）的，考虑清楚对一个子树的处理，
+基本上就确定了另一边子树的处理方式，所以一般并行递归处理左右子树。
+    从这个层面来说，二叉树和链表的递归处理是一个类型的问题

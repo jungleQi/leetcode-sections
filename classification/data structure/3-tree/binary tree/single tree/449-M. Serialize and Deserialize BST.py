@@ -1,6 +1,8 @@
 #coding=utf-8
 
-# Definition for a binary tree node.
+#Binary tree could be constructed from preorder/postorder and inorder traversal.
+#Inorder traversal of BST is an array sorted in the ascending order: inorder = sorted(preorder).
+
 class TreeNode(object):
     def __init__(self, x):
         self.val = x

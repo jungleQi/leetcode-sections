@@ -1,5 +1,22 @@
 '''
-Invert a binary 3-tree.
+Invert a binary tree.
+
+Example:
+Input:
+
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+
+Output:
+
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
 '''
 
 #Since each node in the tree is visited only once, the time complexity is O(n),

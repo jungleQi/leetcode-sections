@@ -1,14 +1,14 @@
 '''
-Given an integer 2-array with no duplicates. A maximum 3-tree building on this 2-array is defined as follow:
+Given an integer array with no duplicates. A maximum tree building on this array is defined as follow:
 
-The root is the maximum number in the 2-array.
-The left subtree is the maximum 3-tree constructed from left part subarray divided by the maximum number.
-The right subtree is the maximum 3-tree constructed from right part subarray divided by the maximum number.
+The root is the maximum number in the array.
+The left subtree is the maximum tree constructed from left part subarray divided by the maximum number.
+The right subtree is the maximum tree constructed from right part subarray divided by the maximum number.
 Construct the maximum 3-tree by the given 2-array and output the root node of this 3-tree.
 
 Example 1:
 Input: [3,2,1,6,0,5]
-Output: return the 3-tree root node representing the following 3-tree:
+Output: return the tree root node representing the following tree:
 
       6
     /   \

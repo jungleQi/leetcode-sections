@@ -1,82 +1,37 @@
-#coding=utf-8
-from utils import Node
-from utils import ListNode
-import heapq
+# coding=utf-8
+# class Point:
+#     def __init__(self, a=0, b=0):
+#         self.x = a
+#         self.y = b
+
+#
+# 能回到1号点返回 Yes，否则返回 No
+# @param param int整型一维数组 param[0] 为 n，param[1] 为 m
+# @param edge Point类一维数组 Point.x , Point.y 分别为一条边的两个点
+# @return string字符串
+#
+#
 import collections
 
-# "abc3[cd]xyz"
-class node(object):
-    def __init__(self, val, next=None):
-        self.val = val
-        self.next = next
 
-def constructLinkList(arr):
-    dummy = head = node(0)
-    i,N = 0, len(arr)
+def solve(edge):
+    def travel(node, visitor, parent, target):
+        for nei in graph[node]:
+            if nei in visitor or nei == parent: continue
+            if nei == target: return True
 
-    while i<N:
-        cur = node(arr[i])
-        head.next= cur
-        head = cur
-        i += 1
-    return dummy.next
+            if travel(nei, visitor + [nei], node, target):
+                return True
+        return False
 
+    graph = collections.defaultdict(list)
+    for item in edge:
+        graph[item[0]].append(item[1])
+        graph[item[1]].append(item[0])
 
-def printList(node):
-    while node:
-        print node.val,
-        node = node.next
-    print "\n"
+    target = 1
+    ret = travel(1, [], -1, target)
+    return "Yes" if ret else "No"
 
-
-#功能，打印链表首位
-def travel(head):
-    def helper(node):
-        if not node: return head
-        newHead = helper(node.next)
-
-        #首位相向打印，相遇后退出递归
-        if not newHead or newHead == node or node.next == newHead:
-            #如果list node 个数为奇数，打印最中间的
-            if newHead and newHead == node:
-                print newHead.val
-            return None
-        #打印首、尾
-        print newHead.val,node.val,
-        return newHead.next
-
-    helper(head)
-
-'''
-Node* helper(Node* head, Node* node)
-{
-    if (node == NULL)
-    {
-        return head;
-    }
-    Node* newHead = helper(head, node->next);
-
-    if(newHead == NULL || newHead == node || node->next == newHead)
-    {
-        if(newHead and newHead == node)
-        {
-            printf("%d", newHead->val);
-        }
-        return NULL;
-    }
-    printf("%d,%d", newHead->val,node->val);
-    return newHead->next;
-}
-
-void travel(Node* head)
-{
-    helper(head, head);
-}
-'''
-
-arr = [1,2,3,4,5,6,7]
-head = constructLinkList(arr)
-print "原始链表: "
-printList(head)
-print "打印结果："
-travel(head)
+edge = [(1, 2), (2, 3), (3, 4), (4, 1)]
+print solve(edge)

@@ -17,15 +17,16 @@ def search( nums, target):
         mid = (le + ri) / 2
         if nums[mid] == target:
             return mid
-        elif nums[mid] >= nums[le]: #[le, mid] 是严格递增区间
-            if target >= nums[le] and target <= nums[mid]: #target落在[le, mid]区间
-                ri = mid - 1
-            else: #target落在[mid, ri]区间
-                le = mid + 1
-        else:# [mid, ri] 是严格递增区间
-            if target <= nums[ri] and target >= nums[mid]:#target落在[mid, ri]区间
-                le = mid + 1
-            else:#target落在[le, mid]区间
-                ri = mid - 1
 
+        # 注意 "=" 的选择 与 le/ri 增减的关系
+        if nums[mid] < nums[ri]:
+            if nums[mid] < target and target <= nums[ri]:
+                le = mid + 1
+            else:
+                ri = mid - 1
+        else:
+            if nums[le] <= target and target < nums[mid]:
+                ri = mid - 1
+            else:
+                le = mid + 1
     return -1

@@ -37,7 +37,6 @@ def singleNonDuplicate(nums):
                 ri = mid - 1
     return nums[le]
 
-
 def singleNonDuplicate_concise(nums):
     """
     :type nums: List[int]

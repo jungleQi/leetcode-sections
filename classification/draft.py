@@ -1,20 +1,15 @@
-def findMin(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
+# T = [73, 74, 75, 71, 69, 72, 76, 73]
+def dailyTemperatures(T):
+    N = len(T)
+    stack = []
+    ans = [0]*N
+    for i,n in enumerate(T):
+        while stack and T[stack[-1]]<n:
+            idx = stack.pop()
+            ans[idx] = i-idx
+        stack.append(i)
+    return ans
 
-    le, ri = 0, len(nums) - 1
-    while le <= ri:
-        if nums[le] <= nums[ri]:
-            return nums[le]
-        mid = (le + ri) / 2
+T = []
+print(dailyTemperatures(T))
 
-        #print le, ri, mid
-        if nums[mid] < nums[ri]:
-            ri = mid
-        else:
-            le = mid + 1
-
-nums = [3,4,5,1,2]
-print findMin(nums)

@@ -1,0 +1,12 @@
+#注意 二分算法的4个主要问题：
+# 1. while left < OR <= right
+# 2. left = mid+1 or mid
+# 3. right = mid-1 or mid
+# 4. mid = (le+ri)/2 or (le+ri)/2 + 1
+
+
+#1.二分在大的方向上是否能够逐步缩小目标的查找范围
+#2.收敛结束的条件设定
+#3.[0,1]取中值，mid是定位到 0 or 1
+#4.le/ri依据mid进行合理的移动
+

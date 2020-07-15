@@ -14,4 +14,4 @@ def searchInsert(nums, target):
 
 nums = [1]
 target = 1
-print searchInsert(nums, target)
+print(searchInsert(nums, target))

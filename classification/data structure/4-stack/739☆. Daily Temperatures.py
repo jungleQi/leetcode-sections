@@ -12,21 +12,16 @@ Note: The length of temperatures will be in the range [1, 30000].
 Each temperature will be an integer in the range [30, 100].
 '''
 
-#正序遍历只能通过常规的方式处理，比较低效
-#逆序遍历能很好的利用stack，高效的处理
-
 def dailyTemperatures(T):
     N = len(T)
-    ret = [0]*N
     stack = []
-
-    for i in range(N-1, -1, -1):
-        while stack and T[stack[-1]]<=T[i]:
-            stack.pop()
-        if stack:
-            ret[i] = stack[-1]-i
+    ans = [0] * N
+    for i, n in enumerate(T):
+        while stack and T[stack[-1]] < n:
+            idx = stack.pop()
+            ans[idx] = i - idx
         stack.append(i)
-    return ret
+    return ans
 
 T = [73, 74, 75, 71, 69, 72, 76, 73]
 print(dailyTemperatures(T))

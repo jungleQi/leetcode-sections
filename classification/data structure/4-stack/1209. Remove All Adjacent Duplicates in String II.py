@@ -8,6 +8,29 @@ Example 1:
 Input: s = "abcd", k = 2
 Output: "abcd"
 Explanation: There's nothing to delete.
+
+Example 2:
+Input: s = "pbbcggttciiippooaais", k = 2
+Output: "ps"
 '''
 
 def removeDuplicates(s, k):
+    stack = []
+    for i, c in enumerate(s):
+        if stack and stack[-1][1] == k-1 and stack[-1][0] == c:
+            stack.pop()
+        else:
+            if stack and stack[-1][0] == c:
+                stack[-1][1] += 1
+            else:
+                stack.append([c,1])
+    ans = ""
+    while stack:
+        top = stack.pop()
+        ans = top[0]*top[1]+ans
+    return ans
+
+s = "aa"
+k = 2
+print(removeDuplicates(s, k))
+

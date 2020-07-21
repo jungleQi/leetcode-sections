@@ -18,4 +18,20 @@ Explanation: "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
 '''
 
 def minRemoveToMakeValid(s):
-    
+    dels = set()
+    stack = []
+    for i, c in enumerate(s):
+        if stack and c == ')':
+            stack.pop()
+        elif not stack and c == ')':
+            dels.add(i)
+        elif c == '(':
+            stack.append(i)
+    if stack:
+        dels.update(set(stack))
+
+    ans = ""
+    for i, c in enumerate(s):
+        if i in dels: continue
+        ans += c
+    return ans

@@ -32,11 +32,31 @@ def canJump_MLE(nums):
     memo[-1] = GOOD
 
     return jump(0)
+def canJump_greedy_nograce(nums):
+    """
+    :type nums: List[int]
+    :rtype: bool
+    """
+    # 每个点能覆盖范围内，选一个能到达最远处的点，作为下一个跳点
+    curIdx = jumpPt = 0
+    while jumpPt < len(nums) - 1:
+        nextPt = curIdx = jumpPt
 
-def canJump_greedy(nums):
+        while curIdx < len(nums) and nextPt < len(nums) and curIdx <= nextPt + nums[nextPt]:
+            nextPt = max(nextPt, curIdx + nums[curIdx])
+            curIdx += 1
+        if nextPt <= jumpPt:
+            return False
+        jumpPt = nextPt
+
+    return True
+
+def canJump_greedy_grace(nums):
     N = len(nums)
     lastpos = N - 1
     for i in range(N - 1, -1, -1):
         if i + nums[i] >= lastpos:
             lastpos = i
     return lastpos == 0
+
+

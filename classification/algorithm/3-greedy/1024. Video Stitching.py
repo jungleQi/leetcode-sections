@@ -1,5 +1,3 @@
-
-
 def videoStitching(clips, T):
     #c[0]<=prevleft 获取curleft最大值
         #扩展cufleft

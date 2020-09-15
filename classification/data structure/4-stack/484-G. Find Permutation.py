@@ -26,10 +26,16 @@ Note:
 # DDIDDII
 # 1 2 3 4 5 6 7 8
 # 3 2 1 6 5 4 7 8
+
+'''
+12
+
+'''
 def findPermutation(s):
+    if not s: return [1]
+
     ans = []
     stack = []
-    s += 'p'
     for i, c in enumerate(s):
         if c == 'D':
             stack.append(i+1)
@@ -38,7 +44,10 @@ def findPermutation(s):
             while stack:
                 ans.append(stack.pop())
 
+    stack.append(i+2)
+    while stack:
+        ans.append(stack.pop())
     return ans
 
-s = "II"
+s = ""
 print(findPermutation(s))

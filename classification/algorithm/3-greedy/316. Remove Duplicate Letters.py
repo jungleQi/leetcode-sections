@@ -33,6 +33,8 @@ Output: "acdb"
 '''
 
 # Greedy - Solving with Stack
+#At each stage in our iteration through the string, we greedily keep what's on the stack as small as possible.
+#Greedy problem is hard to find the trick
 def removeDuplicateLetters(s):
     """
     :type s: str

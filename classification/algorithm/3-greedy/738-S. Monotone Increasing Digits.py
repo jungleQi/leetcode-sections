@@ -49,7 +49,5 @@ def monotoneIncreasingDigits(N):
     ret = [str(i) for i in res]
     return int("".join(ret)) if ret else 0
 
-
-
 N = 2220 #101
-print monotoneIncreasingDigits(N)
+print(monotoneIncreasingDigits(N))

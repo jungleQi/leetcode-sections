@@ -28,7 +28,7 @@ def removeNthFromEnd(head, n):
 
         idxFromTail = helper(node.next)
 
-        #完成要求操作之后，就直接层层返回
+        #完成要求操作之后，就直接层层返回，为了提效
         if idxFromTail == -1: return -1
         #归途中，触发操作，设定返回，便于后续直接返回
         if idxFromTail == n:

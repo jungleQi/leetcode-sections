@@ -1,3 +1,5 @@
+#coding=utf-8
+
 '''
 Given an array of non-negative integers, you are initially positioned at the first index of the array.
 Each element in the array represents your maximum jump length at that position.
@@ -32,13 +34,14 @@ def canJump_MLE(nums):
     memo[-1] = GOOD
 
     return jump(0)
+
 def canJump_greedy_nograce(nums):
     """
     :type nums: List[int]
     :rtype: bool
     """
     # 每个点能覆盖范围内，选一个能到达最远处的点，作为下一个跳点
-    curIdx = jumpPt = 0
+    jumpPt = 0
     while jumpPt < len(nums) - 1:
         nextPt = curIdx = jumpPt
 

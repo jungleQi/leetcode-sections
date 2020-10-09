@@ -56,6 +56,8 @@ def reverseKGroup(head, k):
             i += 1
         if i < k or not tail: break
 
+        #特别注意，此处非常容易出BUG：
+        #因为reverse之后，tail.next被逆转指向，发生了改变，所以需要在reverse之前，就做好备份记录
         tailnext = tail.next
         newanchor = anchor.next
 

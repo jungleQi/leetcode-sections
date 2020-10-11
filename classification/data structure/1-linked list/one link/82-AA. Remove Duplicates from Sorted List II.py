@@ -38,7 +38,7 @@ def online_solution(head):
         while cur and cur.next and cur.val == cur.next.val:
             cur = cur.next
 
-        #保证了anchor的唯一性
+        #判断cur是否因为重复而发生了移动，本题的灵魂
         if anchor.next != cur:
             anchor.next = cur.next
         else:

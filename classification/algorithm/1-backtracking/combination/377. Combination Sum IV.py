@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-Given an integer 2-array with all positive numbers and no duplicates,
+Given an integer array with all positive numbers and no duplicates,
 find the number of possible combinations that add up to a positive integer target.
 
 nums = [1, 2, 3]

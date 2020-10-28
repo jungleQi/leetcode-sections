@@ -28,16 +28,19 @@ def numTilePossibilities_counter(tiles):
     return ret[0]
 
 def numTilePossibilities_set(tiles):
-    def helper(srctiles, path):
-        if not srctiles: return
-        for i in range(len(srctiles)):
-            helper(srctiles[:i]+srctiles[i+1:], path+srctiles[i])
-            res.add(path+srctiles[i])
+    def helper(tiles, ret):
+        if (not tiles):
+            return
 
-    res = set()
-    helper(tiles, "")
-    return len(res)
+        for i, c in enumerate(tiles):
+            if (i > 0 and tiles[i - 1] == c): continue
+            ret[0] += 1
+            helper(tiles[:i] + tiles[i + 1:], ret)
 
+    arrTile = sorted(list(tiles))
+    ret = [0]
+    helper(arrTile, ret)
+    return ret[0]
 
 tiles = "AAB"
 print(numTilePossibilities_set(tiles))

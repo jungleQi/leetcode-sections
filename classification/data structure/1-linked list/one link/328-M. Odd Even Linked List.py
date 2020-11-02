@@ -44,6 +44,7 @@ def oddEvenList_clear(head):
         head = head.next
         idx += 1
 
+    #关键收尾，不然形成circle
     oddHead.next = None
     evenHead.next = oddDummy.next
 

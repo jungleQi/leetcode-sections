@@ -3,25 +3,18 @@ class ListNode(object):
         self.val = x
         self.next = None
 
-def oddEvenList_clear(head):
-    if not head: return None
+def permuteUnique_fast(nums):
+    def helper(nums, cur, ret):
+        if not nums:
+            ret.append(cur)
+            return
 
-    odd_dummy = ListNode()
-    even_dummy = ListNode()
+        for i,num in enumerate(nums):
+            if i>0 and num == nums[i-1]:
+                continue
+            helper(nums[:i]+nums[i+1:], cur+[num], ret)
 
-    odd_dummy.next = odd_head = head
-    head = head.next
-    even_dummy.next = even_head = head
-
-    i = 3
-    while head:
-        if(i%2) == 0:
-            odd_head.next = head
-            odd_head = odd_head.next
-        else:
-            even_head.next = head
-            even_head = even_head.next
-        i += 1
-        head = head.next
-    odd_head.next = even_dummy.next
-    return odd_dummy.next
+    nums.sort()
+    ret = []
+    helper(nums, [], ret)
+    return ret

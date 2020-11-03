@@ -17,18 +17,19 @@ Output:
 #time complexity: O(n!)
 
 def permuteUnique_fast(nums):
-    def _helper(nums, indexs, path, ret):
+    def helper(nums, cur, ret):
         if not nums:
-            ret += path,
+            ret.append(cur)
             return
 
         for i,num in enumerate(nums):
-            if (i>0 and nums[i-1] == num): continue
-            _helper(nums[:i]+nums[i+1:], indexs+[i], path+[num], ret)
+            if i>0 and num == nums[i-1]:
+                continue
+            helper(nums[:i]+nums[i+1:], cur+[num], ret)
 
-    ret = []
     nums.sort()
-    _helper(nums, [], [], ret)
+    ret = []
+    helper(nums, [], ret)
     return ret
 
 nums = [1,1,2]

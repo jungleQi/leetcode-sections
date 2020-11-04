@@ -3,18 +3,17 @@ class ListNode(object):
         self.val = x
         self.next = None
 
-def permuteUnique_fast(nums):
+def subsets(nums):
     def helper(nums, cur, ret):
-        if not nums:
-            ret.append(cur)
-            return
+        ret.append(cur)
 
+        if not nums: return
         for i,num in enumerate(nums):
-            if i>0 and num == nums[i-1]:
-                continue
-            helper(nums[:i]+nums[i+1:], cur+[num], ret)
+            helper(nums[i+1:], cur+[num], ret)
 
-    nums.sort()
     ret = []
     helper(nums, [], ret)
     return ret
+
+nums = [1,2,3]
+print(subsets(nums))

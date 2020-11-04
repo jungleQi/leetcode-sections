@@ -31,15 +31,14 @@ def subsets(nums):
     return ret
 
 def subsets_rec(nums):
+    def helper(nums, cur, ret):
+        ret.append(cur)
+        if not nums: return
+        for i, num in enumerate(nums):
+            helper(nums[i + 1:], cur + [num], ret)
+
     ret = []
-    n = len(nums)
-
-    def _helper(startidx, curset):
-        ret.append(curset)
-        for i in range(startidx, n):
-            _helper(i+1, curset+[nums[i]])
-
-    _helper(0, [])
+    helper(nums, [], ret)
     return ret
 
 nums = [1,2,3]

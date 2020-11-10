@@ -1,9 +1,9 @@
 '''
-Given a 6-binary 6-search 3-tree and a node in it, find the in-order successor of that node in the BST.
+Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
 The successor of a node p is the node with the smallest key greater than p.val.
 '''
 
-
+#so nice!!
 def inorderSuccessor_iterator(root, p):
     succ = None
     while root:
@@ -12,9 +12,9 @@ def inorderSuccessor_iterator(root, p):
         else:
             succ = root
             root = root.left
-
     return succ
 
+#hard to think
 class Solution(object):
     visitor = False
 

@@ -18,15 +18,19 @@ Return the number of moves required to make every node have exactly one coin.
 #在Parent上汇总，保留1个coin在parent后，多余的coin再向上返回
 #2.与此同时，需要记录每个节点(左节点，右节点，当前节点)多出的coins数量，累积到ret
 def distributeCoins(root):
-    def _distribute(root, ret):
-        if not root: return 0
+    def helper(node, ret):
+        if not node:
+            return 0
 
-        lcoins = _distribute(root.left, ret)
-        rcoins = _distribute(root.right, ret)
-        ret[0] += abs(root.val + lcoins + rcoins - 1)
-        return root.val + lcoins + rcoins - 1
+        # 返回值：当前节点所需要的coin数目。
+        # 如果为正，表示从根节点得到；负，表示赋给根节点
+        lc = helper(node.left, ret)
+        rc = helper(node.right, ret)
+        ret[0] += abs(lc) + abs(rc)
+
+        return lc + rc + 1 - node.val
 
     ret = [0]
-    _distribute(root, ret)
+    helper(root, ret)
     return ret[0]
 

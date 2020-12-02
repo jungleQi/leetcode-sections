@@ -24,7 +24,11 @@ Output:
 # We cannot do better than that, since at the very least we have to visit each node to invert it.
 
 def invertTree(root):
-    if not root: return None
+    def helper(cur):
+        if not cur: return
+        helper(root.left)
+        helper(root.right)
+        root.left, root.right = root.right, root.left
 
-    root.left, root.right = invertTree(root.right), invertTree(root.left)
+    helper(root)
     return root

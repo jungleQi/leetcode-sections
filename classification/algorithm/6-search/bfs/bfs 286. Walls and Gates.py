@@ -21,6 +21,7 @@ def wallsAndGates(rooms):
                 rooms[x + nei[0]][y + nei[1]] = d + 1
                 deque.append((x + nei[0], y + nei[1], d + 1))
 
+
     for i in range(M):
         for j in range(N):
             if rooms[i][j] == 0:

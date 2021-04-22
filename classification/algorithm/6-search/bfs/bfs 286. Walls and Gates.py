@@ -4,6 +4,7 @@ def wallsAndGates(rooms):
     :type rooms: List[List[int]]
     :rtype: None Do not return anything, modify rooms in-place instead.
     """
+
     if not rooms: return
     M, N = len(rooms), len(rooms[0])
     neigbors = [(-1, 0), (1, 0), (0, -1), (0, 1)]

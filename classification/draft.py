@@ -1,40 +1,23 @@
-def decodeString_failed(s):
-    num = 0
-    stack = [""]
-    cur = ""
-    for c in s:
-        if c.isdigit():
-            if cur:
-                stack.append(cur)
-                cur = ""
-            num += 10*num + int(c)
-        elif c.isalpha():
-            cur += c
-        elif c == '[':
-            stack.append(num)
-            num = 0
-        elif c == ']':
-            print(stack)
-            n = stack.pop()
-            stack[-1] += cur*n
-            cur = ""
-    return cur if cur else stack[-1]
+import collections
 
-def decodeString(s):
-    stack = [[1,""]]
-    num = 0
-    for c in s:
-        if c.isdigit():
-            num = 10*num+int(c)
-        elif c.isalpha():
-            stack[-1][1] += c
-        elif c == '[':
-            stack.append([num, ""])
-            num = 0
-        elif c == ']':
-            element = stack.pop()
-            stack[-1][1] += element[1]*element[0]
-    return stack[0][1]
+def zigzagLevelOrder(root):
+    ret = []
+    q = collections.deque([root])
+    while q:
+        cnt = len(q)
+        cur = []
+        while cnt:
+            node = q.popleft()
+            cnt -= 1
 
-s = "10[le]"
-print(decodeString(s))
+            if(len(ret)%2):
+                cur.append(node.val)
+            else:
+                cur.insert(0, node.val)
+
+            if node.left: q.append(node.left)
+            if node.right: q.append(node.right)
+
+        ret.append(cur)
+
+    return ret

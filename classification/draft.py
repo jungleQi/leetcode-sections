@@ -1,18 +1,19 @@
 import collections
 
-def nextGreaterElements(nums):
-    stack = []
-    N = len(nums)
-    ret = [-1]*N
+def levelOrderBottom(root):
+    levels = []
+    if not root: return levels
 
-    for i,num in enumerate(nums+nums):
-        while stack and nums[stack[-1]]<num:
-            ret[stack[-1]] = num
-            stack.pop()
-        if(i<N):
-            stack.append(i)
+    q = collections.deque([root])
+    while q:
+        N = len(q)
+        level = []
+        while N>0:
+            node = q.popleft()
+            level.append(node.val)
+            if node.left: q.append(node.left)
+            if node.right: q.append(node.right)
+            N -= 1
 
-    return ret
-
-nums = [2,1]
-print(nextGreaterElements(nums))
+        levels.insert(0, level)
+    return levels

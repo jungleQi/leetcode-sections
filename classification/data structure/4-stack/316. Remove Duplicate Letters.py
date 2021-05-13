@@ -1,7 +1,7 @@
 #coding=utf-8
 
 '''
-Given a 5-string which contains only lowercase letters, remove duplicate letters so that every letter appears once and only once.
+Given a string which contains only lowercase letters, remove duplicate letters so that every letter appears once and only once.
 You must make sure your result is the smallest in lexicographical order among all possible results.
 
 Example 1:
@@ -13,6 +13,7 @@ Output: "abc"
 #4-stack：存放依次增加的字符，具有唯一性
 #counter： 存放每个字符出现的次数，用于确定栈顶元素是否可以弹出的一句，只有栈顶元素还剩余多余的数量，才可以弹出，
 # 否则只能将当前元素做压栈，不能继续弹栈
+#
 
 import collections
 def removeDuplicateLetters(s):

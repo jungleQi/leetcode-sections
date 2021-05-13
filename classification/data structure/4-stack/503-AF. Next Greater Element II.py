@@ -1,11 +1,11 @@
 #coding=utf-8
 
 '''
-Given a circular 2-array (the next element of the last element is the first element of the 2-array),
+Given a circular array (the next element of the last element is the first element of the array),
 print the Next Greater Number for every element.
 
-The Next Greater Number of a number x is the first greater number to its traversing-order next in the 2-array,
-which means you could 6-search circularly to find its next greater number. If it doesn't exist, output -1 for this number.
+The Next Greater Number of a number x is the first greater number to its traversing-order next in the array,
+which means you could search circularly to find its next greater number. If it doesn't exist, output -1 for this number.
 
 Example 1:
 Input: [1,2,1]
@@ -21,19 +21,18 @@ The second 1's next greater number needs to 6-search circularly, which is also 2
 #       所以，栈顶到栈底的元素是递增。
 
 def nextGreaterElements(nums):
+    stack = []
     N = len(nums)
-    newnums = nums + nums
-    ans, stack = [-1]*N, []
+    ret = [-1] * N
 
-    print(newnums)
-    for i,n in enumerate(newnums):
-        while stack and newnums[stack[-1]] < n:
-            idx = stack.pop()
-            ans[idx] = n
+    for i, num in enumerate(nums + nums):
+        while stack and nums[stack[-1]] < num:
+            ret[stack[-1]] = num
+            stack.pop()
+        if (i < N):
+            stack.append(i)
 
-        if i<N: stack.append(i)
-
-    return ans
+    return ret
 
 nums = [5,4,3,2,1]
 print(nextGreaterElements(nums))

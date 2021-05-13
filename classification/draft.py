@@ -1,23 +1,18 @@
 import collections
 
-def zigzagLevelOrder(root):
-    ret = []
-    q = collections.deque([root])
-    while q:
-        cnt = len(q)
-        cur = []
-        while cnt:
-            node = q.popleft()
-            cnt -= 1
+def nextGreaterElements(nums):
+    stack = []
+    N = len(nums)
+    ret = [-1]*N
 
-            if(len(ret)%2):
-                cur.append(node.val)
-            else:
-                cur.insert(0, node.val)
-
-            if node.left: q.append(node.left)
-            if node.right: q.append(node.right)
-
-        ret.append(cur)
+    for i,num in enumerate(nums+nums):
+        while stack and nums[stack[-1]]<num:
+            ret[stack[-1]] = num
+            stack.pop()
+        if(i<N):
+            stack.append(i)
 
     return ret
+
+nums = [2,1]
+print(nextGreaterElements(nums))

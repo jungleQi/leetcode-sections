@@ -17,6 +17,7 @@ Note:
 You can assume that you can always reach the last index.
 '''
 
+#如果不把什么时候返回/结束定清楚，很容易出错
 def jump(nums):
     """
     :type nums: List[int]

@@ -1,11 +1,7 @@
-import collections
-
-#[2,3,1,0,1]
-def canJump(nums):
+def jump(nums):
     N = len(nums)
-    lastPos = N-1
-    for i in range(N-1, -1, -1):
-        if i+nums[i] >= lastPos:
-            lastPos = i
+    step = curIdx = 0
+    while curIdx < len(nums)-1:
+        step += 1
+        if(curIdx+nums[curIdx] >= N-1): return step
 
-    return lastPos == 0

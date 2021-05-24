@@ -1,24 +1,11 @@
 import collections
 
-'''
-Given a list of daily temperatures T, return a list such that, for each day in the input,
-tells you how many days you would have to wait until a warmer temperature.
-If there is no future day for which this is possible, put 0 instead.
+#[2,3,1,0,1]
+def canJump(nums):
+    N = len(nums)
+    lastPos = N-1
+    for i in range(N-1, -1, -1):
+        if i+nums[i] >= lastPos:
+            lastPos = i
 
-For example, given the list of temperatures T = [73, 74, 75, 71, 69, 72, 76, 73],
-your output should be [1, 1, 4, 2, 1, 1, 0, 0].
-
-Note: The length of temperatures will be in the range [1, 30000].
-Each temperature will be an integer in the range [30, 100].
-'''
-
-def dailyTemperatures(T):
-    N = len(T)
-    ret = [0]*N
-    stack = []
-    for i in range(N):
-        while stack and T[stack[-1]] < T[i]:
-            ret[stack[-1]] = i-stack[-1]
-            stack.pop()
-        stack.append(i)
-    return ret
+    return lastPos == 0

@@ -2,7 +2,6 @@
 Given a string S of '(' and ')' parentheses, we add the minimum number of parentheses ( '(' or ')', and in any positions ) so that the resulting parentheses string is valid.
 
 Formally, a parentheses string is valid if and only if:
-
 It is the empty string, or
 It can be written as AB (A concatenated with B), where A and B are valid strings, or
 It can be written as (A), where A is a valid string.
@@ -13,4 +12,16 @@ Input: "())"
 Output: 1
 '''
 
-def minAddToMakeValid(S):
+def minAddToMakeValid(s):
+    stack = []
+    ret = 0
+    for c in s:
+        if c == '(':
+            stack.append('(')
+        else:
+            if not stack: ret += 1
+            else: stack.pop()
+    return ret+len(stack)
+
+S = "()))(("
+print(minAddToMakeValid(S))

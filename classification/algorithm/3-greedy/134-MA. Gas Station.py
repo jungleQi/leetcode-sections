@@ -18,8 +18,25 @@ cost = [3,4,5,1,2]
 
 Output: 3
 '''
-
 def canCompleteCircuit(gas, cost):
+    N = len(gas)
+    gas += gas
+    cost += cost
+
+    curRemainGas = 0
+    start = -1
+    for i in range(2*N):
+        if curRemainGas + gas[i] - cost[i] < 0:
+            start = -1
+            curRemainGas = 0
+        else:
+            if(start == -1): start = i
+            curRemainGas += gas[i] - cost[i]
+        if start>=0 and i - start == N-1: break
+
+    return start if i-start == N-1 else -1
+
+def canCompleteCircuit_grace(gas, cost):
     """
     :type gas: List[int]
     :type cost: List[int]

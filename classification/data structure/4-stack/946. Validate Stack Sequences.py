@@ -14,4 +14,15 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
 '''
 
 def validateStackSequences(pushed, popped):
-    
+    stack = []
+    i = 0
+    for num in pushed:
+        stack.append(num)
+        while stack and stack[-1] == popped[i]:
+            stack.pop()
+            i += 1
+    return not stack and i == len(popped)
+
+pushed = [1,2,3,4,5]
+popped = [4,5,3,2,1]
+print(validateStackSequences(pushed, popped))

@@ -35,5 +35,15 @@ def removeDuplicateLetters(s):
 
     return "".join(stack)
 
+def smallestSubsequence_II(text):
+    stack = []
+    for i, c in enumerate(text):
+        if c in stack: continue
+        while stack and c < stack[-1] and stack[-1] in text[i:]:
+            stack.pop()
+
+        stack += c,
+    return "".join(stack)
+
 s = "acdad"
 print(removeDuplicateLetters(s))

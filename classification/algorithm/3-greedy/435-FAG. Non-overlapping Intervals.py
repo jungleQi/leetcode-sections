@@ -9,7 +9,7 @@ Output: 1
 Explanation: [1,3] can be removed and the rest of intervals are non-overlapping.
 '''
 
-def eraseOverlapIntervals(intervals):
+def eraseOverlapIntervals_greedy(intervals):
     """
     :type intervals: List[List[int]]
     :rtype: int
@@ -30,3 +30,17 @@ def eraseOverlapIntervals(intervals):
         minEnd = min(interval[1], minEnd)
         delCnt += 1
     return delCnt
+
+import heapq
+def eraseOverlapIntervals_heap(intervals):
+    heap = []
+    res = 0
+    for interval in sorted(intervals, key=lambda x:x[0]):
+        if heap and interval[0] < -heap[0]:
+            res += 1
+            if interval[1] < -heap[0]:
+                heapq.heappop(heap)
+                heapq.heappush(heap, -interval[1])
+        else:
+            heapq.heappush(heap, -interval[1])
+    return res

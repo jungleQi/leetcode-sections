@@ -26,8 +26,8 @@ def minMoves(nums, k):
             count += 1
 
             #nums[i]在前面i-1个1全部左移相连后，需要移动多少距离 才能贴着前面的1
+            # 难得想上来设定这两个变量
             g.append(i - count)
-
             total.append(total[-1] + g[-1])
 
     m, ans = len(g), float("inf")
@@ -35,7 +35,7 @@ def minMoves(nums, k):
     for i in range(m - k + 1):
         mid = (i + i + k - 1) // 2
         q = g[mid]
-        #计算公式可以推演得到
+        #计算公式可以推演得到,这里是最
         ans = min(ans, (2 * (mid - i) - k + 1) * q + (total[i + k] - total[mid + 1]) - (total[mid] - total[i]))
 
     return ans

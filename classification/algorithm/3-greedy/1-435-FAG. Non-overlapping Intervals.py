@@ -16,20 +16,17 @@ def eraseOverlapIntervals_greedy(intervals):
     """
     # 1.按照起始时间升序排列
     # 2.确定最近末端，如果当前起始时间小于末端，就要删除一个，并确定新的最小末端
-    if not intervals: return 0
-
     intervals.sort(key=lambda x: x[0])
-    minEnd = intervals[0][0]
+    minEnd = intervals[0][1]
+    res = 0
 
-    delCnt = 0
-    for interval in intervals:
-        if interval[0] >= minEnd:
-            minEnd = interval[1]
-            continue
-
-        minEnd = min(interval[1], minEnd)
-        delCnt += 1
-    return delCnt
+    for start, end in intervals[1:]:
+        if start < minEnd:
+            res += 1
+            minEnd = min(minEnd, end)
+        else:
+            minEnd = end
+    return res
 
 import heapq
 def eraseOverlapIntervals_heap(intervals):

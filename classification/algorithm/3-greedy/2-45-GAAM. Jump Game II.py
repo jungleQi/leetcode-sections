@@ -41,3 +41,19 @@ def jump(nums):
             if j + nums[j] > i + nums[i]:
                 i = j
     return step
+
+def jump_concise(nums):
+    res = 0
+    i = 0
+    while i < len(nums)-1:
+        res += 1
+        if i+nums[i] >= len(nums)-1: break
+
+        right = i+nums[i]
+        j = i+1
+        while j <= right:
+            if j+nums[j] >= i+nums[i]:
+                i = j
+            j += 1
+
+    return res

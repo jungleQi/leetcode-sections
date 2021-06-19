@@ -42,7 +42,9 @@ def removeDuplicateLetters(s):
     """
     stack = []
     for i, c in enumerate(s):
+        #key point: stack里是升序， c在stack里就不管，交给后面的字符来对stack进行处理
         if c in stack: continue
+
         while stack and c < stack[-1] and stack[-1] in s[i:]:
             stack.pop()
 

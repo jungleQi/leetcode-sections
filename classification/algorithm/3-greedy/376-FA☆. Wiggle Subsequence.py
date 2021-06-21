@@ -25,8 +25,10 @@ def wiggleMaxLength(self, nums):
     length = 1
     delta = 0
     for i in range(1, len(nums)):
+        #处理对算法主流程的干扰
         if (nums[i] == nums[i - 1]): continue
 
+        #<= 而不是 <，统一头部两个元素的处理逻辑
         if (nums[i] - nums[i - 1]) * delta <= 0:
             length += 1
             delta = nums[i] - nums[i - 1]

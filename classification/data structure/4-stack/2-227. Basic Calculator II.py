@@ -13,6 +13,7 @@ Output: 5
 '''
 
 def calculate(s):
+    # op is num's prev-operator
     def update(op, num):
         if op == '+':
             stack.append(num)

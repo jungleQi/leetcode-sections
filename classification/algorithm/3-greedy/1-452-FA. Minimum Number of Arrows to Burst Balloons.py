@@ -22,7 +22,7 @@ def findMinArrowShots_greedy(points):
     if points == []:
         return 0
 
-    #关键：以x[1]为key进行升序排列
+    #以x[1]为key进行升序排列
     points.sort(key=lambda x: x[1])
     arrows = 1
 
@@ -34,6 +34,23 @@ def findMinArrowShots_greedy(points):
 
     return arrows
 
+def findMinArrowShots(points):
+    """
+    :type points: List[List[int]]
+    :rtype: int
+    """
+    # 以x[0]为key进行升序排列
+    points.sort(key=lambda x: x[0])
+    right = points[0][1]
+    res = 1
+
+    for pt in points[1:]:
+        if pt[0] > right:
+            res += 1
+            right = pt[1]
+        else:
+            right = min(pt[1], right)
+    return res
 
 import heapq
 def findMinArrowShots_heap(points):

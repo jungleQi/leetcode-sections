@@ -12,15 +12,18 @@ Output: "1219"
 Explanation: Remove the three digits 4, 3, and 2 to form the new number 1219 which is the smallest.
 '''
 
+
 def removeKdigits(num, k):
     stack = []
     for n in num:
         while stack and stack[-1] > n and k > 0:
             stack.pop()
             k -= 1
+        # 关键在于流程中，对 '0' 的处理
         if n == '0' and not stack:
             continue
         stack.append(n)
+
     if k > 0:
         stack = stack[:-k]
 

@@ -33,18 +33,16 @@ def reverseParentheses_my(s):
     return stack[0][1]
 
 def reverseParentheses_official(s):
-    stack = ['']
-
-    for ch in s:
-        if ch == '(':
-            stack.append('')
-        elif ch == ')':
-            tmp = stack.pop()[::-1]
-            stack[-1] += tmp
-        else:
-            stack[-1] += ch
-
-    return ''.join(stack)
+    stack = [""]
+    for c in s:
+        if c == '(':
+            stack.append("")
+        elif c == ')':
+            top = stack.pop()
+            stack[-1] += top[::-1]
+        elif c.isalpha():
+            stack[-1] += c
+    return stack[-1]
 
 s = "a(bcdefghijkl(mno)p)q"
 print(reverseParentheses_official(s))

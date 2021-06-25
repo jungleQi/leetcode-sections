@@ -11,7 +11,25 @@ Input: N = 332
 Output: 299
 '''
 
-def monotoneIncreasingDigits_latest(N):
+def monotoneIncreasingDigits_III(n):
+    numstr = str(n)
+    N = len(numstr)
+    i = 0
+    #正向遍历找到第一个下降的跳点
+    while i < N - 1:
+        if numstr[i] > numstr[i + 1]:
+            break
+        i += 1
+    if i == N - 1: return n
+
+    #从跳点反向遍历，找到第一个可以自减1(满足monotone increasing)的点
+    while i > 0:
+        if numstr[i] != numstr[i - 1]: break
+        i -= 1
+    return int(numstr[:i] + str(int(numstr[i]) - 1) + '9' * (N - i - 1))
+
+
+def monotoneIncreasingDigits_II(N):
     digStr = list(str(N))
     start = 0
     for i in range(1, len(digStr)):
@@ -30,7 +48,7 @@ def monotoneIncreasingDigits_latest(N):
             return int("".join(digStr[:start+1]) + '9'*(len(digStr)-start-1))
 
 
-def monotoneIncreasingDigits(N):
+def monotoneIncreasingDigits_I(N):
     arr = [int(c) for c in str(N)]
     nLen = len(arr)
 

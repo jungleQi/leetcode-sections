@@ -13,6 +13,29 @@ This is a partition so that each letter appears in at most one part.
 A partition like "ababcbacadefegde", "hijhklij" is incorrect, because it splits S into less parts.
 '''
 
+import collections
+def partitionLabels_my(s):
+    statis = collections.defaultdict(list)
+    for i,c in enumerate(s):
+        statis[c].append(i)
+
+    pairs = []
+    for items in statis.values():
+        pairs.append([items[0], items[-1]])
+    pairs.sort(key=lambda x:x[0])
+
+    res = []
+    left = right = pairs[0][0]
+    for pair in pairs:
+        if pair[0] > right:
+            res.append(right-left+1)
+            left, right = pair[0], pair[1]
+        else:
+            right = max(right, pair[1])
+    res.append(right - left + 1)
+
+    return res
+
 def partitionLabels(S):
     cdict = {c: i for i, c in enumerate(S)}
     ret = []
@@ -24,5 +47,6 @@ def partitionLabels(S):
         largestIdx = max(largestIdx, cdict[c])
     return ret
 
+
 s = "ababcbacadefegdehijhklij"
-print partitionLabels(s)
+print(partitionLabels(s))

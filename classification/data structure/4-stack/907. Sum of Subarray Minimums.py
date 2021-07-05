@@ -1,6 +1,6 @@
 '''
 Given an array of integers arr, find the sum of min(b), where b ranges over every (contiguous) subarray of arr.
-Since the answer may be large, return the answer modulo 109 + 7.
+Since the answer may be large, return the answer modulo 10**9 + 7.
 
 Example 1:
 Input: arr = [3,1,2,4]
@@ -25,17 +25,15 @@ def sumSubarrayMins_TLE(arr):
             prev = cur
     return ret
 
-def sumSubarrayMins(A):
-    A = [0] + A
-    res = [0] * len(A)
-    stack = [0]
-    for i in range(len(A)):
-        while A[stack[-1]] > A[i]:
-            stack.pop()
-        j = stack[-1]
-        res[i] = res[j] + (i - j) * A[i]
-        stack.append(i)
-    return sum(res) % (10 ** 9 + 7)
+def sumSubarrayMins(arr):
+    stack = [[-1, 0]]
+    cursum = 0
+    for i, n in enumerate(arr):
+        while len(stack) > 1 and arr[stack[-1][0]] > n:
+            cursum += stack.pop()[1]
+
+        stack.append([i, (i - stack[-1][0]) * n + stack[-1][1]])
+    return (sum(list(zip(*stack))[1]) + cursum) % (10 ** 9 + 7)
 
 arr = [3,1]
 print(sumSubarrayMins(arr))

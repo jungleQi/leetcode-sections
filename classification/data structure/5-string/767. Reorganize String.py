@@ -13,8 +13,20 @@ Input: S = "aaab"
 Output: ""
 '''
 
+def reorganizeString_I(S):
+    N = len(S)
+    A = []
+    for i, x in sorted((S.count(x), x) for x in set(S)):
+        if i > (N + 1) // 2: return ""
+        A.extend([x] * i)
+
+    ans = [None] * N
+    ans[::2] = A[N // 2:]
+    ans[1::2] = A[:N // 2]
+    return "".join(ans)
+
 import heapq
-def reorganizeString(S):
+def reorganizeString_II(S):
     #用插入的方式不优雅，数组元素需要批量移动
     # 实际上是对堆的熟练运用, 为什么是greedy，不太理解
     sdict = [(-S.count(c), c) for c in set(S)]

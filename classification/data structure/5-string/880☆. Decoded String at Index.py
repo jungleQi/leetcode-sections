@@ -3,7 +3,7 @@ An encoded string s is given.
 To find and write the decoded string to a tape, the encoded string is read one character at a time and the following steps are taken:
 
 If the character read is a letter, that letter is written onto the tape.
-If the character read is a digit (say d), the entire current tape is repeatedly written d-1 more times in total.
+If the character read is a digit (say d), the entire current tape is repeatedly written d more times in total.
 Now for some encoded string s, and an index k, find and return the k-th letter (1 indexed) in the decoded string.
 
 Example 1:

@@ -13,6 +13,18 @@ Output: [2,6]
 Explanation: Among the set of every possible subsequence: {[3,5], [3,2], [3,6], [5,2], [5,6], [2,6]}, [2,6] is the most competitive.
 '''
 
+def mostCompetitive_grace(nums, k):
+    #这里的attempts这个变量定义的非常漂亮，控制了删除的最多次数
+    attempts = len(nums) - k
+    stack = []
+    for num in nums:
+        while stack and num < stack[-1] and attempts > 0:
+            stack.pop()
+            attempts -= 1
+        stack.append(num)
+
+    return stack[:k]
+
 def mostCompetitive(nums, k):
     stack = []
     N = len(nums)

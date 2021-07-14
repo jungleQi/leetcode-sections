@@ -32,3 +32,26 @@ def shortestWay(source, target):
         if not srcSeq: return -1
         subseqCnt += 1
     return subseqCnt
+
+import collections
+def shortestWay_quick(source, target):
+    def find(idxs, i):
+        for j in idxs:
+            if j>i: return j
+        return -1
+
+    cdict = collections.defaultdict(list)
+    for i,s in enumerate(source):
+        cdict[s].append(i)
+
+    cnt, over = 0, True
+    for i, c in enumerate(target):
+        if over :
+            start = cdict[c][0]
+            over = False
+            cnt += 1
+        else:
+            start = find(cdict[c], start)
+            if start == -1:
+                over = True
+    return cnt

@@ -16,6 +16,22 @@ capacity = 13
 Output: True
 '''
 
+import heapq
+def carPooling_greedy_byHeap(trips, capacity):
+    trips.sort(key=lambda x: x[1])
+
+    curCapSum, cur = 0, []
+    for cap, s, e in trips:
+        while cur and cur[0][0] <= s:
+            curCapSum -= cur[0][1]
+            heapq.heappop(cur)
+
+        heapq.heappush(cur, [e, cap])
+        curCapSum += cap
+        if curCapSum > capacity: return False
+    return True
+
+
 def carPooling(trips, capacity):
     pairs = []
     for trip in trips:
@@ -32,6 +48,9 @@ def carPooling(trips, capacity):
 
     return total == 0
 
+
+
+
 trips = [[4,5,6],[6,4,7],[4,3,5],[2,3,5]]
 capacity = 13
-print carPooling(trips, capacity)
+print(carPooling(trips, capacity))

@@ -16,6 +16,9 @@ Explanation: Remove the three digits 4, 3, and 2 to form the new number 1219 whi
 def removeKdigits(num, k):
     stack = []
     for n in num:
+        # 遍历过程中，没必要关注当前的k和剩余num的关系，这样的返回错失了后面没遍历的，取代stack中字符的机会
+        # if k> len(num)-i: break
+
         while stack and stack[-1] > n and k > 0:
             stack.pop()
             k -= 1

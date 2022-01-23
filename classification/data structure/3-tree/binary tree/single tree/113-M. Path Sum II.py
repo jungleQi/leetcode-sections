@@ -30,6 +30,11 @@ def pathSum(root, sum):
     """
 
     def travel(root, path, k, ret):
+        #没有必要的判断：
+        # 1.如果root为none，就不会进入这个函数
+        # 2.k有可能<0,因为root.val可能<0
+        #if not root or k<0 : return
+
         if not root.left and not root.right and k == 0:
             ret.append(path)
             return

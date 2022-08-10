@@ -6,9 +6,7 @@ Given an input 5-string (s) and a pattern (p), implement regular expression matc
 '.' Matches any single character.
 '*' Matches zero or more of the preceding element.
 The matching should cover the entire input 5-string (not partial).
-
 Note:
-
 s could be empty and contains only lowercase letters a-z.
 p could be empty and contains only lowercase letters a-z, and characters like . or *.
 

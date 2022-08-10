@@ -19,6 +19,38 @@ from Search_2D.Astar import AStar
 class Dijkstra(AStar):
     """Dijkstra set the cost as the priority 
     """
+    def mySearching(self):
+        self.PARENT[self.s_start] = self.s_start
+        self.g[self.s_start] = 0
+        self.g[self.s_goal] = math.inf
+
+        heapq.heappush(self.OPEN,(0, self.s_start))
+        while self.OPEN:
+            _, cur = heapq.heappop(self.OPEN)
+            self.CLOSED.append(cur)
+
+            if cur == self.s_goal: break
+
+            for s_n in self.get_neighbor(cur):
+                new_cost = self.g[cur] + self.cost(cur, s_n)
+
+                if s_n not in self.g:
+                    self.g[s_n] = math.inf
+
+                if new_cost < self.g[s_n]:
+                    self.PARENT[s_n] = cur
+                    self.g[s_n] = new_cost
+                    heapq.heappush(self.OPEN, (new_cost, s_n))
+
+        return self.extract_path(self.PARENT), self.CLOSED
+
+
+
+
+
+
+
+
     def searching(self):
         """
         Breadth-first Searching.
@@ -61,7 +93,7 @@ def main():
     dijkstra = Dijkstra(s_start, s_goal, 'None')
     plot = plotting.Plotting(s_start, s_goal)
 
-    path, visited = dijkstra.searching()
+    path, visited = dijkstra.mySearching()
     plot.animation(path, visited, "Dijkstra's")  # animation generate
 
 
